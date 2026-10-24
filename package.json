@@ -22,7 +22,9 @@
     "sharp": "^0.35.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.1"
+    "prettier-plugin-astro": "^1.1.1",
+    "typescript": "^6.0.3"
   }
 }
