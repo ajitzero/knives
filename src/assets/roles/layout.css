@@ -32,7 +32,7 @@ body:has(> aside.docs-sidebar) {
 	/* Center the reading column and let it grow from 600px on tablet to an
 	   800px cap on laptop and up. Inline padding is only needed while the
 	   column is narrower than the viewport, so it is dropped from tablet up. */
-	> main > :not(blockquote, table, .docs-demo-preview, pre) {
+	> main > :not(blockquote, table, .docs-demo-preview, pre, ul, ol) {
 		margin-inline: auto;
 		max-width: var(--docs-content-width);
 		padding-inline: var(--pico-spacing);
@@ -56,7 +56,7 @@ body:has(> aside.docs-sidebar) {
 	   each side (the negative margin is expressed as extra width so the block
 	   can keep `margin-inline: auto` for centering, and still shrink with the
 	   column on narrow screens instead of overflowing it). */
-	> main > :is(blockquote, table, .docs-demo-preview, pre) {
+	> main > :is(blockquote, table, .docs-demo-preview, pre, ul, ol) {
 		margin-inline: auto;
 		max-width: calc(var(--docs-content-width) + 2 * var(--docs-bleed));
 	}
