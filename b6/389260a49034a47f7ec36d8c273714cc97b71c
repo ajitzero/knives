@@ -1,0 +1,14 @@
+wrangler.jsonc
+  h_1e9f70f2591550 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b6389260a49034a47f7ec36d8c273714cc97b71c",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
