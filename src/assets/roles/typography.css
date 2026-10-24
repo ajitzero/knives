@@ -1,0 +1,24 @@
+:root {
+	--pico-font-family-sans-serif:
+		'Inter Variable', system-ui, sans-serif, var(--pico-font-family-emoji);
+	--pico-font-family-monospace: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+	font-feature-settings:
+		'liga' 1,
+		'calt' 1;
+	font-kerning: normal;
+	font-optical-sizing: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+main p {
+	text-wrap: pretty;
+}

@@ -1,8 +1,10 @@
 /* Site-wide CSS entry point. Imported once from `BaseHead` so every page gets it.
    Blades ships inside its own `@layer blades`; the role files below are unlayered,
    so site customizations always win over the framework. */
+@import '@fontsource-variable/inter';
 @import '@anyblades/blades/layered/blades.layered';
 @import '@anyblades/blades/layered/layout/landmarks';
 @import './roles/layout.css';
 @import './roles/footer.css';
 @import './roles/tasks-list.css';
+@import './roles/typography.css';

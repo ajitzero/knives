@@ -1,5 +1,7 @@
 ---
 import bladesStyles from '@anyblades/blades/layered/blades.layered?inline';
+import interStyles from '@fontsource-variable/inter?inline';
+import typographyStyles from '../assets/roles/typography.css?inline';
 import CopyButton from './CopyButton.astro';
 
 interface Props {
@@ -17,7 +19,7 @@ const srcdoc = `<!doctype html>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="color-scheme" content="light dark">
-		<style>${bladesStyles}\n${css}</style>
+		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${css}</style>
 	</head>
 	<body style="height: 100%; min-height: 200px; display: grid; place-items: start center; padding: 2rem 1rem;">
 		${html}
