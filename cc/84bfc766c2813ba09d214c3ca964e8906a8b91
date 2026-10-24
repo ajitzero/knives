@@ -1,0 +1,15 @@
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 81,95
+  h_1e9f70f2591550 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cc84bfc766c2813ba09d214c3ca964e8906a8b91",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
