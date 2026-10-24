@@ -1,5 +1,5 @@
 /**
- * Role: docs-sidebar
+ * Role: layout
  * Persistent docs-style sidebar: site identity (hgroup) + site navigation.
  * The markup order is sidebar → main → footer; on mobile that single column
  * is the layout, on wide screens the body becomes a two-column grid. All
@@ -14,6 +14,11 @@ body:has(> aside.docs-sidebar) {
 	align-items: start;
 	min-height: 100vh;
 	min-height: 100svh;
+
+	> main > :not(blockquote, table, .docs-demo-preview, pre) {
+		padding-inline: var(--pico-spacing);
+		max-width: 37.5rem;
+	}
 
 	/* The footer spans the full width at both column layouts. */
 	> footer {

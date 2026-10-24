@@ -3,4 +3,4 @@
    so site customizations always win over the framework. */
 @import '@anyblades/blades/layered/blades.layered';
 @import '@anyblades/blades/layered/layout/landmarks';
-@import './roles/docs-sidebar.css';
+@import './roles/layout.css';

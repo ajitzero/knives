@@ -37,8 +37,8 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 		<section class="docs-demo-preview__source">
 			<h4>
 				HTML
-				<button class="docs-demo-preview__copy" type="button" data-copy="html">
-					Copy HTML
+				<button class="docs-demo-preview__copy outline" type="button" data-copy="html">
+					Copy
 				</button>
 			</h4>
 			<pre><code>{html}</code></pre>
@@ -46,8 +46,8 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 		<section class="docs-demo-preview__source">
 			<h4>
 				CSS
-				<button class="docs-demo-preview__copy" type="button" data-copy="css">
-					Copy CSS
+				<button class="docs-demo-preview__copy outline" type="button" data-copy="css">
+					Copy
 				</button>
 			</h4>
 			<pre><code>{css}</code></pre>
@@ -91,6 +91,11 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 <style>
 	.docs-demo-preview {
 		margin-block: 2rem;
+
+		h3,
+		h4 {
+			margin-inline: var(--pico-spacing);
+		}
 
 		> h3 {
 			margin-bottom: 0.75rem;
