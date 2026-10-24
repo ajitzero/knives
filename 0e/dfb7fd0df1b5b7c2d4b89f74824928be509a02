@@ -1,0 +1,14 @@
+package.json
+  h_1e9f70f2591550 11-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0edfb7fd0df1b5b7c2d4b89f74824928be509a02",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
