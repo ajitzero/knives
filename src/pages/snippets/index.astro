@@ -29,7 +29,6 @@ const listedSnippets = await Promise.all(
 								<h3>
 									<a href={`/snippets/${snippet.id}/`}>{snippet.data.title}</a>
 								</h3>
-								<p>{snippet.data.tag.map((tag) => snippetTagLabels[tag]).join(', ')}</p>
 							</hgroup>
 							<Content />
 						</article>

@@ -1,0 +1,128 @@
+@layer snippets.popover {
+	/* The button role that opens a popover. */
+	:root {
+		--pico-font-size: 15px;
+		--pico-form-element-spacing-vertical: 0.45rem;
+		--pico-form-element-spacing-horizontal: 0.75rem;
+	}
+
+	:is(button, [role='button'])[popovertarget] {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+
+		&::after {
+			display: block;
+			width: 1rem;
+			height: 1rem;
+			background-image: var(--pico-icon-chevron);
+			background-position: right center;
+			background-repeat: no-repeat;
+			background-size: 1rem auto;
+			content: '';
+		}
+
+		/* Filled buttons: keep the chevron as light as the label. */
+		&:not(.outline)::after {
+			filter: brightness(0) invert(1);
+		}
+	}
+
+	/* Menu rows: icon, label, then the shortcut pushed to the end. */
+	:is(ul, menu)[popover] {
+		--knives-menu-icon-size: 1rem;
+		--knives-menu-gap: 0.5rem;
+
+		max-width: 20rem;
+
+		li {
+			min-width: 185px;
+		}
+
+		li :is(a, button) {
+			display: flex;
+			align-items: center;
+			gap: var(--knives-menu-gap);
+		}
+
+		/* Blades styles `li a`, not `li button`, so neutralise the button fill. */
+		li button {
+			width: calc(100% + var(--pico-form-element-spacing-horizontal) * 2);
+			margin: calc(var(--pico-form-element-spacing-vertical) * -0.5)
+				calc(var(--pico-form-element-spacing-horizontal) * -1);
+			padding: calc(var(--pico-form-element-spacing-vertical) * 0.5)
+				var(--pico-form-element-spacing-horizontal);
+			overflow: hidden;
+			border: 0;
+			border-radius: 0;
+			background-color: transparent;
+			/* Blades colours buttons via this token, so `.destructive` still wins on `color`. */
+			--pico-color: var(--pico-dropdown-color);
+			font-size: inherit;
+			font-weight: var(--pico-font-weight);
+			text-align: start;
+
+			&:is(:hover, :active, :focus, :focus-visible) {
+				background-color: var(--pico-dropdown-hover-background-color);
+			}
+		}
+
+		li :is(a, button) > span {
+			flex: 1;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		/* A row without an icon still reserves its column when a sibling has one. */
+		:is(li:has(~ li svg), li:has(svg) ~ li) :is(a, button):not(:has(> svg)) > span {
+			margin-inline-start: calc(var(--knives-menu-icon-size) + var(--knives-menu-gap));
+		}
+
+		li :is(a, button) > svg {
+			width: var(--knives-menu-icon-size);
+			height: var(--knives-menu-icon-size);
+			color: var(--pico-muted-color);
+		}
+
+		/* Interacted rows: the icon takes the label's colour. */
+		li :is(a, button):is(:hover, :active, :focus, :focus-visible) > svg {
+			color: inherit;
+		}
+
+		/* Keep a destructive icon red with its label. */
+		li :is(a, button).destructive > svg {
+			color: var(--pico-form-element-invalid-active-border-color);
+		}
+
+		li :is(a, button) > kbd {
+			--pico-font-family: var(--pico-font-family-sans-serif);
+			--pico-font-weight: 400;
+			background: none;
+			color: var(--pico-muted-color);
+			flex: none;
+			margin-inline-start: auto;
+			padding: 0;
+		}
+
+		/* A separator row spans the menu edge to edge. */
+		li:has(> hr) {
+			padding: 0;
+		}
+
+		hr {
+			margin: 0;
+			border-top-color: var(--pico-dropdown-border-color);
+		}
+	}
+
+	/* Destructive actions: the validation red, kept through hover and focus. */
+	.destructive {
+		color: var(--pico-form-element-invalid-active-border-color);
+
+		&:is(:hover, :active, :focus, :focus-visible) {
+			color: var(--pico-form-element-invalid-active-border-color);
+		}
+	}
+}

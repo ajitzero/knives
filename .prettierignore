@@ -9,6 +9,3 @@ node_modules/
 
 # lockfile
 pnpm-lock.yaml
-
-# content (blog posts and prose)
-src/content/

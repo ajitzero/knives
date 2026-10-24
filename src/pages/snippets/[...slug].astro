@@ -32,7 +32,7 @@ const { Content } = await render(snippet);
 	<main>
 		<hgroup>
 			<h2>{snippet.data.title}</h2>
-			<p>{snippet.data.tag.map((tag) => snippetTagLabels[tag]).join(', ')}</p>
+			<p>{snippet.data.stage.toUpperCase()}</p>
 		</hgroup>
 		<Content />
 		<DocsDemoPreview title={snippet.data.title} html={sources.html} css={sources.css} />

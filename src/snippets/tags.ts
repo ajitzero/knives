@@ -1,9 +1,8 @@
 import { z } from 'astro/zod';
 
 export const snippetTagLabels = {
-	dropdown: 'Dropdown',
+	popover: 'Popover',
 	group: 'Group',
-	button: 'Button',
 } as const satisfies Record<string, string>;
 
 export type SnippetTag = keyof typeof snippetTagLabels;
