@@ -1,0 +1,17 @@
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 33,37,67-69,72,76-77
+  h_1e9f70f2591550 3,70-71,74,78-79,82-83,91
+src/components/CopyButton.astro
+  h_1e9f70f2591550 1-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cdb4c7e5777b3e1e833fab86025e67e8a6747151",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
