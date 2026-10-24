@@ -1,0 +1,70 @@
+.gitignore
+  h_1e9f70f2591550 1-24
+.vscode/extensions.json
+  h_1e9f70f2591550 1-4
+.vscode/launch.json
+  h_1e9f70f2591550 1-11
+AGENTS.md
+  h_1e9f70f2591550 1-22
+README.md
+  h_1e9f70f2591550 1-63
+astro.config.mjs
+  h_1e9f70f2591550 1-35
+package.json
+  h_1e9f70f2591550 1-21
+pnpm-lock.yaml
+  h_1e9f70f2591550 1-2478
+public/favicon.svg
+  h_1e9f70f2591550 1-9
+src/components/BaseHead.astro
+  h_1e9f70f2591550 1-52
+src/components/Footer.astro
+  h_1e9f70f2591550 1-69
+src/components/FormattedDate.astro
+  h_1e9f70f2591550 1-15
+src/components/Header.astro
+  h_1e9f70f2591550 1-87
+src/components/HeaderLink.astro
+  h_1e9f70f2591550 1-24
+src/consts.ts
+  h_1e9f70f2591550 1-5
+src/content.config.ts
+  h_1e9f70f2591550 1-20
+src/content/blog/first-post.md
+  h_1e9f70f2591550 1-16
+src/content/blog/markdown-style-guide.md
+  h_1e9f70f2591550 1-214
+src/content/blog/second-post.md
+  h_1e9f70f2591550 1-16
+src/content/blog/third-post.md
+  h_1e9f70f2591550 1-16
+src/content/blog/using-mdx.mdx
+  h_1e9f70f2591550 1-31
+src/layouts/BlogPost.astro
+  h_1e9f70f2591550 1-84
+src/pages/about.astro
+  h_1e9f70f2591550 1-63
+src/pages/blog/[...slug].astro
+  h_1e9f70f2591550 1-20
+src/pages/blog/index.astro
+  h_1e9f70f2591550 1-112
+src/pages/index.astro
+  h_1e9f70f2591550 1-59
+src/pages/rss.xml.js
+  h_1e9f70f2591550 1-16
+src/styles/global.css
+  h_1e9f70f2591550 1-141
+tsconfig.json
+  h_1e9f70f2591550 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "85340aa51f77d2a56dcf6cb9dfa7a0b5de69a906",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
