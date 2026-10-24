@@ -35,22 +35,12 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 
 	<div class="docs-demo-preview__sources">
 		<section class="docs-demo-preview__source">
-			<h4>
-				HTML
-				<button class="docs-demo-preview__copy outline" type="button" data-copy="html">
-					Copy
-				</button>
-			</h4>
-			<pre><code>{html}</code></pre>
+			<h3>HTML</h3>
+			<pre><code>{html}</code><button class="docs-demo-preview__copy outline" type="button" data-copy="html">Copy</button></pre>
 		</section>
 		<section class="docs-demo-preview__source">
-			<h4>
-				CSS
-				<button class="docs-demo-preview__copy outline" type="button" data-copy="css">
-					Copy
-				</button>
-			</h4>
-			<pre><code>{css}</code></pre>
+			<h3>CSS</h3>
+			<pre><code>{css}</code><button class="docs-demo-preview__copy outline" type="button" data-copy="css">Copy</button></pre>
 		</section>
 	</div>
 	<p class="docs-demo-preview__feedback" role="status" aria-live="polite"></p>
@@ -92,8 +82,7 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 	.docs-demo-preview {
 		margin-block: 2rem;
 
-		h3,
-		h4 {
+		h3 {
 			margin-inline: var(--pico-spacing);
 		}
 
@@ -110,42 +99,42 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 			background: var(--pico-background-color);
 		}
 
-		.docs-demo-preview__sources {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr);
-			gap: 1rem;
-			margin-top: 1rem;
+		pre {
+			position: relative;
+			max-height: 24rem;
+			overflow: auto;
 
-			@media (min-width: 48rem) {
-				grid-template-columns: repeat(2, minmax(0, 1fr));
+			> button {
+				position: absolute;
+				top: 0.5rem;
+				right: 0.5rem;
+			}
+
+			&:hover > button,
+			&:focus-within > button {
+				opacity: 1;
+				pointer-events: auto;
 			}
 		}
 
-		.docs-demo-preview__source {
-			min-width: 0;
-
-			> h4 {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-			}
-
-			pre {
-				max-height: 24rem;
-				overflow: auto;
-			}
-		}
-
-		.docs-demo-preview__copy {
+		button {
+			padding-block: 0.25rem;
+			padding-inline: 0.625rem;
+			border: var(--pico-border-width) solid var(--pico-muted-border-color);
+			border-radius: calc(var(--pico-border-radius) * 0.75);
+			background-color: var(--pico-background-color);
+			box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+			color: var(--pico-contrast);
 			opacity: 0;
 			pointer-events: none;
-		}
 
-		&:hover .docs-demo-preview__copy,
-		&:focus-within .docs-demo-preview__copy {
-			opacity: 1;
-			pointer-events: auto;
+			&:hover {
+				background-color: var(--pico-form-element-background-color);
+			}
+
+			&:focus-visible {
+				box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+			}
 		}
 
 		.docs-demo-preview__feedback {
@@ -155,7 +144,7 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 	}
 
 	@media (hover: none), (pointer: coarse) {
-		.docs-demo-preview .docs-demo-preview__copy {
+		.docs-demo-preview button {
 			opacity: 1;
 			pointer-events: auto;
 		}

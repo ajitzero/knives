@@ -5,7 +5,13 @@
  * is the layout, on wide screens the body becomes a two-column grid. All
  * scoping is done with semantic landmarks and layout selectors — the
  * `docs-sidebar` class is the one approved site-level CSS class.
- */
+*/
+
+@media (min-width: 1100px) {
+	:root {
+		--pico-font-size: 15px;
+	}
+}
 
 /* Two-column shell only when the page actually has the sidebar. */
 body:has(> aside.docs-sidebar) {
@@ -15,9 +21,44 @@ body:has(> aside.docs-sidebar) {
 	min-height: 100vh;
 	min-height: 100svh;
 
+	/* One measure shared by the reading column and the full-bleed blocks.
+	   Bounds are in px because the root font size is fluid in Blades (and
+	   overridden to 15px here), so rem would drift away from those targets. */
+	--docs-content-width: clamp(600px, 75vw, 800px);
+	/* How far the preview, code and other full-bleed blocks hang out past the
+	   reading column on each side. */
+	--docs-bleed: var(--pico-spacing);
+
+	/* Center the reading column and let it grow from 600px on tablet to an
+	   800px cap on laptop and up. Inline padding is only needed while the
+	   column is narrower than the viewport, so it is dropped from tablet up. */
 	> main > :not(blockquote, table, .docs-demo-preview, pre) {
+		margin-inline: auto;
+		max-width: var(--docs-content-width);
 		padding-inline: var(--pico-spacing);
-		max-width: 37.5rem;
+
+		@media (min-width: 1100px) {
+			padding-inline: 0;
+		}
+	}
+
+	/* Top breathing room: exactly the default block padding at 1100px, then it
+	   grows with the viewport (2.5% of every extra pixel) so wide screens gain
+	   vertical air instead of only empty space beside the reading column. */
+	> main {
+		padding-block-start: max(
+			var(--pico-block-spacing-vertical),
+			var(--pico-block-spacing-vertical) + (100vw - 1100px) * 0.1
+		);
+	}
+
+	/* Full-bleed blocks sit on the same centred axis, but --docs-bleed wider on
+	   each side (the negative margin is expressed as extra width so the block
+	   can keep `margin-inline: auto` for centering, and still shrink with the
+	   column on narrow screens instead of overflowing it). */
+	> main > :is(blockquote, table, .docs-demo-preview, pre) {
+		margin-inline: auto;
+		max-width: calc(var(--docs-content-width) + 2 * var(--docs-bleed));
 	}
 
 	/* The footer spans the full width at both column layouts. */
@@ -25,7 +66,7 @@ body:has(> aside.docs-sidebar) {
 		grid-column: 1 / -1;
 	}
 
-	@media (min-width: 1024px) {
+	@media (min-width: 1100px) {
 		grid-template-columns: 16rem minmax(0, 1fr);
 	}
 }
@@ -36,7 +77,7 @@ aside.docs-sidebar {
 	border-bottom: var(--pico-border-width) solid var(--pico-muted-border-color);
 
 	/* Stick the column to the viewport while the main content scrolls. */
-	@media (min-width: 1024px) {
+	@media (min-width: 1100px) {
 		position: sticky;
 		top: 0;
 		align-self: start;
@@ -54,8 +95,11 @@ aside.docs-sidebar {
 		margin-bottom: var(--pico-spacing);
 
 		> h1 {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 			margin: 0;
-			font-size: 1.125rem;
+			font-size: 1.25rem;
 			font-weight: 600;
 			line-height: 1.4;
 
@@ -71,13 +115,26 @@ aside.docs-sidebar {
 					color: inherit;
 					text-decoration: underline;
 				}
+
+				/* Ghost button: no Blades fill, border or shadow. */
+				&[role='button'] {
+					padding: 0.25rem;
+					background: transparent;
+					border: 0;
+					box-shadow: none;
+					color: var(--pico-muted-color);
+					text-decoration: none;
+
+					&:hover {
+						background: color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+					}
+				}
 			}
 		}
 
 		> p {
 			margin-top: 0.25rem;
 			margin-bottom: 0;
-			font-size: 0.875rem;
 			line-height: 1.5;
 			color: var(--pico-muted-color);
 			text-wrap: balance;
@@ -87,21 +144,6 @@ aside.docs-sidebar {
 
 /* Site navigation */
 .docs-sidebar > nav {
-	> ul {
-		flex-direction: column;
-		align-items: stretch;
-		margin: 0;
-
-		> li {
-			display: block;
-			padding: 0;
-
-			& + li {
-				margin-top: 0.125rem;
-			}
-		}
-	}
-
 	a {
 		display: block;
 		margin: 0;
@@ -121,6 +163,39 @@ aside.docs-sidebar {
 			color: var(--pico-color);
 			font-weight: 600;
 			text-decoration: none;
+		}
+	}
+}
+
+.docs-sidebar > nav > ul {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.125rem;
+	width: 100%;
+	margin: 0;
+	margin-inline: -0.5rem;
+
+	> li {
+		display: block;
+		flex: 0 0 auto;
+		padding: 0;
+	}
+}
+
+@media (min-width: 1100px) {
+	.docs-sidebar > nav > ul {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+
+		> li {
+			flex: initial;
+
+			& + li {
+				margin-top: 0.125rem;
+			}
 		}
 	}
 }
