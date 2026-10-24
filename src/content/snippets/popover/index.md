@@ -1,6 +1,6 @@
 ---
 title: Popover
-description: A dropdownn menu opened declaratively by the popover API, with no JavaScript or classes.
+description: A dropdown menu opened declaratively using the Popover API, with no JavaScript or CSS classes.
 stage: 'alpha'
 size: 25
 tag:

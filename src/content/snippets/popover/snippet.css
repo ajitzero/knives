@@ -1,5 +1,4 @@
 @layer snippets.popover {
-	/* The button role that opens a popover. */
 	:root {
 		--pico-font-size: 15px;
 		--pico-form-element-spacing-vertical: 0.5rem;
@@ -7,6 +6,7 @@
 		--pico-transition: 50ms ease-in-out;
 	}
 
+	/* The button role that opens a popover. */
 	:is(button, [role='button'])[popovertarget] {
 		display: inline-flex;
 		align-items: center;

@@ -71,7 +71,13 @@ body:has(> aside.docs-sidebar) {
 	}
 
 	@media (min-width: 1100px) {
-		grid-template-columns: 16rem minmax(0, 1fr);
+		grid-template-columns: 18rem minmax(0, 1fr);
+
+		> footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
 	}
 }
 
@@ -85,8 +91,8 @@ aside.docs-sidebar {
 		position: sticky;
 		top: 0;
 		align-self: start;
-		max-height: 100vh;
-		max-height: 100svh;
+		height: 100vh;
+		height: 100svh;
 		overflow-y: auto;
 		border-bottom: none;
 		border-right: var(--pico-border-width) solid var(--pico-muted-border-color);

@@ -5,14 +5,14 @@ import typographyStyles from '../assets/roles/typography.css?inline';
 import CopyButton from './CopyButton.astro';
 
 interface Props {
-	title: string;
-	html: string;
-	css: string;
+	title?: string;
+	html?: string;
+	css?: string;
 	rtl?: boolean;
 	size?: number;
 }
 
-const { title, size = 22, html, css, rtl = false } = Astro.props;
+const { title = '', size = 22, html = '', css = '', rtl = false } = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
 	<head>
@@ -27,43 +27,35 @@ const srcdoc = `<!doctype html>
 </html>`;
 ---
 
-<section class="docs-demo-preview" data-docs-demo-preview>
-	{!rtl && <h3>Preview</h3>}
-
-	<iframe
-		title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
-		sandbox=""
-		loading="lazy"
-		srcdoc={srcdoc}
-		style={`height: ${size}rem;`}
-	></iframe>
-
-	{!rtl && (
-		<div class="docs-demo-preview__sources">
-			<section class="docs-demo-preview__source">
-				<h3>HTML</h3>
-				<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
-			</section>
-			<section class="docs-demo-preview__source">
-				<h3>CSS</h3>
-				<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
-			</section>
-		</div>
+<section class="docs-demo-preview">
+	{html && css ? (
+		<iframe
+			title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
+			sandbox=""
+			loading="lazy"
+			srcdoc={srcdoc}
+			style={`height: ${size}rem;`}
+		></iframe>
+	) : (
+		<>
+			{html || css ? (
+				<section class="docs-demo-preview__source">
+					{html ? (
+						<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
+					) : (
+						<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
+					)}
+				</section>
+			) : (
+				<p>No preview available.</p>
+			)}
+		</>
 	)}
 </section>
 
 <style>
 	.docs-demo-preview {
 		margin-block: 2rem;
-
-		h3 {
-			margin-inline: var(--pico-spacing);
-			margin-top: var(--pico-typography-spacing-top);
-		}
-
-		> h3 {
-			margin-bottom: 0.75rem;
-		}
 
 		iframe {
 			display: block;

@@ -1,5 +1,4 @@
 body:has(> aside.docs-sidebar) > footer {
-	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
@@ -11,7 +10,7 @@ body:has(> aside.docs-sidebar) > footer {
 
 	> [role='group'][data-theme-toggle] {
 		width: auto;
-		margin: 0;
+		/* margin: 0; */
 
 		> button {
 			display: grid;

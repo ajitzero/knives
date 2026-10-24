@@ -28,20 +28,31 @@ const { Content } = await render(snippet);
 <BaseLayout title={`${snippet.data.title} | ${SITE_TITLE}`} description={snippet.data.description}>
 	<main>
 		<hgroup>
-			<h2>{snippet.data.title}</h2>
+			<h2 id={snippet.id}>{snippet.data.title}</h2>
 			<p>{snippet.data.stage.toUpperCase()}</p>
 		</hgroup>
 		<p>{snippet.data.description}</p>
+
+		<h2 id="preview">Preview</h2>
 		<DocsDemoPreview
 			title={snippet.data.title}
 			size={snippet.data.size}
 			html={sources.html}
 			css={sources.css}
 		/>
+
+		<h3 id="html">HTML</h3>
+		<DocsDemoPreview html={sources.html} />
+
+		<h3 id="css">CSS</h3>
+		<DocsDemoPreview css={sources.css} />
+
 		<Content />
 
-		<h2>RTL</h2>
-		<p>Add `dir="rtl"` to any parent element to apply the changes.</p>
+		<h2 id="rtl">RTL</h2>
+		<p>
+			Add <code>dir="rtl"</code> to any parent element to apply the changes.
+		</p>
 		<DocsDemoPreview
 			rtl
 			title={snippet.data.title}
@@ -51,3 +62,12 @@ const { Content } = await render(snippet);
 		/>
 	</main>
 </BaseLayout>
+
+<style>
+	hgroup h2 {
+		/* h1 styling for h2 */
+		--pico-font-size: 2rem;
+		--pico-line-height: 1.125;
+		--pico-typography-spacing-top: 3rem;
+	}
+</style>
