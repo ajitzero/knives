@@ -1,0 +1,16 @@
+AGENTS.md
+  h_1e9f70f2591550 14,28-31
+src/assets/roles/docs-sidebar.css
+  h_1e9f70f2591550 18-25,34,47-80,84-98,100-120
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c4205f8643d54c5672d0ab9f79b24ca5bccdfd28",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
