@@ -1,0 +1,20 @@
+src/assets/roles/layout.css
+  h_1e9f70f2591550 35,59
+src/consts.ts
+  h_1e9f70f2591550 7-8
+src/components/Footer.astro
+  h_1e9f70f2591550 2-3,8-18
+src/components/DocsSidebar.astro
+  h_1e9f70f2591550 32,39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "82cb3551129c1a675a00d726b4bd516e220713c7",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
