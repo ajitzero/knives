@@ -1,0 +1,20 @@
+src/components/DocsSidebar.astro
+  h_1e9f70f2591550 2,10-23
+src/assets/roles/layout.css
+  h_1e9f70f2591550 8-14,24-34,36-37,39-51,59,70,88-90,92,108-121,159-191
+src/consts.ts
+  h_1e9f70f2591550 6
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 38-39,42-43,85,102-105,107-110,113-116,120-127,131-137,147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "99d883c22c1edf1aa298cc8564f5bb44487ab919",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
