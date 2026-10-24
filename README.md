@@ -1,47 +1,19 @@
-# Astro Starter Kit: Blog
+# Knives
 
-```sh
-pnpm create astro@latest -- --template blog
-```
+Extended features & snippets for [Blades CSS](https://blades.dev/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+[Demo](https://knives.ajitpanigrahi.com)
 
-Features:
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/status-experimental-7C3AED.svg?variant=outline&amp;theme=violet&amp;mode=dark"><img alt="Experimental" src="https://shieldcn.dev/badge/status-experimental-7C3AED.svg?variant=outline&amp;theme=violet&amp;mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/license-MIT-green.svg?variant=outline&amp;mode=dark"><img alt="License MIT" src="https://shieldcn.dev/badge/license-MIT-green.svg?variant=outline&amp;mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/Conventional%20Commits-FE5196.svg?logo=conventionalcommits&amp;logoColor=fff&amp;variant=outline&amp;mode=dark"><img alt="Conventional Commits" src="https://shieldcn.dev/badge/Conventional%20Commits-FE5196.svg?logo=conventionalcommits&amp;logoColor=fff&amp;variant=outline&amp;mode=light"></picture>
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## Features
 
-## 🚀 Project Structure
+- Popover API for dropdown.
+- Compatible with Pico CSS, hopefully.
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -51,13 +23,13 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm format`          | Format source code                               |
+| `pnpm format:check`    | Check if source code is formatted                |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+Read [AGENT.md](./AGENT.md) if you are an AI.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+MIT.
