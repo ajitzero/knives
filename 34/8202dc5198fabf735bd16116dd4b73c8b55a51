@@ -1,0 +1,16 @@
+src/assets/roles/layout.css
+  h_1e9f70f2591550 8-14,64,117-149
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 38-39,42-43,85,109-112,114-117,120-123,127-134,138-144,154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "348202dc5198fabf735bd16116dd4b73c8b55a51",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
