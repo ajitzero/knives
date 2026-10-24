@@ -60,6 +60,10 @@ body:has(> aside.docs-sidebar) {
 		margin-inline: auto;
 		max-width: calc(var(--docs-content-width) + 2 * var(--docs-bleed));
 	}
+	> main :is(ul, ol) {
+		padding-inline-start: var(--pico-spacing);
+		margin-block: calc(var(--pico-typography-spacing-vertical) * 0.5);
+	}
 
 	/* The footer spans the full width at both column layouts. */
 	> footer {
