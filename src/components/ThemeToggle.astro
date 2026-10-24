@@ -1,0 +1,81 @@
+<div role="group" aria-label="Color theme" data-theme-toggle>
+	<button class="constrast" aria-label="System theme" aria-pressed="true" data-theme-mode="system">
+		<svg
+			viewBox="0 0 24 24"
+			width="20"
+			height="20"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+		>
+			<rect x="3" y="4" width="18" height="13" rx="2" />
+			<path d="M8 21h8m-4-4v4" />
+		</svg>
+	</button>
+	<button class="constrast" aria-label="Light theme" aria-pressed="false" data-theme-mode="light">
+		<svg
+			viewBox="0 0 24 24"
+			width="20"
+			height="20"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+		>
+			<circle cx="12" cy="12" r="4" />
+			<path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+		</svg>
+	</button>
+	<button class="constrast" aria-label="Dark theme" aria-pressed="false" data-theme-mode="dark">
+		<svg
+			viewBox="0 0 24 24"
+			width="20"
+			height="20"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+		>
+			<path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+		</svg>
+	</button>
+</div>
+
+<script is:inline>
+	const themeToggle = document.querySelector('[data-theme-toggle]');
+	const themeButtons = themeToggle?.querySelectorAll('[data-theme-mode]');
+
+	function setTheme(theme) {
+		if (theme === 'system') {
+			document.documentElement.removeAttribute('data-theme');
+		} else {
+			document.documentElement.dataset.theme = theme;
+		}
+
+		themeButtons?.forEach((button) => {
+			button.setAttribute('aria-pressed', String(button.dataset.themeMode === theme));
+		});
+
+		try {
+			localStorage.setItem('knives-theme', theme);
+		} catch {}
+	}
+
+	let savedTheme = 'system';
+	try {
+		const storedTheme = localStorage.getItem('knives-theme');
+		if (storedTheme === 'light' || storedTheme === 'dark') savedTheme = storedTheme;
+	} catch {}
+
+	setTheme(savedTheme);
+	themeButtons?.forEach((button) => {
+		button.addEventListener('click', () => setTheme(button.dataset.themeMode));
+	});
+</script>

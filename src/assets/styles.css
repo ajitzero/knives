@@ -4,4 +4,5 @@
 @import '@anyblades/blades/layered/blades.layered';
 @import '@anyblades/blades/layered/layout/landmarks';
 @import './roles/layout.css';
+@import './roles/footer.css';
 @import './roles/tasks-list.css';

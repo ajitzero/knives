@@ -1,5 +1,6 @@
 ---
 import { SITE_AUTHOR, SITE_AUTHOR_URL, SITE_REPO_URL } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -16,4 +17,5 @@ const year = new Date().getFullYear();
 		</a>
 		.
 	</p>
+	<ThemeToggle />
 </footer>
