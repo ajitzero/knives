@@ -1,0 +1,16 @@
+src/pages/rss.xml.js
+  h_1e9f70f2591550 6,11-13
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "910d6b0d0a9d8d4198020ffe13493e68522921c4",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
