@@ -1,0 +1,18 @@
+src/layouts/BlogPost.astro
+  h_1e9f70f2591550 14
+src/pages/blog/index.astro
+  h_1e9f70f2591550 16
+src/pages/index.astro
+  h_1e9f70f2591550 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a277628acf18001172edc6c71e8d7315707b17ee",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
