@@ -1,0 +1,27 @@
+src/assets/roles/layout.css
+  h_1e9f70f2591550 74-80
+  h_1e9f70f2591550 94-95
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 31,35-36,43-49,52-55,65-73
+src/components/Footer.astro
+  h_1e9f70f2591550 9-10
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 8-10,15,30-52
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 3
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 9
+src/assets/roles/footer.css
+  h_1e9f70f2591550 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "958c2450b5ebc6cd2dd8831cdb08c6b1aba30ec4",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
