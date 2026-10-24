@@ -1,5 +1,6 @@
 ---
 import bladesStyles from '@anyblades/blades/layered/blades.layered?inline';
+import CopyButton from './CopyButton.astro';
 
 interface Props {
 	title: string;
@@ -20,7 +21,6 @@ const srcdoc = `<!doctype html>
 		${html}
 	</body>
 </html>`;
-const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 ---
 
 <section class="docs-demo-preview" data-docs-demo-preview>
@@ -30,47 +30,14 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 	<div class="docs-demo-preview__sources">
 		<section class="docs-demo-preview__source">
 			<h3>HTML</h3>
-			<pre><code>{html}</code><button class="docs-demo-preview__copy outline" type="button" data-copy="html">Copy</button></pre>
+			<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
 		</section>
 		<section class="docs-demo-preview__source">
 			<h3>CSS</h3>
-			<pre><code>{css}</code><button class="docs-demo-preview__copy outline" type="button" data-copy="css">Copy</button></pre>
+			<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
 		</section>
 	</div>
-	<p class="docs-demo-preview__feedback" role="status" aria-live="polite"></p>
-	<script type="application/json" data-docs-source set:html={sourcePayload}></script>
 </section>
-
-<script>
-	for (const preview of document.querySelectorAll<HTMLElement>('[data-docs-demo-preview]')) {
-		const sourceElement = preview.querySelector<HTMLScriptElement>('[data-docs-source]');
-		const feedback = preview.querySelector<HTMLElement>('.docs-demo-preview__feedback');
-		let feedbackTimeout: number | undefined;
-
-		if (!sourceElement || !feedback) continue;
-
-		const sources = JSON.parse(sourceElement.textContent ?? '{}') as Record<string, string>;
-
-		for (const button of preview.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
-			button.addEventListener('click', async () => {
-				const type = button.dataset.copy;
-				if (!type || sources[type] === undefined) return;
-
-				try {
-					await navigator.clipboard.writeText(sources[type]);
-					feedback.textContent = `Copied ${type.toUpperCase()} source.`;
-				} catch {
-					feedback.textContent = `Could not copy ${type.toUpperCase()} source. Copy it from the code block instead.`;
-				}
-
-				window.clearTimeout(feedbackTimeout);
-				feedbackTimeout = window.setTimeout(() => {
-					feedback.textContent = '';
-				}, 3000);
-			});
-		}
-	}
-</script>
 
 <style>
 	.docs-demo-preview {
@@ -97,50 +64,31 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 
 		pre {
 			position: relative;
-			max-height: 24rem;
-			overflow: auto;
+			overflow: hidden;
 
-			> button {
-				position: absolute;
-				top: 0.5rem;
-				right: 0.5rem;
+			> code {
+				max-height: 24rem;
+				overflow: auto;
 			}
 
-			&:hover > button,
-			&:focus-within > button {
+			> :global(button) {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				opacity: 0;
+				pointer-events: none;
+			}
+
+			&:hover > :global(button),
+			&:focus-within > :global(button) {
 				opacity: 1;
 				pointer-events: auto;
 			}
 		}
-
-		button {
-			padding-block: 0.25rem;
-			padding-inline: 0.625rem;
-			border: var(--pico-border-width) solid var(--pico-muted-border-color);
-			border-radius: calc(var(--pico-border-radius) * 0.75);
-			background-color: var(--pico-background-color);
-			box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
-			color: var(--pico-contrast);
-			opacity: 0;
-			pointer-events: none;
-
-			&:hover {
-				background-color: var(--pico-form-element-background-color);
-			}
-
-			&:focus-visible {
-				box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
-			}
-		}
-
-		.docs-demo-preview__feedback {
-			min-height: 1.5em;
-			margin-bottom: 0;
-		}
 	}
 
 	@media (hover: none), (pointer: coarse) {
-		.docs-demo-preview button {
+		.docs-demo-preview pre > :global(button) {
 			opacity: 1;
 			pointer-events: auto;
 		}
