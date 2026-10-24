@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@anyblades/blades':
+        specifier: 3.1.0-beta.5
+        version: 3.1.0-beta.5
       '@astrojs/mdx':
         specifier: ^8.1.1
         version: 8.1.1(@astrojs/markdown-satteri@0.4.5)(astro@7.4.2(@types/node@24.19.2)(yaml@2.9.1))
@@ -32,6 +35,9 @@ importers:
         version: 1.1.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(prettier@3.9.10)
 
 packages:
+
+  '@anyblades/blades@3.1.0-beta.5':
+    resolution: {integrity: sha512-UjN8asQuQhbak6UQ40mFTcbcOmzN0yWxNQv1HHO70oIGQItQYJnpzpm/x21FotyhbP7o+SETtC0NFWoS4OPM7g==}
 
   '@astrojs/compiler-binding-android-arm64@0.4.1':
     resolution: {integrity: sha512-Wtx2DZORuNTLASLLZ8hlrjFaJe1LUloatcCn9EPq7knBhRpjMGXeJANIJMeBZG4igvz7x+3nyAJM2iwCSW9xog==}
@@ -1405,6 +1411,8 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
+
+  '@anyblades/blades@3.1.0-beta.5': {}
 
   '@astrojs/compiler-binding-android-arm64@0.4.1':
     optional: true
