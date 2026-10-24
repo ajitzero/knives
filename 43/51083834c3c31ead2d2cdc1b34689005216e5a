@@ -1,0 +1,14 @@
+src/components/HeaderLink.astro
+  h_1e9f70f2591550 6-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4351083834c3c31ead2d2cdc1b34689005216e5a",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
