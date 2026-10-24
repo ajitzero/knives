@@ -25,13 +25,7 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 
 <section class="docs-demo-preview" data-docs-demo-preview>
 	<h3>Preview</h3>
-	<iframe
-		class="iframe"
-		title={`${title} preview`}
-		sandbox=""
-		loading="lazy"
-		srcdoc={srcdoc}
-	></iframe>
+	<iframe title={`${title} preview`} sandbox="" loading="lazy" srcdoc={srcdoc}></iframe>
 
 	<div class="docs-demo-preview__sources">
 		<section class="docs-demo-preview__source">
@@ -84,6 +78,7 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 
 		h3 {
 			margin-inline: var(--pico-spacing);
+			margin-top: var(--pico-typography-spacing-top);
 		}
 
 		> h3 {
@@ -97,6 +92,7 @@ const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
 			border: var(--pico-border-width) solid var(--pico-muted-border-color);
 			border-radius: var(--pico-border-radius);
 			background: var(--pico-background-color);
+			margin-bottom: var(--pico-typography-spacing-vertical);
 		}
 
 		pre {
