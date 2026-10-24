@@ -1,0 +1,19 @@
+src/content/snippets/popover/snippet.html
+  h_1e9f70f2591550 5-19,26-29,32-35,37-38
+  h_1e9f70f2591550 20-25,30-31,36,39-40,45-51
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 3-8
+src/content/blog/markdown-style-guide.md
+  h_1e9f70f2591550 104-110,120-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3a62bf81acfa7b080d69de04a335d7729579549e",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
