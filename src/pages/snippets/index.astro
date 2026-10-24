@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { snippetTagLabels } from '../../snippets/tags';
+import { assertSnippetDescription } from '../../snippets/validation';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const snippets = (await getCollection('snippets')).sort((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
+
+const listedSnippets = await Promise.all(
+	snippets.map(async (snippet) => {
+		assertSnippetDescription(snippet);
+		return { snippet, Content: (await render(snippet)).Content };
+	}),
+);
+---
+
+<BaseLayout title={`Snippets | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+	<main>
+		<h2>Snippets</h2>
+		{listedSnippets.length > 0 ? (
+			<ul>
+				{listedSnippets.map(({ snippet, Content }) => (
+					<li>
+						<article>
+							<hgroup>
+								<h3>
+									<a href={`/snippets/${snippet.id}/`}>{snippet.data.title}</a>
+								</h3>
+								<p>{snippet.data.tag.map((tag) => snippetTagLabels[tag]).join(', ')}</p>
+							</hgroup>
+							<Content />
+						</article>
+					</li>
+				))}
+			</ul>
+		) : (
+			<p>No snippets yet.</p>
+		)}
+	</main>
+</BaseLayout>

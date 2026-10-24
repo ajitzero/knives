@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { snippetTagSchema } from './snippets/tags';
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -17,4 +18,16 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const snippets = defineCollection({
+	loader: glob({
+		base: './src/content/snippets',
+		pattern: '**/index.md',
+		generateId: ({ entry }) => entry.replace(/\/index\.md$/, ''),
+	}),
+	schema: z.object({
+		title: z.string(),
+		tag: z.array(snippetTagSchema),
+	}),
+});
+
+export const collections = { blog, snippets };

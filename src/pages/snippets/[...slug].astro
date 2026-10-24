@@ -1,0 +1,40 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import DocsDemoPreview from '../../components/DocsDemoPreview.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSnippetSources } from '../../snippets/sources';
+import { snippetTagLabels } from '../../snippets/tags';
+import { assertSnippetDescription } from '../../snippets/validation';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+	const snippets = await getCollection('snippets');
+
+	return snippets.map((snippet) => {
+		assertSnippetDescription(snippet);
+		return {
+			params: { slug: snippet.id },
+			props: { snippet, sources: getSnippetSources(snippet.id) },
+		};
+	});
+}
+
+type Props = {
+	snippet: CollectionEntry<'snippets'>;
+	sources: ReturnType<typeof getSnippetSources>;
+};
+
+const { snippet, sources } = Astro.props;
+const { Content } = await render(snippet);
+---
+
+<BaseLayout title={`${snippet.data.title} | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+	<main>
+		<hgroup>
+			<h2>{snippet.data.title}</h2>
+			<p>{snippet.data.tag.map((tag) => snippetTagLabels[tag]).join(', ')}</p>
+		</hgroup>
+		<Content />
+		<DocsDemoPreview title={snippet.data.title} html={sources.html} css={sources.css} />
+	</main>
+</BaseLayout>

@@ -73,6 +73,7 @@ Snippet-specific styles (the snippet's own styles, distinct from the site's `doc
 }
 ```
 
-- Import that file only where the snippet is rendered.
+- `DocsDemoPreview.astro` supplies the shared base layered Blades stylesheet inside the demo iframe. Do not repeat that base import in `snippet.css` or its displayed/copied source.
+- Put only snippet-specific rules and any one-off imports required by that snippet in `snippet.css`.
 - Use a stable layer name so it doesn't collide with Blades (`@layer blades`) or Astro's image styles (`@layer astro.images`).
 - Don't put snippet styles in a site-wide CSS file.

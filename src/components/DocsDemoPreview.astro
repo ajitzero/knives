@@ -1,0 +1,158 @@
+---
+import bladesStyles from '@anyblades/blades/layered/blades.layered?inline';
+
+interface Props {
+	title: string;
+	html: string;
+	css: string;
+}
+
+const { title, html, css } = Astro.props;
+const srcdoc = `<!doctype html>
+<html lang="en" style="height: 100%;">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="color-scheme" content="light dark">
+		<style>${bladesStyles}\n${css}</style>
+	</head>
+	<body style="height: 100%; min-height: 200px; display: grid; place-items: center; padding: 4rem 1rem;">
+		${html}
+	</body>
+</html>`;
+const sourcePayload = JSON.stringify({ html, css }).replaceAll('<', '\\u003c');
+---
+
+<section class="docs-demo-preview" data-docs-demo-preview>
+	<h3>Preview</h3>
+	<iframe
+		class="iframe"
+		title={`${title} preview`}
+		sandbox=""
+		loading="lazy"
+		srcdoc={srcdoc}
+	></iframe>
+
+	<div class="docs-demo-preview__sources">
+		<section class="docs-demo-preview__source">
+			<h4>
+				HTML
+				<button class="docs-demo-preview__copy" type="button" data-copy="html">
+					Copy HTML
+				</button>
+			</h4>
+			<pre><code>{html}</code></pre>
+		</section>
+		<section class="docs-demo-preview__source">
+			<h4>
+				CSS
+				<button class="docs-demo-preview__copy" type="button" data-copy="css">
+					Copy CSS
+				</button>
+			</h4>
+			<pre><code>{css}</code></pre>
+		</section>
+	</div>
+	<p class="docs-demo-preview__feedback" role="status" aria-live="polite"></p>
+	<script type="application/json" data-docs-source set:html={sourcePayload}></script>
+</section>
+
+<script>
+	for (const preview of document.querySelectorAll<HTMLElement>('[data-docs-demo-preview]')) {
+		const sourceElement = preview.querySelector<HTMLScriptElement>('[data-docs-source]');
+		const feedback = preview.querySelector<HTMLElement>('.docs-demo-preview__feedback');
+		let feedbackTimeout: number | undefined;
+
+		if (!sourceElement || !feedback) continue;
+
+		const sources = JSON.parse(sourceElement.textContent ?? '{}') as Record<string, string>;
+
+		for (const button of preview.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+			button.addEventListener('click', async () => {
+				const type = button.dataset.copy;
+				if (!type || sources[type] === undefined) return;
+
+				try {
+					await navigator.clipboard.writeText(sources[type]);
+					feedback.textContent = `Copied ${type.toUpperCase()} source.`;
+				} catch {
+					feedback.textContent = `Could not copy ${type.toUpperCase()} source. Copy it from the code block instead.`;
+				}
+
+				window.clearTimeout(feedbackTimeout);
+				feedbackTimeout = window.setTimeout(() => {
+					feedback.textContent = '';
+				}, 3000);
+			});
+		}
+	}
+</script>
+
+<style>
+	.docs-demo-preview {
+		margin-block: 2rem;
+
+		> h3 {
+			margin-bottom: 0.75rem;
+		}
+
+		iframe {
+			display: block;
+			width: 100%;
+			height: 16rem;
+			border: var(--pico-border-width) solid var(--pico-muted-border-color);
+			border-radius: var(--pico-border-radius);
+			background: var(--pico-background-color);
+		}
+
+		.docs-demo-preview__sources {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1rem;
+			margin-top: 1rem;
+
+			@media (min-width: 48rem) {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		.docs-demo-preview__source {
+			min-width: 0;
+
+			> h4 {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+
+			pre {
+				max-height: 24rem;
+				overflow: auto;
+			}
+		}
+
+		.docs-demo-preview__copy {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&:hover .docs-demo-preview__copy,
+		&:focus-within .docs-demo-preview__copy {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.docs-demo-preview__feedback {
+			min-height: 1.5em;
+			margin-bottom: 0;
+		}
+	}
+
+	@media (hover: none), (pointer: coarse) {
+		.docs-demo-preview .docs-demo-preview__copy {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+</style>
