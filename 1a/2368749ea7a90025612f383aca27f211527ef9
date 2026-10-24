@@ -1,0 +1,22 @@
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 13-14
+src/content.config.ts
+  h_1e9f70f2591550 29
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 3-4,9-18
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 6,28,34,36
+src/pages/snippets/index.astro
+  h_1e9f70f2591550 2,14,16,24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1a2368749ea7a90025612f383aca27f211527ef9",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
