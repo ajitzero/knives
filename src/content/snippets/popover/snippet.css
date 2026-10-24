@@ -2,7 +2,7 @@
 	/* The button role that opens a popover. */
 	:root {
 		--pico-font-size: 15px;
-		--pico-form-element-spacing-vertical: 0.45rem;
+		--pico-form-element-spacing-vertical: 0.5rem;
 		--pico-form-element-spacing-horizontal: 0.75rem;
 	}
 
@@ -112,9 +112,21 @@
 			padding: 0;
 		}
 
+		/* A section header should */
+		li:has(> header) {
+			margin: var(--pico-form-element-spacing-vertical) calc(var(--pico-spacing) * 0.8) 0;
+			text-transform: uppercase;
+			font-size: 0.75rem;
+			font-weight: 600;
+			letter-spacing: 0.01rem;
+		}
+
 		/* A separator row spans the menu edge to edge. */
 		li:has(> hr) {
 			padding: 0;
+		}
+		li:has(> header + hr) {
+			padding-bottom: calc(var(--pico-form-element-spacing-vertical) * 0.5);
 		}
 
 		hr {

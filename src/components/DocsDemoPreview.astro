@@ -6,9 +6,10 @@ interface Props {
 	title: string;
 	html: string;
 	css: string;
+	size?: number;
 }
 
-const { title, html, css } = Astro.props;
+const { title, size = 22, html, css } = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;">
 	<head>
@@ -25,7 +26,13 @@ const srcdoc = `<!doctype html>
 
 <section class="docs-demo-preview" data-docs-demo-preview>
 	<h3>Preview</h3>
-	<iframe title={`${title} preview`} sandbox="" loading="lazy" srcdoc={srcdoc}></iframe>
+	<iframe
+		title={`${title} preview`}
+		sandbox=""
+		loading="lazy"
+		srcdoc={srcdoc}
+		style={`height: ${size}rem;`}
+	></iframe>
 
 	<div class="docs-demo-preview__sources">
 		<section class="docs-demo-preview__source">
@@ -55,7 +62,6 @@ const srcdoc = `<!doctype html>
 		iframe {
 			display: block;
 			width: 100%;
-			height: 22rem;
 			border: var(--pico-border-width) solid var(--pico-muted-border-color);
 			border-radius: var(--pico-border-radius);
 			background: var(--pico-background-color);

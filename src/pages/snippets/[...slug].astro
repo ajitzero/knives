@@ -32,7 +32,12 @@ const { Content } = await render(snippet);
 			<p>{snippet.data.stage.toUpperCase()}</p>
 		</hgroup>
 		<p>{snippet.data.description}</p>
-		<DocsDemoPreview title={snippet.data.title} html={sources.html} css={sources.css} />
+		<DocsDemoPreview
+			title={snippet.data.title}
+			size={snippet.data.size}
+			html={sources.html}
+			css={sources.css}
+		/>
 		<Content />
 	</main>
 </BaseLayout>
