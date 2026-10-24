@@ -11,6 +11,7 @@ A website for templates and snippets created and styled with [Blades CSS](https:
 - Role CSS files are written separately (e.g. `src/assets/roles/docs-sidebar.css`, `footer.css`, …) and imported into `styles.css`. Blades ships inside `@layer blades`; role files are unlayered, so site customizations win over the framework without needing `!important`.
 - The site-level styling scope is **`docs-`**: there is **no page-root class** for site styling (do not add one). Scope customizations with semantic element selectors and layout selectors anchored on the landmarks or structure they apply to — e.g. `body:has(> aside.docs-sidebar)`, `aside.docs-sidebar > hgroup`.
 - **No classes by default.** If a site-level component genuinely needs a CSS class, the class must start with the **`docs-`** prefix. `docs-sidebar` is the approved exception currently in use for the sidebar.
+- Use native CSS nesting to keep related descendant, state, and responsive rules alongside their parent selector wherever it improves locality; preserve the intended selector specificity.
 
 ```css
 /* src/assets/styles.css */
@@ -24,8 +25,10 @@ A website for templates and snippets created and styled with [Blades CSS](https:
 body:has(> aside.docs-sidebar) {
 	/* two-column docs layout */
 }
-aside.docs-sidebar > hgroup {
-	/* site identity */
+aside.docs-sidebar {
+	> hgroup {
+		/* site identity */
+	}
 }
 ```
 
