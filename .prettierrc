@@ -1,0 +1,21 @@
+{
+	"plugins": ["prettier-plugin-astro"],
+	"useTabs": true,
+	"singleQuote": true,
+	"printWidth": 100,
+	"trailingComma": "all",
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": {
+				"parser": "astro"
+			}
+		},
+		{
+			"files": ["*.json", "*.jsonc"],
+			"options": {
+				"useTabs": false
+			}
+		}
+	]
+}

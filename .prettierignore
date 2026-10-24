@@ -1,0 +1,14 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# lockfile
+pnpm-lock.yaml
+
+# content (blog posts and prose)
+src/content/
