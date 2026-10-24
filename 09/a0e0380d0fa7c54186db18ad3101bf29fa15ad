@@ -1,0 +1,34 @@
+src/content/snippets/button/index.md
+  h_1e9f70f2591550 1-7
+src/content/snippets/button/snippet.css
+  h_1e9f70f2591550 1-5
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 1-158
+AGENTS.md
+  h_1e9f70f2591550 76-77
+src/content.config.ts
+  h_1e9f70f2591550 4,21-33
+src/content/snippets/button/snippet.html
+  h_1e9f70f2591550 1
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 1-40
+src/pages/snippets/index.astro
+  h_1e9f70f2591550 1-43
+src/snippets/sources.ts
+  h_1e9f70f2591550 1-24
+src/snippets/tags.ts
+  h_1e9f70f2591550 1-13
+src/snippets/validation.ts
+  h_1e9f70f2591550 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "09a0e0380d0fa7c54186db18ad3101bf29fa15ad",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
