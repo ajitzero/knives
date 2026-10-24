@@ -39,5 +39,15 @@ const { Content } = await render(snippet);
 			css={sources.css}
 		/>
 		<Content />
+
+		<h2>RTL</h2>
+		<p>Add `dir="rtl"` to any parent element to apply the changes.</p>
+		<DocsDemoPreview
+			rtl
+			title={snippet.data.title}
+			size={snippet.data.size}
+			html={sources.html}
+			css={sources.css}
+		/>
 	</main>
 </BaseLayout>

@@ -16,9 +16,10 @@ tag:
   - Anchors are for navigating. Avoid dialogs.
 - `hr` tag in an `li` can be used to separate groups of links.
 - `header` tag in an `li` can be used as a group header.
-- `hr` tag immediately after a `header` tag should have extra padding under it.
+- `hr` tag immediately after a `header` tag will add extra padding under it, as part of the section header.
 - `kbd` tag can be used to denote a keyboard shortcut.
 - `svg`-based icons are support for icons on the left/start.
+- RTL: Blade/Pico supports RTL automatically. No special CSS required.
 
 ### Optional classes
 
@@ -34,7 +35,8 @@ tag:
 - [x] SVG-based icons.
 - [x] Reserve space for icons when not used.
 - [x] `.destructive` class for dangerous actions.
+- [ ] Grouped actions.
 - [ ] Nested actions.
 - [ ] Radio group.
 - [ ] Checkbox group.
-- [ ] RTL.
+- [x] RTL.

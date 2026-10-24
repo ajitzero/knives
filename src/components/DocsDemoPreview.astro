@@ -6,12 +6,13 @@ interface Props {
 	title: string;
 	html: string;
 	css: string;
+	rtl?: boolean;
 	size?: number;
 }
 
-const { title, size = 22, html, css } = Astro.props;
+const { title, size = 22, html, css, rtl = false } = Astro.props;
 const srcdoc = `<!doctype html>
-<html lang="en" style="height: 100%;">
+<html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,25 +26,28 @@ const srcdoc = `<!doctype html>
 ---
 
 <section class="docs-demo-preview" data-docs-demo-preview>
-	<h3>Preview</h3>
+	{!rtl && <h3>Preview</h3>}
+
 	<iframe
-		title={`${title} preview`}
+		title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
 		sandbox=""
 		loading="lazy"
 		srcdoc={srcdoc}
 		style={`height: ${size}rem;`}
 	></iframe>
 
-	<div class="docs-demo-preview__sources">
-		<section class="docs-demo-preview__source">
-			<h3>HTML</h3>
-			<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
-		</section>
-		<section class="docs-demo-preview__source">
-			<h3>CSS</h3>
-			<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
-		</section>
-	</div>
+	{!rtl && (
+		<div class="docs-demo-preview__sources">
+			<section class="docs-demo-preview__source">
+				<h3>HTML</h3>
+				<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
+			</section>
+			<section class="docs-demo-preview__source">
+				<h3>CSS</h3>
+				<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
+			</section>
+		</div>
+	)}
 </section>
 
 <style>
