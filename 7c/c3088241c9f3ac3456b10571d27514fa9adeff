@@ -1,0 +1,18 @@
+src/pages/index.astro
+  h_1e9f70f2591550 9
+astro.config.mjs
+  h_1e9f70f2591550 9
+src/consts.ts
+  h_1e9f70f2591550 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7cc3088241c9f3ac3456b10571d27514fa9adeff",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
