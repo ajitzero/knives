@@ -1,0 +1,34 @@
+AGENTS.md
+  h_1e9f70f2591550 14,21,25
+src/content.config.ts
+  h_1e9f70f2591550 29
+src/snippets/tags.ts
+  h_1e9f70f2591550 4
+src/content/snippets/popover/snippet.html
+  h_1e9f70f2591550 1-142
+src/content/blog/markdown-style-guide.md
+  h_1e9f70f2591550 104-110,120-126
+src/consts.ts
+  h_1e9f70f2591550 5
+src/components/DocsSidebar.astro
+  h_1e9f70f2591550 30
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 1-128
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 2-3,5,8
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 19,96
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "824345b830e5e5eb0054b2468c8bb06d5bf3f942",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
