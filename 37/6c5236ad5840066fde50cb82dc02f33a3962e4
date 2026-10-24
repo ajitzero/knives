@@ -1,0 +1,20 @@
+src/layouts/BaseLayout.astro
+  h_1e9f70f2591550 1-24
+src/layouts/BlogPost.astro
+  h_1e9f70f2591550 5,12-35
+src/pages/blog/index.astro
+  h_1e9f70f2591550 5,13-38
+src/pages/index.astro
+  h_1e9f70f2591550 2,6-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "376c5236ad5840066fde50cb82dc02f33a3962e4",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
