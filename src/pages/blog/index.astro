@@ -1,10 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import DocsSidebar from '../../components/DocsSidebar.astro';
-import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
@@ -12,37 +10,29 @@ const posts = (await getCollection('blog')).sort(
 );
 ---
 
-<!doctype html>
-<html lang="en" data-theme="light">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<DocsSidebar />
-		<main class="container">
-			<h2>Blog</h2>
-			<section>
-				<div class="grid">
-					{posts.map((post) => (
-						<article>
-							{post.data.heroImage && (
-								<a href={`/blog/${post.id}/`}>
-									<Image width={720} height={360} src={post.data.heroImage} alt="" />
-								</a>
-							)}
-							<h3>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-							</h3>
-							<p>
-								<small>
-									<FormattedDate date={post.data.pubDate} />
-								</small>
-							</p>
-						</article>
-					))}
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<main class="container">
+		<h2>Blog</h2>
+		<section>
+			<div class="grid">
+				{posts.map((post) => (
+					<article>
+						{post.data.heroImage && (
+							<a href={`/blog/${post.id}/`}>
+								<Image width={720} height={360} src={post.data.heroImage} alt="" />
+							</a>
+						)}
+						<h3>
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						</h3>
+						<p>
+							<small>
+								<FormattedDate date={post.data.pubDate} />
+							</small>
+						</p>
+					</article>
+				))}
+			</div>
+		</section>
+	</main>
+</BaseLayout>

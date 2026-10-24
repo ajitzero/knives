@@ -1,45 +1,35 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import DocsSidebar from '../components/DocsSidebar.astro';
-import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import BaseLayout from './BaseLayout.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en" data-theme="light">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-
-	<body>
-		<DocsSidebar />
-		<main class="container">
-			<article>
-				<header>
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-					<hgroup>
-						<h2>{title}</h2>
-						<p>{description}</p>
-					</hgroup>
-					<p>
-						<small>
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<>
-									· Last updated on <FormattedDate date={updatedDate} />
-								</>
-							)}
-						</small>
-					</p>
-				</header>
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title={title} description={description}>
+	<main class="container">
+		<article>
+			<header>
+				{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				<hgroup>
+					<h2>{title}</h2>
+					<p>{description}</p>
+				</hgroup>
+				<p>
+					<small>
+						<FormattedDate date={pubDate} />
+						{updatedDate && (
+							<>
+								· Last updated on <FormattedDate date={updatedDate} />
+							</>
+						)}
+					</small>
+				</p>
+			</header>
+			<slot />
+		</article>
+	</main>
+</BaseLayout>
