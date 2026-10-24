@@ -1,0 +1,14 @@
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "65c763d7761bb885b9ae87273891c96101a5502d",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
