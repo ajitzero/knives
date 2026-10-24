@@ -26,6 +26,7 @@ const snippets = defineCollection({
 	}),
 	schema: z.object({
 		title: z.string(),
+		description: z.string().trim().min(1),
 		stage: z.string(),
 		tag: z.array(snippetTagSchema),
 	}),

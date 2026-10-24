@@ -10,6 +10,8 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.25rem;
+		padding: calc(var(--pico-form-element-spacing-vertical) * 0.5)
+			var(--pico-form-element-spacing-horizontal);
 
 		&::after {
 			display: block;
