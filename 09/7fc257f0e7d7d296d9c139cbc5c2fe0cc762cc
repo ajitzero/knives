@@ -1,0 +1,32 @@
+src/assets/roles/docs-sidebar.css
+  h_1e9f70f2591550 1-119
+src/consts.ts
+  h_1e9f70f2591550 4-5
+AGENTS.md
+  h_1e9f70f2591550 1,3-5,11-13,19,23-28,65
+src/assets/styles.css
+  h_1e9f70f2591550 1-6
+src/components/BaseHead.astro
+  h_1e9f70f2591550 2-4
+src/components/DocsSidebar.astro
+  h_1e9f70f2591550 2,6-13,16,19,23
+src/components/HeaderLink.astro
+  h_1e9f70f2591550 8-9,11-12
+src/layouts/BlogPost.astro
+  h_1e9f70f2591550 5,20,26
+src/pages/blog/index.astro
+  h_1e9f70f2591550 5,21,23,33,35
+src/pages/index.astro
+  h_1e9f70f2591550 3,14,16,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "097fc257f0e7d7d296d9c139cbc5c2fe0cc762cc",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
