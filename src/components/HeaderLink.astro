@@ -3,7 +3,8 @@ import type { HTMLAttributes } from 'astro/types';
 
 type Props = HTMLAttributes<'a'>;
 
-const { href, ...props } = Astro.props;
+const { href: maybeUrl, ...props } = Astro.props;
+const href = typeof maybeUrl === 'string' ? maybeUrl : maybeUrl?.href || '/';
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 // Normalize trailing slashes so `/about/`, `/about` and `/` all compare cleanly.
 const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
