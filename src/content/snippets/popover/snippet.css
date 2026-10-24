@@ -67,6 +67,10 @@
 			&:is(:hover, :active, :focus, :focus-visible) {
 				background-color: var(--pico-dropdown-hover-background-color);
 			}
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+			}
 		}
 
 		li :is(a, button) > span {
