@@ -2,9 +2,9 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
+import DocsSidebar from '../../components/DocsSidebar.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
@@ -18,9 +18,9 @@ const posts = (await getCollection('blog')).sort(
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
+		<DocsSidebar />
 		<main class="container">
-			<h1>Blog</h1>
+			<h2>Blog</h2>
 			<section>
 				<div class="grid">
 					{posts.map((post) => (
@@ -30,9 +30,9 @@ const posts = (await getCollection('blog')).sort(
 									<Image width={720} height={360} src={post.data.heroImage} alt="" />
 								</a>
 							)}
-							<h2>
+							<h3>
 								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-							</h2>
+							</h3>
 							<p>
 								<small>
 									<FormattedDate date={post.data.pubDate} />

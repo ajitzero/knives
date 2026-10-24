@@ -1,0 +1,119 @@
+/**
+ * Role: docs-sidebar
+ * Persistent docs-style sidebar: site identity (hgroup) + site navigation.
+ * The markup order is sidebar → main → footer; on mobile that single column
+ * is the layout, on wide screens the body becomes a two-column grid. All
+ * scoping is done with semantic landmarks and layout selectors — the
+ * `docs-sidebar` class is the one approved site-level CSS class.
+ */
+
+/* Two-column shell only when the page actually has the sidebar. */
+body:has(> aside.docs-sidebar) {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: start;
+	min-height: 100vh;
+	min-height: 100svh;
+}
+
+/* The footer spans the full width at both column layouts. */
+body:has(> aside.docs-sidebar) > footer {
+	grid-column: 1 / -1;
+}
+
+/* Sidebar container */
+aside.docs-sidebar {
+	padding: var(--pico-block-spacing-vertical) var(--pico-spacing);
+	border-bottom: var(--pico-border-width) solid var(--pico-muted-border-color);
+}
+
+@media (min-width: 1024px) {
+	body:has(> aside.docs-sidebar) {
+		grid-template-columns: 16rem minmax(0, 1fr);
+	}
+
+	/* Stick the column to the viewport while the main content scrolls. */
+	aside.docs-sidebar {
+		position: sticky;
+		top: 0;
+		align-self: start;
+		max-height: 100vh;
+		max-height: 100svh;
+		overflow-y: auto;
+		border-bottom: none;
+		border-right: var(--pico-border-width) solid var(--pico-muted-border-color);
+	}
+}
+
+/* Identity group (site name + description) */
+.docs-sidebar > hgroup {
+	margin-bottom: var(--pico-spacing);
+}
+
+.docs-sidebar > hgroup > h1 {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.docs-sidebar > hgroup > h1 > a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.docs-sidebar > hgroup > h1 > a:focus-visible {
+	box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+}
+
+.docs-sidebar > hgroup > h1 > a:hover {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.docs-sidebar > hgroup > p {
+	margin-top: 0.25rem;
+	margin-bottom: 0;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--pico-muted-color);
+	text-wrap: balance;
+}
+
+/* Site navigation */
+.docs-sidebar > nav > ul {
+	flex-direction: column;
+	align-items: stretch;
+	margin: 0;
+}
+
+.docs-sidebar > nav > ul > li {
+	display: block;
+	padding: 0;
+}
+
+.docs-sidebar > nav > ul > li + li {
+	margin-top: 0.125rem;
+}
+
+.docs-sidebar > nav a {
+	display: block;
+	margin: 0;
+	padding: 0.375rem 0.5rem;
+	border-radius: var(--pico-border-radius);
+	color: var(--pico-muted-color);
+	text-decoration: none;
+}
+
+.docs-sidebar > nav a:hover {
+	background-color: color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+	color: var(--pico-color);
+	text-decoration: none;
+}
+
+.docs-sidebar > nav a[aria-current='page'] {
+	background-color: color-mix(in srgb, var(--pico-muted-border-color) 25%, transparent);
+	color: var(--pico-color);
+	font-weight: 600;
+	text-decoration: none;
+}

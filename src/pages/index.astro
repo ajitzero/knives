@@ -1,7 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import DocsSidebar from '../components/DocsSidebar.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
@@ -11,9 +11,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
+		<DocsSidebar />
 		<main class="container">
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h2>🧑‍🚀 Hello, Astronaut!</h2>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
 				template serves as a lightweight, minimally-styled starting point for anyone looking to
@@ -31,7 +31,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					Edit this page in <code>src/pages/index.astro</code>
 				</li>
 				<li>
-					Edit the site header items in <code>src/components/Header.astro</code>
+					Edit the site sidebar in <code>src/components/DocsSidebar.astro</code>
 				</li>
 				<li>
 					Add your name to the footer in <code>src/components/Footer.astro</code>

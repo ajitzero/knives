@@ -5,8 +5,11 @@ type Props = HTMLAttributes<'a'>;
 
 const { href, ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+// Normalize trailing slashes so `/about/`, `/about` and `/` all compare cleanly.
+const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+const isActive =
+	normalize(href) === normalize(pathname) || normalize(href) === '/' + (subpath?.[0] || '');
 ---
 
 <a href={href} aria-current={isActive ? 'page' : undefined} {...props}>

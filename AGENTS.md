@@ -1,27 +1,31 @@
-# Blades Snippets
+# Knives
 
-A website for templates and snippets created and styled with [Blades CSS](https://blades.dev). The site itself is also built and styled with Blades.
+**Classless code snippets for [Blades CSS](https://blades.dev).**
+
+A website for templates and snippets created and styled with [Blades CSS](https://blades.dev). The site itself is also built and styled with Blades. The site identity (name and description) lives in `src/consts.ts`.
 
 ## Styling architecture
 
 - `src/assets/styles.css` is the single CSS entry point, imported once from `BaseHead`.
 - It imports Blades CSS (the **layered** build) and every role CSS file the site needs.
-- Role CSS files are written separately (e.g. `src/assets/roles/header.css`, `footer.css`, …) and imported into `styles.css`.
-- All site customizations are scoped under a parent-level class, `.dogs` — add `class="dogs"` to the page root.
-- A demo snippet that must render without the site's `.dogs` styling opts out with a `data-theme-exclude` attribute (presence is truthy).
+- Role CSS files are written separately (e.g. `src/assets/roles/docs-sidebar.css`, `footer.css`, …) and imported into `styles.css`. Blades ships inside `@layer blades`; role files are unlayered, so site customizations win over the framework without needing `!important`.
+- The site-level styling scope is **`docs-`**: there is **no page-root class** for site styling (do not add one). Scope customizations with semantic element selectors and layout selectors anchored on the landmarks or structure they apply to — e.g. `body:has(> aside.docs-sidebar)`, `aside.docs-sidebar > hgroup`.
+- **No classes by default.** If a site-level component genuinely needs a CSS class, the class must start with the **`docs-`** prefix. `docs-sidebar` is the approved exception currently in use for the sidebar.
 
 ```css
 /* src/assets/styles.css */
 @import '@anyblades/blades/layered/blades.layered';
 @import '@anyblades/blades/layered/layout/landmarks';
-@import './roles/header.css';
-@import './roles/footer.css';
+@import './roles/docs-sidebar.css';
 ```
 
 ```css
-/* src/assets/roles/header.css — scoped under .dogs */
-.dogs header {
-	/* site-specific header overrides */
+/* src/assets/roles/docs-sidebar.css — scoped via semantic landmarks, not a root class */
+body:has(> aside.docs-sidebar) {
+	/* two-column docs layout */
+}
+aside.docs-sidebar > hgroup {
+	/* site identity */
 }
 ```
 
@@ -58,7 +62,7 @@ astro dev logs
 
 ## Styling a snippet
 
-Snippet-specific styles (the snippet's own styles, distinct from the site's `.dogs` overrides) go in a dedicated CSS file relative to the snippet, wrapped in its own layer:
+Snippet-specific styles (the snippet's own styles, distinct from the site's `docs-`-scoped styles) go in a dedicated CSS file relative to the snippet, wrapped in its own layer:
 
 ```css
 @layer snippets.my-snippet {

@@ -1,0 +1,26 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<aside class="docs-sidebar">
+	<hgroup>
+		<h1>
+			<a href="/">{SITE_TITLE}</a>
+		</h1>
+		<p>{SITE_DESCRIPTION}</p>
+	</hgroup>
+	<nav aria-label="Site">
+		<ul>
+			<li>
+				<HeaderLink href="/snippets/">Snippets</HeaderLink>
+			</li>
+			<li>
+				<HeaderLink href="/blog/">Blog</HeaderLink>
+			</li>
+			<li>
+				<HeaderLink href="/about/">About</HeaderLink>
+			</li>
+		</ul>
+	</nav>
+</aside>
