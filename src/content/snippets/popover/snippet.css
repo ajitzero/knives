@@ -4,6 +4,7 @@
 		--pico-font-size: 15px;
 		--pico-form-element-spacing-vertical: 0.5rem;
 		--pico-form-element-spacing-horizontal: 0.75rem;
+		--pico-transition: 50ms ease-in-out;
 	}
 
 	:is(button, [role='button'])[popovertarget] {
