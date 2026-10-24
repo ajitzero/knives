@@ -6,7 +6,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://knives.ajitpanigrahi.com',
 	integrations: [mdx(), sitemap()],
 	image: {
 		layout: 'constrained',
