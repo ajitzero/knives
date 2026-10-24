@@ -1,0 +1,22 @@
+src/assets/styles.css
+  h_1e9f70f2591550 4,10
+package.json
+  h_1e9f70f2591550 23
+pnpm-lock.yaml
+  h_1e9f70f2591550 23-25,572-574,2473-2474
+src/assets/roles/typography.css
+  h_1e9f70f2591550 1-24
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 3-4,22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "852d4396c4aa677b8fe739beb2a76e6fc356c2b3",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
