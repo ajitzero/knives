@@ -1,0 +1,28 @@
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 9,12,34
+  h_1e9f70f2591550 29-33,35
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 37
+  h_1e9f70f2591550 35-36,38-40
+src/content.config.ts
+  h_1e9f70f2591550 32
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 4-5,12-13,15-16,18-19,32
+src/content/snippets/popover/snippet.html
+  h_1e9f70f2591550 15,61,111,122-125,137,140,142-144,146,161,163-167,169
+  h_1e9f70f2591550 121,126-136,138-139,141,145,147-148
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 5,115-121,123,128-130
+  h_1e9f70f2591550 122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "32ad22a1aa4b97713fd0a4dc0755b362812cdf86",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
