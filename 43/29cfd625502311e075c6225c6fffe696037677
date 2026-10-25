@@ -1,0 +1,26 @@
+src/content/snippets/tabs-group/index.md
+  h_1e9f70f2591550 1-50
+tasks/todo.md
+  h_1e9f70f2591550 1-21
+src/snippets/tags.ts
+  h_1e9f70f2591550 6
+AGENTS.md
+  h_1e9f70f2591550 11
+src/content/snippets/tabs-group/snippet.html
+  h_1e9f70f2591550 1-41
+tasks/plan.md
+  h_1e9f70f2591550 1-50
+src/content/snippets/tabs-group/snippet.css
+  h_1e9f70f2591550 1-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4329cfd625502311e075c6225c6fffe696037677",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
