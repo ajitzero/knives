@@ -8,3 +8,10 @@
 @import './roles/footer.css';
 @import './roles/tasks-list.css';
 @import './roles/typography.css';
+
+:where([data-unstyled], [data-unstyled] *),
+:where([data-unstyled] *)::before,
+:where([data-unstyled] *)::after,
+:where([data-unstyled] *)::placeholder {
+	all: revert;
+}
