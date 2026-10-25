@@ -1,5 +1,129 @@
-<button popovertarget="actions">Actions</button>
-<ul id="actions" popover>
+<div demo-btn-group>
+	<div role="group" aria-label="Star actions">
+		<button>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-star knives-icon-fill"
+				data-active="false"
+			>
+				<path
+					d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+				/>
+			</svg>
+			Star
+		</button>
+		<button popovertarget="star-actions">
+			<span class="sr-only">Choose list</span>
+		</button>
+	</div>
+
+	<button popovertarget="base-actions">Actions</button>
+</div>
+
+<ul id="star-actions" popover>
+	<li>
+		<button>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-search preview-icon"
+			>
+				<path d="m21 21-4.34-4.34" />
+				<circle cx="11" cy="11" r="8" />
+			</svg>
+			<span>Search</span>
+			<kbd>/</kbd>
+		</button>
+	</li>
+	<li>
+		<button type="button">
+			<span>Find</span>
+			<kbd>Ctrl + F</kbd>
+		</button>
+	</li>
+	<li>
+		<hr />
+		<header>Your lists</header>
+	</li>
+	<li>
+		<button>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-pin preview-icon"
+			>
+				<path d="M12 17v5" />
+				<path
+					d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"
+				/>
+			</svg>
+			<span>List 3 Pinned</span>
+		</button>
+	</li>
+	<li>
+		<button>
+			<span>List 1</span>
+		</button>
+	</li>
+	<li>
+		<button>
+			<span>List 2</span>
+		</button>
+	</li>
+	<li>
+		<button>
+			<span>List 4</span>
+		</button>
+	</li>
+	<li>
+		<hr />
+	</li>
+	<li>
+		<button>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-plus preview-icon"
+			>
+				<path d="M5 12h14" />
+				<path d="M12 5v14" />
+			</svg>
+			<span>New list</span>
+			<kbd>Ctrl + N</kbd>
+		</button>
+	</li>
+</ul>
+
+<ul id="base-actions" popover>
 	<li>
 		<button>
 			<svg
@@ -70,7 +194,9 @@
 			<kbd>Del</kbd>
 		</button>
 	</li>
-	<li><hr /></li>
+	<li>
+		<hr />
+	</li>
 	<li>
 		<button>
 			<span>Import</span>

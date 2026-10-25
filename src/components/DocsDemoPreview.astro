@@ -2,27 +2,31 @@
 import bladesStyles from '@anyblades/blades/layered/blades.layered?inline';
 import interStyles from '@fontsource-variable/inter?inline';
 import typographyStyles from '../assets/roles/typography.css?inline';
+import a11yStyles from '../assets/roles/a11y.css?inline';
+import knivesStyles from '../assets/roles/knives.css?inline';
 import CopyButton from './CopyButton.astro';
 
 interface Props {
 	title?: string;
 	html?: string;
 	css?: string;
+	js?: string;
 	rtl?: boolean;
 	size?: number;
 }
 
-const { title = '', size = 22, html = '', css = '', rtl = false } = Astro.props;
+const { title = '', size = 22, html = '', css = '', js = '', rtl = false } = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="color-scheme" content="light dark">
-		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${css}</style>
+		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${a11yStyles}\n${knivesStyles}\n${css}</style>
 	</head>
 	<body style="height: 100%; min-height: 200px; display: grid; place-items: start center; padding: 2rem 1rem;">
 		${html}
+		${js ? `<script>${js}</script>` : ''}
 	</body>
 </html>`;
 ---
@@ -31,7 +35,7 @@ const srcdoc = `<!doctype html>
 	{html && css ? (
 		<iframe
 			title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
-			sandbox=""
+			sandbox="allow-scripts"
 			loading="lazy"
 			srcdoc={srcdoc}
 			style={`height: ${size}rem;`}

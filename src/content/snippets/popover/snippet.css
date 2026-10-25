@@ -1,18 +1,60 @@
-@layer snippets.popover {
+@layer snippets.popover.demo {
+	/**
+	 * Jump "@layer snippets.popover" to skip demo-specific styles.
+	 */
+
 	:root {
 		--pico-font-size: 15px;
 		--pico-form-element-spacing-vertical: 0.5rem;
-		--pico-form-element-spacing-horizontal: 0.75rem;
+		--pico-form-element-spacing-horizontal-local: 0.75rem;
+		--pico-form-element-spacing-horizontal: var(--pico-form-element-spacing-horizontal-local);
 		--pico-transition: 50ms ease-in-out;
 	}
 
+	[demo-btn-group] {
+		display: inline-flex;
+		gap: var(--pico-form-element-spacing-horizontal);
+
+		> [role='group'] {
+			margin-block-end: 0;
+
+			button {
+				--pico-form-element-spacing-horizontal: var(--pico-form-element-spacing-horizontal-local);
+			}
+		}
+
+		:is(a, button, [role='button']) {
+			padding: calc(var(--pico-form-element-spacing-vertical) * 0.5)
+				var(--pico-form-element-spacing-horizontal);
+
+			> svg {
+				width: var(--knives-icon-size);
+				height: var(--knives-icon-size);
+			}
+
+			&:has(> svg) {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--knives-menu-gap);
+			}
+		}
+
+		svg.knives-icon-fill {
+			fill: none;
+
+			&[data-active='true'] {
+				fill: var(--star-fill, currentColor);
+			}
+		}
+	}
+}
+
+@layer snippets.popover {
 	/* The button role that opens a popover. */
 	:is(button, [role='button'])[popovertarget] {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.25rem;
-		padding: calc(var(--pico-form-element-spacing-vertical) * 0.5)
-			var(--pico-form-element-spacing-horizontal);
 
 		&::after {
 			display: block;
@@ -33,16 +75,13 @@
 
 	/* Menu rows: icon, label, then the shortcut pushed to the end. */
 	:is(ul, menu)[popover] {
-		--knives-menu-icon-size: 1rem;
-		--knives-menu-gap: 0.5rem;
-
 		max-width: 20rem;
 
 		li {
 			min-width: 185px;
 		}
 
-		li :is(a, button) {
+		li :is(a, button, [role='button']) {
 			display: flex;
 			align-items: center;
 			gap: var(--knives-menu-gap);
@@ -74,7 +113,7 @@
 			}
 		}
 
-		li :is(a, button) > span {
+		li :is(a, button, [role='button']) > span {
 			flex: 1;
 			min-width: 0;
 			overflow: hidden;
@@ -84,26 +123,26 @@
 
 		/* A row without an icon still reserves its column when a sibling has one. */
 		:is(li:has(~ li svg), li:has(svg) ~ li) :is(a, button):not(:has(> svg)) > span {
-			margin-inline-start: calc(var(--knives-menu-icon-size) + var(--knives-menu-gap));
+			margin-inline-start: calc(var(--knives-icon-size) + var(--knives-menu-gap));
 		}
 
 		li :is(a, button) > svg {
-			width: var(--knives-menu-icon-size);
-			height: var(--knives-menu-icon-size);
+			width: var(--knives-icon-size);
+			height: var(--knives-icon-size);
 			color: var(--pico-muted-color);
 		}
 
 		/* Interacted rows: the icon takes the label's colour. */
-		li :is(a, button):is(:hover, :active, :focus, :focus-visible) > svg {
+		li :is(a, button, [role='button']):is(:hover, :active, :focus, :focus-visible) > svg {
 			color: inherit;
 		}
 
 		/* Keep a destructive icon red with its label. */
-		li :is(a, button).destructive > svg {
+		li :is(a, button, [role='button']).destructive > svg {
 			color: var(--pico-form-element-invalid-active-border-color);
 		}
 
-		li :is(a, button) > kbd {
+		li :is(a, button, [role='button']) > kbd {
 			--pico-font-family: var(--pico-font-family-sans-serif);
 			--pico-font-weight: 400;
 			background: none;

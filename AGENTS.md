@@ -11,7 +11,7 @@ A website for templates and snippets created and styled with [Blades CSS](https:
 - Role CSS files are written separately (e.g. `src/assets/roles/docs-sidebar.css`, `footer.css`, …) and imported into `styles.css`. Blades ships inside `@layer blades`; role files are unlayered, so site customizations win over the framework without needing `!important`.
 - The site-level styling scope is **`docs-`**: there is **no page-root class** for site styling (do not add one). Scope customizations with semantic element selectors and layout selectors anchored on the landmarks or structure they apply to — e.g. `body:has(> aside.docs-sidebar)`, `aside.docs-sidebar > hgroup`.
 - **No classes by default.** If a site-level component genuinely needs a CSS class, the class must start with the **`docs-`** prefix. `docs-sidebar` is the approved exception currently in use for the sidebar.
-- **Custom properties must start with the `knives-` prefix** — e.g. `--knives-menu-gap`, `--knives-menu-icon-size`. This keeps them clear of Blades' own `--pico-*` / `--blades-*` tokens and of other snippets.
+- **Custom properties must start with the `knives-` prefix** — e.g. `--knives-menu-gap`, `--knives-icon-size` in knives.css. This keeps them clear of Blades' own `--pico-*` / `--blades-*` tokens and of other snippets.
 - Use native CSS nesting to keep related descendant, state, and responsive rules alongside their parent selector wherever it improves locality; preserve the intended selector specificity.
 
 ```css
@@ -78,3 +78,9 @@ Snippet-specific styles (the snippet's own styles, distinct from the site's `doc
 - Put only snippet-specific rules and any one-off imports required by that snippet in `snippet.css`.
 - Use a stable layer name so it doesn't collide with Blades (`@layer blades`) or Astro's image styles (`@layer astro.images`).
 - Don't put snippet styles in a site-wide CSS file.
+
+## Demo-only JavaScript
+
+- `snippet.js` is optional and runs only inside the `DocsDemoPreview` iframe, which allows scripts in a sandbox.
+- Use it for preview-only interactions; keep the snippet's base behavior independent of it when the snippet is described as requiring no JavaScript. For example, the Popover API opens the popover declaratively, while the demo script only toggles the star button.
+- The snippet page currently displays and copies HTML and CSS, not `snippet.js`; treat this file as demo support rather than part of the snippet's provided source.

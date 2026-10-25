@@ -7,6 +7,22 @@ tag:
   - popover
 ---
 
+## Progress Tracker
+
+- [x] Basic Popover interaction and styling.
+- [x] Support both links & buttons.
+- [x] Separator via `<hr />`
+- [x] Section header via `<header>`
+- [x] Shortcut hint via `<kbd>`
+- [x] SVG-based icons.
+- [x] Reserve space for icons when not used.
+- [x] `.destructive` class for dangerous actions.
+- [x] Grouped actions.
+- [ ] Nested actions.
+- [ ] Radio group.
+- [ ] Checkbox group.
+- [x] RTL.
+
 ## Structure
 
 - Use `button` for the trigger. Other tags work, but are not good for accessibility.
@@ -22,22 +38,13 @@ tag:
 - Use `span` in button for the text to reserve space for icon.
 - RTL: Blade/Pico supports RTL automatically. No special CSS required.
 
-### Optional classes
+### Optional
+
+#### Custom classes
 
 - `.destructive` class for dangerous actions.
 
-## Progress Tracker
+#### Custom JavaScript
 
-- [x] Basic Popover interaction and styling.
-- [x] Support both links & buttons.
-- [x] Separator via `<hr />`
-- [x] Section header via `<header>`
-- [x] Shortcut hint via `<kbd>`
-- [x] SVG-based icons.
-- [x] Reserve space for icons when not used.
-- [x] `.destructive` class for dangerous actions.
-- [ ] Grouped actions.
-- [ ] Nested actions.
-- [ ] Radio group.
-- [ ] Checkbox group.
-- [x] RTL.
+- JavaScript is not required for any of the popover interaction.
+- This snippet uses JavaScript to toggle the active state on the star icon in the demo.

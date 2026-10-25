@@ -1,0 +1,9 @@
+/**
+ * Role: Global custom variables
+ */
+
+:root {
+	--knives-base: 1rem;
+	--knives-icon-size: var(--knives-base);
+	--knives-menu-gap: calc(var(--knives-base) * 0.5);
+}
