@@ -1,0 +1,16 @@
+src/assets/roles/a11y.css
+  h_1e9f70f2591550 1-16
+src/assets/styles.css
+  h_1e9f70f2591550 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a8e5abe80dbb24d848fbb9e466cc8fb85482c8e8",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
