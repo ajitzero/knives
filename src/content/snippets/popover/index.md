@@ -18,7 +18,8 @@ tag:
 - `header` tag in an `li` can be used as a group header.
 - `hr` tag immediately after a `header` tag will add extra padding under it, as part of the section header.
 - `kbd` tag can be used to denote a keyboard shortcut.
-- `svg`-based icons are support for icons on the left/start.
+- `svg`-based icons are supported for icons on the left/start.
+- Use `span` in button for the text to reserve space for icon.
 - RTL: Blade/Pico supports RTL automatically. No special CSS required.
 
 ### Optional classes
