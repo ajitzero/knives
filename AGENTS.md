@@ -8,7 +8,7 @@ A website for templates and snippets created and styled with [Blades CSS](https:
 
 - `src/assets/styles.css` is the single CSS entry point, imported once from `BaseHead`.
 - It imports Blades CSS (the **layered** build) and every role CSS file the site needs.
-- Role CSS files are written separately (e.g. `src/assets/roles/docs-sidebar.css`, `footer.css`, …) and imported into `styles.css`. Blades ships inside `@layer blades`; role files are unlayered, so site customizations win over the framework without needing `!important`.
+- Role CSS files are written separately (e.g. `src/assets/roles/docs-sidebar.css`, `footer.css`, ...) and imported into `styles.css`. Blades ships inside `@layer blades`; role files are unlayered, so site customizations win over the framework without needing `!important`.
 - The site-level styling scope is **`docs-`**: there is **no page-root class** for site styling (do not add one). Scope customizations with semantic element selectors and layout selectors anchored on the landmarks or structure they apply to — e.g. `body:has(> aside.docs-sidebar)`, `aside.docs-sidebar > hgroup`.
 - **No classes by default.** If a site-level component genuinely needs a CSS class, the class must start with the **`docs-`** prefix. `docs-sidebar` is the approved exception currently in use for the sidebar.
 - **Custom properties must start with the `knives-` prefix** — e.g. `--knives-menu-gap`, `--knives-icon-size` in knives.css. This keeps them clear of Blades' own `--pico-*` / `--blades-*` tokens and of other snippets.

@@ -1,0 +1,108 @@
+@layer snippets.tabs {
+	/* Outer anchor: the strip sits in normal flow, and the panel is positioned
+	   against this element so the strip's scrollbar can't clip it. */
+	[data-tabs] {
+		position: relative;
+		width: 100%;
+		max-width: 44rem;
+	}
+
+	/* The tab strip scrolls horizontally once the tabs no longer fit. */
+	[data-tabs-strip] {
+		display: flex;
+		overflow-x: auto;
+		scrollbar-width: thin;
+	}
+
+	/* Tabs share the strip evenly while they fit, then keep their label width
+	   (min-width) so the strip overflows and scrolls instead of squashing. */
+	[data-tabs-strip] details {
+		flex: 1 1 0;
+		min-width: max-content;
+		margin-bottom: 0;
+	}
+
+	/* The tab label. */
+	[data-tabs-strip] summary {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: calc(var(--pico-spacing) * 0.75) var(--pico-spacing);
+		border-bottom: 2px solid var(--pico-accordion-border-color);
+		color: var(--pico-accordion-close-summary-color);
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+		transition:
+			color var(--pico-transition),
+			border-color var(--pico-transition);
+	}
+
+	/* Tabs have no chevron. */
+	[data-tabs-strip] summary::after {
+		display: none;
+	}
+
+	/* The open tab is the selected one. */
+	[data-tabs-strip] details[open] > summary {
+		margin-bottom: 0;
+		border-bottom-color: var(--pico-primary);
+		color: var(--pico-primary);
+	}
+
+	[data-tabs-strip] summary:focus-visible {
+		outline: var(--pico-outline-width) solid var(--pico-primary-focus);
+		outline-offset: calc(var(--pico-outline-width) * -1);
+	}
+
+	/* The panel escapes the scroll strip and spans the full width below it.
+	   It is out of flow, so leave room for it when content follows the tabs. */
+	[data-tabs] details::details-content {
+		position: absolute;
+		inset-inline: 0;
+		top: 100%;
+		padding: var(--pico-spacing);
+		border-bottom: 2px solid var(--pico-accordion-border-color);
+		background: var(--pico-background-color);
+	}
+
+	[data-tabs] details:not([open])::details-content {
+		display: none;
+	}
+
+	@media (width < 40em) {
+		[data-tabs-strip] summary,
+		[data-tabs] details::details-content {
+			padding: calc(var(--pico-spacing) * 0.5);
+		}
+	}
+
+	/* Older browsers can't position the panel below the strip, so fall back to a
+	   plain stacked exclusive accordion instead of a broken tab row. */
+	@supports not (selector(::details-content)) {
+		[data-tabs-strip] {
+			display: block;
+			overflow-x: visible;
+		}
+
+		[data-tabs-strip] details {
+			display: block;
+			min-width: 0;
+			margin-bottom: var(--pico-spacing);
+		}
+
+		[data-tabs-strip] summary {
+			display: block;
+			white-space: normal;
+			text-align: start;
+		}
+
+		[data-tabs-strip] details[open] > summary {
+			margin-bottom: var(--pico-spacing);
+		}
+
+		[data-tabs-strip] summary::after {
+			display: block;
+		}
+	}
+}
