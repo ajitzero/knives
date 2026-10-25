@@ -128,15 +128,23 @@ aside.docs-sidebar {
 
 				/* Ghost button: no Blades fill, border or shadow. */
 				&[role='button'] {
-					padding: 0.25rem;
+					padding: 0.5rem;
 					background: transparent;
 					border: 0;
 					box-shadow: none;
 					color: var(--pico-muted-color);
 					text-decoration: none;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 
 					&:hover {
-						background: color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+						background: color-mix(in srgb, var(--pico-muted-border-color) 90%, transparent);
+					}
+
+					> svg {
+						width: var(--knives-icon-size);
+						height: var(--knives-icon-size);
 					}
 				}
 			}
@@ -163,7 +171,7 @@ aside.docs-sidebar {
 		text-decoration: none;
 
 		&:hover {
-			background-color: color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+			background-color: color-mix(in srgb, var(--pico-muted-border-color) 0%, transparent);
 			color: var(--pico-color);
 			text-decoration: none;
 		}
