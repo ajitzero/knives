@@ -1,5 +1,5 @@
 <div role="group" aria-label="Color theme" data-theme-toggle>
-	<button class="constrast" aria-label="System theme" aria-pressed="true" data-theme-mode="system">
+	<button aria-label="System theme" aria-pressed="true" data-theme-mode="system">
 		<svg
 			viewBox="0 0 24 24"
 			width="20"
@@ -15,7 +15,7 @@
 			<path d="M8 21h8m-4-4v4" />
 		</svg>
 	</button>
-	<button class="constrast" aria-label="Light theme" aria-pressed="false" data-theme-mode="light">
+	<button aria-label="Light theme" aria-pressed="false" data-theme-mode="light">
 		<svg
 			viewBox="0 0 24 24"
 			width="20"
@@ -31,7 +31,7 @@
 			<path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
 		</svg>
 	</button>
-	<button class="constrast" aria-label="Dark theme" aria-pressed="false" data-theme-mode="dark">
+	<button aria-label="Dark theme" aria-pressed="false" data-theme-mode="dark">
 		<svg
 			viewBox="0 0 24 24"
 			width="20"
@@ -60,7 +60,9 @@
 		}
 
 		themeButtons?.forEach((button) => {
-			button.setAttribute('aria-pressed', String(button.dataset.themeMode === theme));
+			const pressed = button.dataset.themeMode === theme;
+			button.setAttribute('aria-pressed', String(pressed));
+			button.disabled = pressed;
 		});
 
 		try {
@@ -79,3 +81,29 @@
 		button.addEventListener('click', () => setTheme(button.dataset.themeMode));
 	});
 </script>
+
+<style>
+	[data-theme-toggle] {
+		width: auto;
+
+		> button {
+			display: grid;
+			place-items: center;
+			padding: 0.375rem;
+			background: transparent;
+			border-color: var(--pico-muted-border-color);
+			color: var(--pico-muted-color);
+			box-shadow: none;
+
+			&:hover:not([aria-pressed='true']) {
+				background: color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+			}
+
+			&[aria-pressed='true'] {
+				background: var(--pico-primary-background);
+				border-color: var(--pico-primary-background);
+				color: var(--pico-primary-inverse);
+			}
+		}
+	}
+</style>
