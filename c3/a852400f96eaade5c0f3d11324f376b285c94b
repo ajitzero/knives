@@ -1,0 +1,18 @@
+package.json
+  h_1e9f70f2591550 4,30-34
+pnpm-lock.yaml
+  h_1e9f70f2591550 1-158
+pnpm-workspace.yaml
+  h_1e9f70f2591550 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c3a852400f96eaade5c0f3d11324f376b285c94b",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
