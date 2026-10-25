@@ -6,6 +6,7 @@
 @import '@anyblades/blades/layered/layout/landmarks';
 @import './roles/layout.css';
 @import './roles/footer.css';
+@import './roles/a11y.css';
 @import './roles/tasks-list.css';
 @import './roles/typography.css';
 
