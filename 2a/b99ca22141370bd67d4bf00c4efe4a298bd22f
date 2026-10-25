@@ -1,0 +1,30 @@
+AGENTS.md
+  h_1e9f70f2591550 14
+src/assets/roles/knives.css
+  h_1e9f70f2591550 1-9
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 5-6,13,18,25,29,38
+src/content/snippets/popover/index.md
+  h_1e9f70f2591550 10-25,41-43,47,49-50
+src/content/snippets/popover/snippet.css
+  h_1e9f70f2591550 1-5,9-10,14-52,84,116,126,130-131,136,141,145
+src/content/snippets/popover/snippet.html
+  h_1e9f70f2591550 1-126,197-199
+src/content/snippets/popover/snippet.js
+  h_1e9f70f2591550 1-13
+src/pages/snippets/[...slug].astro
+  h_1e9f70f2591550 42,63
+src/snippets/sources.ts
+  h_1e9f70f2591550 13-18,22,25,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2ab99ca22141370bd67d4bf00c4efe4a298bd22f",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
