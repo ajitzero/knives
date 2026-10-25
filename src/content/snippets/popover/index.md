@@ -22,6 +22,7 @@ tag:
 - [ ] Radio group.
 - [ ] Checkbox group.
 - [x] RTL.
+- [ ] RTL for Grouped actions. Existing bug in Pico/Blade [#212](https://github.com/anyblades/blades/issues/212)
 
 ## Structure
 
