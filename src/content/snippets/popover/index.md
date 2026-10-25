@@ -10,6 +10,7 @@ tag:
 ## Progress Tracker
 
 - [x] Basic Popover interaction and styling.
+- [x] Popover Position override via `data-position`.
 - [x] Support both links & buttons.
 - [x] Separator via `<hr />`
 - [x] Section header via `<header>`
@@ -37,11 +38,21 @@ tag:
 - `kbd` tag can be used to denote a keyboard shortcut.
 - `svg`-based icons are supported for icons on the left/start.
 - Use `span` in button for the text to reserve space for icon.
+- Add `data-position` to the popover to set where it opens, using a [`position-area`](https://developer.mozilla.org/en-US/docs/Web/CSS/position-area) value: `data-position="end span-start"`.
 - RTL: Blade/Pico supports RTL automatically. No special CSS required.
 
 ### Optional
 
-#### Custom classes
+#### Position
+
+- By default the menu opens below the trigger, on the inline-end side (mirrored in RTL).
+- Add `data-position` to the popover to override it:
+  - `data-position="end span-start"` opens below the trigger, toward inline-start.
+  - `data-position="start span-end"` opens above the trigger, toward inline-end.
+- The four logical placements (`start` / `end` × `span-start` / `span-end`) work wherever anchor positioning does.
+- Other values use typed `attr()` and need Chromium 133+ or Firefox 155+. Don't mix physical and logical keywords: `bottom span-start` is invalid.
+
+#### Modifier classes
 
 - `.destructive` class for dangerous actions.
 

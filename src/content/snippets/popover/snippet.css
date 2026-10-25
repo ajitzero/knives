@@ -175,6 +175,30 @@
 		}
 	}
 
+	/* Menu position: `data-position` holds a `position-area` value, e.g. "end span-start". */
+	:is(ul, menu)[popover][data-position='start span-start'] {
+		position-area: block-start span-inline-start;
+	}
+
+	:is(ul, menu)[popover][data-position='start span-end'] {
+		position-area: block-start span-inline-end;
+	}
+
+	:is(ul, menu)[popover][data-position='end span-start'] {
+		position-area: block-end span-inline-start;
+	}
+
+	:is(ul, menu)[popover][data-position='end span-end'] {
+		position-area: block-end span-inline-end;
+	}
+
+	/* With typed `attr()`, let the attribute state any position area. */
+	@supports (position-area: attr(data-position type(<custom-ident>+))) {
+		:is(ul, menu)[popover][data-position] {
+			position-area: attr(data-position type(<custom-ident>+));
+		}
+	}
+
 	/* Destructive actions: the validation red, kept through hover and focus. */
 	.destructive {
 		color: var(--pico-form-element-invalid-active-border-color);
