@@ -1,0 +1,15 @@
+src/components/ThemeToggle.astro
+  h_1e9f70f2591550 63-65,84-109
+  h_1e9f70f2591550 2,18,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e21c35685fa187c34803daf8b2722087843befc3",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
