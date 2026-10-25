@@ -114,10 +114,10 @@
 		}
 
 		/* A section header should */
-		li:has(> header) {
+		li > header {
 			margin: var(--pico-form-element-spacing-vertical) calc(var(--pico-spacing) * 0.8) 0;
 			text-transform: uppercase;
-			font-size: 0.75rem;
+			font-size: 0.7rem;
 			font-weight: 600;
 			letter-spacing: 0.01rem;
 		}
@@ -126,9 +126,9 @@
 		li:has(> hr) {
 			padding: 0;
 		}
-		li:has(> header + hr) {
+		/* li:has(> hr + header) {
 			padding-bottom: calc(var(--pico-form-element-spacing-vertical) * 0.5);
-		}
+		} */
 
 		hr {
 			margin: 0;
