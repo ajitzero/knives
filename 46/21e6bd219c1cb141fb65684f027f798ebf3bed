@@ -1,0 +1,14 @@
+src/assets/styles.css
+  h_1e9f70f2591550 11-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4621e6bd219c1cb141fb65684f027f798ebf3bed",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
