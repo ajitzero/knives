@@ -1,0 +1,15 @@
+src/pages/index.astro
+  h_1e9f70f2591550 13,15,17-19,21,23
+  h_1e9f70f2591550 2,5-8,14,16,20,22,24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c7ffc096ab07f9d738c8661c32f39ef223df5e49",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
