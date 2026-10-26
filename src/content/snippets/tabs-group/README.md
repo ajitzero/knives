@@ -63,3 +63,7 @@ tag:
 - **The panel height is not animated.** Open/close is instantaneous unless you transition it, and animating `content-visibility` needs `allow-discrete`.
 - **`overflow: overlay` is deprecated.** The strip uses `overflow-x: auto` with `scrollbar-width: thin` for a slimmer scrollbar.
 - **Fallback:** browsers without `::details-content` get a stacked exclusive accordion instead of the horizontal tab row.
+
+### References
+
+- Based on [this article](https://css-tricks.com/pure-css-tabs-with-details-grid-and-subgrid/).
