@@ -1,12 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const snippets = (await getCollection('snippets')).toSorted((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<main class="container">
-		<p>
-			See <a href="/snippets/popover/">Popover</a>.
-		</p>
+		<h2>Snippets</h2>
+		{snippets.length > 0 ? (
+			<ul>
+				{snippets.map((snippet) => (
+					<li>
+						<a href={`/snippets/${snippet.id}/`}>{snippet.data.title}</a>
+					</li>
+				))}
+			</ul>
+		) : (
+			<p>No snippets yet.</p>
+		)}
 	</main>
 </BaseLayout>
