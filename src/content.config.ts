@@ -21,8 +21,8 @@ const blog = defineCollection({
 const snippets = defineCollection({
 	loader: glob({
 		base: './src/content/snippets',
-		pattern: '**/index.md',
-		generateId: ({ entry }) => entry.replace(/\/index\.md$/, ''),
+		pattern: '**/README.md',
+		generateId: ({ entry }) => entry.replace(/\/README\.md$/, ''),
 	}),
 	schema: z.object({
 		title: z.string(),
