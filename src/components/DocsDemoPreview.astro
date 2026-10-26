@@ -1,4 +1,5 @@
 ---
+import { Code } from 'astro:components';
 import bladesStyles from '@anyblades/blades/layered/blades.layered?inline';
 // Inline the font binary too: the demo iframe is sandboxed (opaque origin), so any
 // url() pointing at the dev server or a built asset is a cross-origin font fetch —
@@ -42,6 +43,11 @@ const srcdoc = `<!doctype html>
 		${js ? `<script>${js}</script>` : ''}
 	</body>
 </html>`;
+
+const themes = { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' } as const;
+const sourceCode = html || css;
+const sourceLabel = html ? 'HTML' : 'CSS';
+const sourceLang: 'html' | 'css' = html ? 'html' : 'css';
 ---
 
 <section class="docs-demo-preview">
@@ -56,13 +62,10 @@ const srcdoc = `<!doctype html>
 	) : (
 		<>
 			{html || css ? (
-				<section class="docs-demo-preview__source">
-					{html ? (
-						<pre><code>{html}</code><CopyButton label="HTML" getText={() => html} /></pre>
-					) : (
-						<pre><code>{css}</code><CopyButton label="CSS" getText={() => css} /></pre>
-					)}
-				</section>
+				<div class="docs-demo-preview__code">
+					<Code code={sourceCode} lang={sourceLang} themes={themes} defaultColor={false} />
+					<CopyButton label={sourceLabel} getText={() => sourceCode} />
+				</div>
 			) : (
 				<p>No preview available.</p>
 			)}
@@ -82,34 +85,34 @@ const srcdoc = `<!doctype html>
 			background: var(--pico-background-color);
 			margin-bottom: var(--pico-typography-spacing-vertical);
 		}
+	}
 
-		pre {
-			position: relative;
-			overflow: hidden;
+	.docs-demo-preview__code {
+		position: relative;
+		overflow: hidden;
 
-			> code {
-				max-height: 24rem;
-				overflow: auto;
-			}
+		> :global(.astro-code) {
+			max-height: 24rem;
+			overflow-y: auto;
+		}
 
-			> :global(button) {
-				position: absolute;
-				top: 1rem;
-				right: 1rem;
-				opacity: 0;
-				pointer-events: none;
-			}
+		> :global(button) {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			opacity: 0;
+			pointer-events: none;
+		}
 
-			&:hover > :global(button),
-			&:focus-within > :global(button) {
-				opacity: 1;
-				pointer-events: auto;
-			}
+		&:hover > :global(button),
+		&:focus-within > :global(button) {
+			opacity: 1;
+			pointer-events: auto;
 		}
 	}
 
 	@media (hover: none), (pointer: coarse) {
-		.docs-demo-preview pre > :global(button) {
+		.docs-demo-preview__code > :global(button) {
 			opacity: 1;
 			pointer-events: auto;
 		}
