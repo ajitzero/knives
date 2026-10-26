@@ -1,0 +1,14 @@
+src/content/snippets/tabs-group/snippet.css
+  h_1e9f70f2591550 15-24,40-41,47,62-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "863e3386d095cbb04a56b206d94493ecf72b4d06",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
