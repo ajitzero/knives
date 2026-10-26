@@ -1,0 +1,20 @@
+astro.config.mjs
+  h_1e9f70f2591550 10-17
+src/assets/roles/code.css
+  h_1e9f70f2591550 1-31
+src/assets/styles.css
+  h_1e9f70f2591550 10
+src/components/DocsDemoPreview.astro
+  h_1e9f70f2591550 2,46-50,65-68,88,90-92,94-97,99-105,107-110,115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "abef06986fc36d9bc6ff1d988ac14f81ed534846",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
