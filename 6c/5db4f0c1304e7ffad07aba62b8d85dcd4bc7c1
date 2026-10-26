@@ -1,0 +1,14 @@
+src/content.config.ts
+  h_1e9f70f2591550 24-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6c5db4f0c1304e7ffad07aba62b8d85dcd4bc7c1",
+  "prompts": {},
+  "humans": {
+    "h_1e9f70f2591550": {
+      "author": "Ajit Panigrahi <ajitzero@gmail.com>"
+    }
+  }
+}
