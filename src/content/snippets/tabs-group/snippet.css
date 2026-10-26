@@ -12,6 +12,16 @@
 		display: flex;
 		overflow-x: auto;
 		scrollbar-width: thin;
+		/* One full-width underline spans the whole strip, including the space
+		   after the last tab. It is painted as a bottom-aligned background so it
+		   sits on the same line as the tab borders without adding height. */
+		background-image: linear-gradient(
+			var(--pico-accordion-border-color),
+			var(--pico-accordion-border-color)
+		);
+		background-position: bottom;
+		background-size: 100% 2px;
+		background-repeat: no-repeat;
 	}
 
 	/* Tabs take only the space their label needs by default, then keep that
@@ -27,13 +37,14 @@
 		flex: 1 1 0;
 	}
 
-	/* The tab label. */
+	/* The tab label. Its border is transparent so the strip's full-width
+	   underline shows through; the open tab recolors it below. */
 	[data-tabs-strip] summary {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: calc(var(--pico-spacing) * 0.75) var(--pico-spacing);
-		border-bottom: 2px solid var(--pico-accordion-border-color);
+		border-bottom: 2px solid transparent;
 		color: var(--pico-accordion-close-summary-color);
 		text-align: center;
 		white-space: nowrap;
@@ -48,7 +59,8 @@
 		display: none;
 	}
 
-	/* The open tab is the selected one. */
+	/* The open tab is the selected one. Its primary border paints over the
+	   strip's full-width underline for the width of the tab. */
 	[data-tabs-strip] details[open] > summary {
 		margin-bottom: 0;
 		border-bottom-color: var(--pico-primary);
