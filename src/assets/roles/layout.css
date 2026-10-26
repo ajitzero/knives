@@ -28,6 +28,8 @@ body:has(> aside.docs-sidebar) {
 	/* How far the preview, code and other full-bleed blocks hang out past the
 	   reading column on each side. */
 	--docs-bleed: var(--pico-spacing);
+	/* Sidebar column width, shared by the grid and the footer beneath it. */
+	--docs-sidebar-width: 18rem;
 
 	/* Center the reading column and let it grow from 600px on tablet to an
 	   800px cap on laptop and up. Inline padding is only needed while the
@@ -71,12 +73,13 @@ body:has(> aside.docs-sidebar) {
 	}
 
 	@media (min-width: 1100px) {
-		grid-template-columns: 18rem minmax(0, 1fr);
+		grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
 
+		/* Tuck the footer under the sidebar instead of across the viewport. */
 		> footer {
 			position: fixed;
 			bottom: 0;
-			width: 100%;
+			width: var(--docs-sidebar-width);
 		}
 	}
 }

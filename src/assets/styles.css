@@ -4,6 +4,7 @@
 @import '@fontsource-variable/inter';
 @import '@anyblades/blades/layered/blades.layered';
 @import '@anyblades/blades/layered/layout/landmarks';
+@import './roles/knives.css';
 @import './roles/layout.css';
 @import './roles/footer.css';
 @import './roles/a11y.css';

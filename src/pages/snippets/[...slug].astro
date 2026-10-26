@@ -6,12 +6,19 @@ import { getSnippetSources } from '../../snippets/sources';
 import { SITE_TITLE } from '../../consts';
 
 export async function getStaticPaths() {
-	const snippets = await getCollection('snippets');
+	const snippets = (await getCollection('snippets')).sort((a, b) =>
+		a.data.title.localeCompare(b.data.title),
+	);
 
-	return snippets.map((snippet) => {
+	return snippets.map((snippet, index) => {
 		return {
 			params: { slug: snippet.id },
-			props: { snippet, sources: getSnippetSources(snippet.id) },
+			props: {
+				snippet,
+				sources: getSnippetSources(snippet.id),
+				previous: snippets[index - 1],
+				next: snippets[index + 1],
+			},
 		};
 	});
 }
@@ -19,9 +26,11 @@ export async function getStaticPaths() {
 type Props = {
 	snippet: CollectionEntry<'snippets'>;
 	sources: ReturnType<typeof getSnippetSources>;
+	previous?: CollectionEntry<'snippets'>;
+	next?: CollectionEntry<'snippets'>;
 };
 
-const { snippet, sources } = Astro.props;
+const { snippet, sources, previous, next } = Astro.props;
 const { Content } = await render(snippet);
 ---
 
@@ -62,6 +71,83 @@ const { Content } = await render(snippet);
 			css={sources.css}
 			js={sources.js}
 		/>
+
+		<nav aria-label="Snippet pagination">
+			{previous ? (
+				<a href={`/snippets/${previous.id}/`} role="button">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-left"
+					>
+						<path d="m15 18-6-6 6-6" />
+					</svg>
+					<span>Previous: {previous.data.title}</span>
+				</a>
+			) : (
+				<button disabled class="secondary">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-left"
+					>
+						<path d="m15 18-6-6 6-6" />
+					</svg>
+					<span>Previous</span>
+				</button>
+			)}
+			{next ? (
+				<a href={`/snippets/${next.id}/`} role="button">
+					<span> Next: {next.data.title}</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-right"
+					>
+						<path d="m9 18 6-6-6-6" />
+					</svg>
+				</a>
+			) : (
+				<button disabled class="secondary">
+					<span>Next</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-right"
+					>
+						<path d="m9 18 6-6-6-6" />
+					</svg>
+				</button>
+			)}
+		</nav>
 	</main>
 </BaseLayout>
 
@@ -71,5 +157,17 @@ const { Content } = await render(snippet);
 		--pico-font-size: 2rem;
 		--pico-line-height: 1.125;
 		--pico-typography-spacing-top: 3rem;
+	}
+
+	main > nav > :is(button, [role='button']) {
+		display: flex;
+		align-items: center;
+		gap: var(--knives-menu-gap);
+
+		> svg {
+			--icon-scale: 1.4;
+			width: calc(var(--knives-icon-size) * var(--icon-scale));
+			height: calc(var(--knives-icon-size) * var(--icon-scale));
+		}
 	}
 </style>
