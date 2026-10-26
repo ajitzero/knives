@@ -44,14 +44,11 @@ body:has(> aside.docs-sidebar) {
 		}
 	}
 
-	/* Top breathing room: exactly the default block padding at 1100px, then it
+	/* Breathing room: exactly the default block padding at 1100px, then it
 	   grows with the viewport (2.5% of every extra pixel) so wide screens gain
 	   vertical air instead of only empty space beside the reading column. */
 	> main {
-		padding-block-start: max(
-			var(--pico-block-spacing-vertical),
-			var(--pico-block-spacing-vertical) + (100vw - 1100px) * 0.1
-		);
+		padding-block: clamp(2rem, var(--pico-block-spacing-vertical) + (100vw - 1100px) * 0.4, 8rem);
 	}
 
 	/* Full-bleed blocks sit on the same centred axis, but --docs-bleed wider on
@@ -65,6 +62,22 @@ body:has(> aside.docs-sidebar) {
 	> main :is(ul, ol) {
 		padding-inline-start: var(--pico-spacing);
 		margin-block: calc(var(--pico-typography-spacing-vertical) * 0.5);
+	}
+
+	> main :is(ul, ol):has(article) {
+		padding-inline-start: 0;
+	}
+
+	/* Items that wrap a block of their own (e.g. snippet cards) need no marker. */
+	> main li:has(> article) {
+		list-style: none;
+	}
+
+	> main hgroup > h2 {
+		/* h1 styling for h2 */
+		--pico-font-size: 2rem;
+		--pico-line-height: 1.125;
+		--pico-typography-spacing-top: 3rem;
 	}
 
 	/* The footer spans the full width at both column layouts. */
