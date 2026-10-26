@@ -27,6 +27,7 @@ tag:
 - Put the tab label in `<summary>`.
 - Put the panel content in a `<div>` after the `<summary>`.
 - Add `open` to the tab that should be visible first.
+- By default each tab is sized to its label. Add `data-variant="stretch"` to the `data-tabs-strip` wrapper to distribute the tabs evenly across the available width.
 
 ```html
 <div data-tabs>
@@ -46,10 +47,6 @@ tag:
 	</div>
 </div>
 ```
-
-### Adding tabs
-
-Add another `<details>` with the same `name`; no CSS changes are needed. The strip distributes the tabs evenly while they fit and scrolls horizontally once they don't.
 
 ### Notes
 
