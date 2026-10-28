@@ -11,12 +11,17 @@
 		--pico-transition: 50ms ease-in-out;
 	}
 
+	/* Demo layout: the preview spans the full width, pushing the action group
+	   to the inline end while the star group stays at the inline start. */
 	[demo-btn-group] {
-		display: inline-flex;
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
 		gap: var(--pico-form-element-spacing-horizontal);
 
 		> [role='group'] {
 			margin-block-end: 0;
+			width: auto;
 
 			button {
 				--pico-form-element-spacing-horizontal: var(--pico-form-element-spacing-horizontal-local);
