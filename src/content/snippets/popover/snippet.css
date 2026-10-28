@@ -51,6 +51,14 @@
 				fill: var(--star-fill, currentColor);
 			}
 		}
+
+		/* Demo-only: an activated star takes GitHub's gold. The gold fill reads
+		   best on the dark contrast button; on the light one, a deeper amber
+		   stroke keeps the star defined. */
+		svg[data-active='true'] {
+			color: #e3b341;
+			stroke: light-dark(#e3b341, #9a6700);
+		}
 	}
 }
 
