@@ -3,6 +3,7 @@ title: Popover
 description: A dropdown menu opened declaratively using the Popover API, with no JavaScript or CSS classes.
 stage: 'alpha'
 size: 25
+placeItems: 'start center'
 tag:
   - popover
 ---

@@ -28,9 +28,20 @@ interface Props {
 	js?: string;
 	rtl?: boolean;
 	size?: number;
+	/** Any valid `place-items` value; controls where the demo sits in the iframe. */
+	placeItems?: string;
 }
 
-const { title = '', size = 22, md = '', html = '', css = '', js = '', rtl = false } = Astro.props;
+const {
+	title = '',
+	size = 22,
+	md = '',
+	html = '',
+	css = '',
+	js = '',
+	rtl = false,
+	placeItems = 'center',
+} = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
 	<head>
@@ -39,7 +50,7 @@ const srcdoc = `<!doctype html>
 		<meta name="color-scheme" content="light dark">
 		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${a11yStyles}\n${knivesStyles}\n${css}</style>
 	</head>
-	<body style="height: 100%; min-height: 200px; display: grid; place-items: center; padding: 2rem 1rem;">
+	<body style="height: 100%; min-height: 200px; display: grid; place-items: ${placeItems}; padding: 2rem;">
 		${html}
 		${js ? `<script>${js}</script>` : ''}
 	</body>

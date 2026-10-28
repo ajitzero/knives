@@ -30,6 +30,7 @@ const snippets = defineCollection({
 		stage: z.string(),
 		tag: z.array(snippetTagSchema),
 		size: z.number().min(1).optional(),
+		placeItems: z.string().optional(),
 	}),
 });
 

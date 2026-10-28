@@ -3,6 +3,7 @@ title: Tabs Group
 description: A horizontal row of tabs built on the native exclusive accordion, swapping a single content panel beneath it with no JavaScript.
 stage: 'alpha'
 size: 24
+placeItems: 'start center'
 tag:
   - tabs
 ---
