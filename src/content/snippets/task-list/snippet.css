@@ -1,0 +1,26 @@
+@layer snippets.task-list {
+	ul:has(> li > input[type='checkbox']:disabled) {
+		/* Pico's checkbox is 1.25em wide with a 0.5em inline gap (1.75em total).
+		   Use one checkbox width as the marker gutter at every nesting level. */
+		--knives-task-list-indent: calc(var(--pico-spacing) * 1.75);
+
+		margin: 0;
+		padding-inline-start: var(--knives-task-list-indent);
+	}
+
+	li:has(> input[type='checkbox']:disabled) {
+		list-style: none;
+	}
+
+	li:has(> input[type='checkbox']:disabled) > input[type='checkbox']:disabled {
+		/* Pull the checkbox into the gutter, where the bullet would be. The
+		   input is inline, so this line shifts without moving nested lists. */
+		margin-inline-start: calc(var(--knives-task-list-indent) * -1);
+	}
+}
+@layer demo.snippets.task-list {
+	section {
+		margin-block-end: 0;
+		min-width: 200px;
+	}
+}

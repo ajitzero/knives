@@ -84,3 +84,9 @@ Snippet-specific styles (the snippet's own styles, distinct from the site's `doc
 - `snippet.js` is optional and runs only inside the `DocsDemoPreview` iframe, which allows scripts in a sandbox.
 - Use it for preview-only interactions; keep the snippet's base behavior independent of it when the snippet is described as requiring no JavaScript. For example, the Popover API opens the popover declaratively, while the demo script only toggles the star button.
 - The snippet page currently displays and copies HTML and CSS, not `snippet.js`; treat this file as demo support rather than part of the snippet's provided source.
+
+## Optional Markdown source
+
+- `snippet.md` is optional and is never rendered.
+- When present, its source is displayed (and copied) before the HTML section on the snippet page.
+- Use it to show the Markdown equivalent of a snippet's HTML, such as the Markdown task list behind a task-list snippet.

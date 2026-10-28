@@ -1,0 +1,9 @@
+- [x] Buy milk
+- [ ] Call the dentist
+- [x] Prepare dinner
+  - [x] Chop vegetables
+  - [ ] Boil pasta
+  - [ ] Set the table
+    - [ ] Plates
+    - [x] Glasses
+- [ ] Read before bed

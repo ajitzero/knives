@@ -22,6 +22,7 @@ const interStyles = `@font-face {
 
 interface Props {
 	title?: string;
+	md?: string;
 	html?: string;
 	css?: string;
 	js?: string;
@@ -29,7 +30,7 @@ interface Props {
 	size?: number;
 }
 
-const { title = '', size = 22, html = '', css = '', js = '', rtl = false } = Astro.props;
+const { title = '', size = 22, md = '', html = '', css = '', js = '', rtl = false } = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
 	<head>
@@ -38,19 +39,19 @@ const srcdoc = `<!doctype html>
 		<meta name="color-scheme" content="light dark">
 		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${a11yStyles}\n${knivesStyles}\n${css}</style>
 	</head>
-	<body style="height: 100%; min-height: 200px; display: grid; place-items: start center; padding: 2rem 1rem;">
+	<body style="height: 100%; min-height: 200px; display: grid; place-items: center; padding: 2rem 1rem;">
 		${html}
 		${js ? `<script>${js}</script>` : ''}
 	</body>
 </html>`;
 
 const themes = { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' } as const;
-const sourceCode = html || css;
-const sourceLabel = html ? 'HTML' : 'CSS';
-const sourceLang: 'html' | 'css' = html ? 'html' : 'css';
+const sourceCode = md || html || css;
+const sourceLabel = md ? 'Markdown' : html ? 'HTML' : 'CSS';
+const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' : 'css';
 ---
 
-<section class="docs-demo-preview">
+<section class="docs-demo-preview" tabindex="0">
 	{html && css ? (
 		<iframe
 			title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
@@ -61,7 +62,7 @@ const sourceLang: 'html' | 'css' = html ? 'html' : 'css';
 		></iframe>
 	) : (
 		<>
-			{html || css ? (
+			{md || html || css ? (
 				<div class="docs-demo-preview__code">
 					<Code code={sourceCode} lang={sourceLang} themes={themes} defaultColor={false} />
 					<CopyButton label={sourceLabel} getText={() => sourceCode} />
