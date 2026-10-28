@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# editor session screenshots and local state
+.openchamber/
+
 # local docs and plans
 docs/
 
