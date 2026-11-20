@@ -57,12 +57,7 @@ for (const variant of sources.variants) {
 
 		{variantMode ? (
 			<>
-				{sources.md && (
-					<>
-						<h3 id="md">Markdown</h3>
-						<DocsDemoPreview md={sources.md} />
-					</>
-				)}
+				{sources.md && <DocsDemoPreview md={sources.md} />}
 
 				{sources.variants.map((variant) => {
 					const VariantContent = variantDocs.get(variant.id);
@@ -80,10 +75,8 @@ for (const variant of sources.variants) {
 								js={sources.js}
 							/>
 
-							<h4 id={`${variant.id}-html`}>HTML</h4>
 							<DocsDemoPreview html={variant.html} />
 
-							<h4 id={`${variant.id}-css`}>CSS</h4>
 							<DocsDemoPreview css={variant.css} />
 						</section>
 					);
@@ -122,17 +115,10 @@ for (const variant of sources.variants) {
 					js={sources.js}
 				/>
 
-				{sources.md && (
-					<>
-						<h3 id="md">Markdown</h3>
-						<DocsDemoPreview md={sources.md} />
-					</>
-				)}
+				{sources.md && <DocsDemoPreview md={sources.md} />}
 
-				<h3 id="html">HTML</h3>
 				<DocsDemoPreview html={sources.html} />
 
-				<h3 id="css">CSS</h3>
 				<DocsDemoPreview css={sources.css} />
 
 				<Content />

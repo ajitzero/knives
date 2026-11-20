@@ -74,10 +74,13 @@ const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' 
 	) : (
 		<>
 			{md || html || css ? (
-				<div class="docs-demo-preview__code">
-					<Code code={sourceCode} lang={sourceLang} themes={themes} defaultColor={false} />
-					<CopyButton label={sourceLabel} getText={() => sourceCode} />
-				</div>
+				<details class="docs-demo-preview__code">
+					<summary>{sourceLabel}</summary>
+					<div class="docs-demo-preview__code-body">
+						<Code code={sourceCode} lang={sourceLang} themes={themes} defaultColor={false} />
+						<CopyButton label={sourceLabel} getText={() => sourceCode} />
+					</div>
+				</details>
 			) : (
 				<p>No preview available.</p>
 			)}
@@ -100,6 +103,10 @@ const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' 
 	}
 
 	.docs-demo-preview__code {
+		margin-bottom: 0;
+	}
+
+	.docs-demo-preview__code-body {
 		position: relative;
 		overflow: hidden;
 
@@ -124,7 +131,7 @@ const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' 
 	}
 
 	@media (hover: none), (pointer: coarse) {
-		.docs-demo-preview__code > :global(button) {
+		.docs-demo-preview__code-body > :global(button) {
 			opacity: 1;
 			pointer-events: auto;
 		}
