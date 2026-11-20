@@ -1,0 +1,39 @@
+/*
+ * Prefix and suffix text.
+ * Inside a data-input-group, a span before the input reads as a prefix and
+ * one after it as a suffix. The span takes the field's border, surface and
+ * padding, and Blades joins the group's corners.
+ */
+@layer snippets.input {
+	[data-input-group] {
+		/* Blades makes a group inline-flex; block-level keeps stacked fields on
+		   their own line instead of sharing one at wide widths. */
+		display: flex;
+		width: 100%;
+		max-width: 24rem;
+	}
+
+	[data-input-group] > span {
+		display: flex;
+		align-items: center;
+		/* Keep the text at its own width; Blades lets group children grow. */
+		flex: none;
+		padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+		border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+		border-radius: var(--pico-border-radius);
+		background-color: var(--pico-form-element-background-color);
+		color: var(--pico-muted-color);
+		white-space: nowrap;
+
+		/* Square off the corners that touch the input. */
+		&:not(:first-child) {
+			border-start-start-radius: 0;
+			border-end-start-radius: 0;
+		}
+
+		&:not(:last-child) {
+			border-start-end-radius: 0;
+			border-end-end-radius: 0;
+		}
+	}
+}
