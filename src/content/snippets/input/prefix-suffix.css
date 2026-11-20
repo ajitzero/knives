@@ -1,8 +1,8 @@
 /*
  * Prefix and suffix text.
  * Inside a data-input-group, a span before the input reads as a prefix and
- * one after it as a suffix. The span takes the field's border, surface and
- * padding, and Blades joins the group's corners.
+ * one after it as a suffix. The group draws one border around the whole field,
+ * so the parts join without hairlines.
  */
 @layer snippets.input {
 	[data-input-group] {
@@ -11,6 +11,23 @@
 		display: flex;
 		width: 100%;
 		max-width: 24rem;
+		border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+		border-radius: var(--pico-border-radius);
+		background-color: var(--pico-form-element-background-color);
+	}
+
+	/* The parts carry no surface of their own. Transparent borders keep Pico's
+	   metrics, and the overlap below hides the seam between them. */
+	[data-input-group] > span,
+	[data-input-group] > input {
+		border: var(--pico-border-width) solid transparent;
+		border-radius: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	[data-input-group] > :not(:first-child) {
+		margin-inline-start: calc(var(--pico-border-width) * -1);
 	}
 
 	[data-input-group] > span {
@@ -19,24 +36,25 @@
 		/* Keep the text at its own width; Blades lets group children grow. */
 		flex: none;
 		padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
-		border: var(--pico-border-width) solid var(--pico-form-element-border-color);
-		border-radius: var(--pico-border-radius);
-		background-color: var(--pico-form-element-background-color);
 		color: var(--pico-muted-color);
 		white-space: nowrap;
+	}
 
-		/* Square off the corners that touch the input. Blades only pulls
-		   buttons, inputs and selects over the previous border, so the span
-		   needs its own negative margin to avoid a double border. */
-		&:not(:first-child) {
-			margin-inline-start: calc(var(--pico-border-width) * -1);
-			border-start-start-radius: 0;
-			border-end-start-radius: 0;
-		}
+	/* data-input-group="flush": typing starts where the affix ends, with no
+	   padding between them on either side. */
+	[data-input-group='flush'] > span:first-child {
+		padding-inline-end: 0;
+	}
 
-		&:not(:last-child) {
-			border-start-end-radius: 0;
-			border-end-end-radius: 0;
-		}
+	[data-input-group='flush'] > span:first-child + input {
+		padding-inline-start: 0;
+	}
+
+	[data-input-group='flush'] > input:has(+ span) {
+		padding-inline-end: 0;
+	}
+
+	[data-input-group='flush'] > span:last-child:not(:first-child) {
+		padding-inline-start: 0;
 	}
 }

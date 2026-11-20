@@ -24,6 +24,7 @@ variants:
 - Icons sit in the input's padding and take no layout space; the input gains inline padding on the side that has an icon.
 - For a group of controls, put a `role="group"` element around the input and its buttons, then add `data-input-group`. The buttons take the field's surface instead of the filled primary style, and Blades joins the border and radius across the group.
 - Add `data-step="-1"` and `data-step="1"` to the buttons; `stepper.js` steps the group's number input, using the input's own `step` and staying inside `min` and `max` when they are set.
-- Inside the group, a `span` before the input is a prefix and one after it is a suffix; it takes the field's border, surface and padding.
+- Inside the group, a `span` before the input is a prefix and one after it is a suffix. The group draws one border around the field, so the parts are seamless.
+- Add `data-input-group="flush"` to drop the padding between an affix and the input, so typing starts right at its edge.
 - Only the stepper variant needs JavaScript. The default, icon and prefix/suffix variants are HTML and CSS alone.
 - Copy the CSS of the variant you want. The default variant has no CSS.
