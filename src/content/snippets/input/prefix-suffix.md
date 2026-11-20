@@ -4,4 +4,4 @@ By default the field keeps its padding on both sides of the join, like the curre
 
 The markup order picks the side, and the joins are logical, so the group mirrors in RTL. Keep the text short and static; the input stays the only editable part.
 
-Text that must read left to right, like a URL scheme or an email domain, can carry `dir="ltr"`: RTL layout would otherwise reorder its punctuation.
+Text that must read left to right, like a URL scheme or an email domain, can sit in a `<bdi>` inside the span. It isolates the direction for display without changing the span's own direction, which keeps `flush` padding on the correct side in RTL.
