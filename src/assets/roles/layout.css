@@ -59,6 +59,31 @@ body:has(> aside.docs-sidebar) {
 		margin-inline: auto;
 		max-width: calc(var(--docs-content-width) + 2 * var(--docs-bleed));
 	}
+
+	/* Previews inside reading-width sections (variants) still go edge to edge on
+	   mobile, where the preview is the full surface. */
+	@media (width < 1100px) {
+		> main > section > .docs-demo-preview {
+			width: calc(100% + 2 * var(--pico-spacing));
+			margin-inline: calc(-1 * var(--pico-spacing));
+		}
+	}
+
+	/* Accordion summaries sit on the text axis: inset by the reading padding on
+	   mobile, and by the bleed for full-bleed previews on wide screens. */
+	> main .docs-demo-preview summary {
+		padding-inline: var(--pico-spacing);
+	}
+
+	@media (min-width: 1100px) {
+		> main > .docs-demo-preview summary {
+			padding-inline: var(--docs-bleed);
+		}
+
+		> main > section > .docs-demo-preview summary {
+			padding-inline: var(--pico-spacing);
+		}
+	}
 	> main :is(ul, ol) {
 		padding-inline-start: var(--pico-spacing);
 		margin-block: calc(var(--pico-typography-spacing-vertical) * 0.5);

@@ -30,6 +30,8 @@ interface Props {
 	size?: number;
 	/** Any valid `place-items` value; controls where the demo sits in the iframe. */
 	placeItems?: string;
+	/** Hide the Sources accordion; sources show by default. */
+	skipSources?: boolean;
 }
 
 const {
@@ -41,6 +43,7 @@ const {
 	js = '',
 	rtl = false,
 	placeItems = 'center',
+	skipSources = false,
 } = Astro.props;
 const srcdoc = `<!doctype html>
 <html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
@@ -57,35 +60,45 @@ const srcdoc = `<!doctype html>
 </html>`;
 
 const themes = { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' } as const;
-const sourceCode = md || html || css;
-const sourceLabel = md ? 'Markdown' : html ? 'HTML' : 'CSS';
-const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' : 'css';
+
+type Source = { label: string; code: string; lang: 'markdown' | 'html' | 'css' };
+
+const allSources: Source[] = [
+	{ label: 'Markdown', code: md, lang: 'markdown' },
+	{ label: 'HTML', code: html, lang: 'html' },
+	{ label: 'CSS', code: css, lang: 'css' },
+];
+const sources = allSources.filter((source) => source.code !== '');
+const showSources = !skipSources && sources.length > 0;
 ---
 
 <section class="docs-demo-preview" tabindex="0">
-	{html && css ? (
-		<iframe
+	<div class={`docs-demo-preview__frame${showSources ? ' docs-demo-preview__frame--sources' : ''}`}>
+		{html && css && <iframe
 			title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
 			sandbox="allow-scripts"
 			loading="lazy"
 			srcdoc={srcdoc}
 			style={`height: ${size}rem;`}
-		></iframe>
-	) : (
-		<>
-			{md || html || css ? (
-				<details class="docs-demo-preview__code">
-					<summary>{sourceLabel}</summary>
-					<div class="docs-demo-preview__code-body">
-						<Code code={sourceCode} lang={sourceLang} themes={themes} defaultColor={false} />
-						<CopyButton label={sourceLabel} getText={() => sourceCode} />
-					</div>
-				</details>
-			) : (
-				<p>No preview available.</p>
-			)}
-		</>
-	)}
+		></iframe>}
+
+		{showSources && (
+			<details class="docs-demo-preview__sources">
+				<summary>Sources</summary>
+				{sources.map((source) => (
+					<details class="docs-demo-preview__code">
+						<summary>{source.label}</summary>
+						<div class="docs-demo-preview__code-body">
+							<Code code={source.code} lang={source.lang} themes={themes} defaultColor={false} />
+							<CopyButton label={source.label} getText={() => source.code} />
+						</div>
+					</details>
+				))}
+			</details>
+		)}
+
+		{!html && !css && !showSources && <p>No preview available.</p>}
+	</div>
 </section>
 
 <style>
@@ -102,8 +115,35 @@ const sourceLang: 'markdown' | 'html' | 'css' = md ? 'markdown' : html ? 'html' 
 		}
 	}
 
-	.docs-demo-preview__code {
-		margin-bottom: 0;
+	.docs-demo-preview__frame--sources {
+		overflow: clip;
+
+		iframe {
+			border: 0;
+			border-bottom: var(--pico-border-width) solid var(--pico-muted-border-color);
+			border-radius: 0;
+			margin-bottom: 0;
+		}
+
+		details {
+			/* Blades spaces details with a bottom margin; use symmetric padding instead. */
+			margin-bottom: 0;
+			padding-block: calc(var(--pico-spacing) * 0.5);
+		}
+
+		summary {
+			padding-block: var(--pico-form-element-spacing-vertical);
+		}
+
+		/* Plain top/bottom rules on mobile; a full frame once there is room. */
+		@media (width < 1100px) {
+			border-block: var(--pico-border-width) solid var(--pico-muted-border-color);
+		}
+
+		@media (min-width: 1100px) {
+			border: var(--pico-border-width) solid var(--pico-muted-border-color);
+			border-radius: var(--pico-border-radius);
+		}
 	}
 
 	.docs-demo-preview__code-body {
