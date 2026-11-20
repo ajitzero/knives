@@ -8,6 +8,14 @@
 		width: 100%;
 		max-width: 24rem;
 
+		/* The buttons read as part of the field: the same surface, border and
+		   text colour as the input, instead of the filled primary button. */
+		> button {
+			--pico-background-color: var(--pico-form-element-background-color);
+			--pico-border-color: var(--pico-form-element-border-color);
+			--pico-color: var(--pico-form-element-color);
+		}
+
 		> button > svg {
 			width: var(--knives-icon-size);
 			height: var(--knives-icon-size);
