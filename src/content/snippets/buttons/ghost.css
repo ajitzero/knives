@@ -16,13 +16,12 @@
 		background: none;
 		border: none;
 		box-shadow: none;
-		color: inherit; /* reads as plain text */
+		color: inherit;
 		padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
 		border-radius: var(--pico-border-radius);
-		transition: opacity 0.2s ease;
 
 		&:hover {
-			opacity: 0.8;
+			background: color-mix(in srgb, var(--pico-contrast) 5%, transparent);
 		}
 	}
 }

@@ -17,7 +17,3 @@ variants:
 - Add `data-button-variant="ghost"` to the button to opt into the ghost style. It also applies to anchors with `role="button"`.
 - Add `data-button-variant="ghost"` to a parent element to style every button inside it at once - handy for a toolbar, without adding the attribute to each button and missing one.
 - Copy the CSS of the variant you want. The default variant has no CSS.
-
-## Limitations
-
-- Hover is opacity-only (`0.8`); there is no background or underline change.
