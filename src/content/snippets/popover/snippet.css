@@ -176,6 +176,40 @@
 			}
 		}
 
+		/* Radio rows: the label fills the row like a button row does. Blades
+		   already highlights `li:has(label)` on hover and sizes the control. */
+		li > label {
+			display: flex;
+			align-items: center;
+			gap: var(--knives-menu-gap);
+			width: calc(100% + var(--pico-form-element-spacing-horizontal) * 2);
+			margin: calc(var(--pico-form-element-spacing-vertical) * -0.5)
+				calc(var(--pico-form-element-spacing-horizontal) * -1);
+			padding: calc(var(--pico-form-element-spacing-vertical) * 0.5)
+				var(--pico-form-element-spacing-horizontal);
+			color: var(--pico-dropdown-color);
+			font-weight: var(--pico-font-weight);
+			cursor: pointer;
+
+			> span {
+				flex: 1;
+				min-width: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			> [type='radio'] {
+				flex: none;
+				margin: 0;
+			}
+		}
+
+		/* Keyboard users get the row highlight the hover state gives. */
+		li:has(label:focus-within) {
+			background-color: var(--pico-dropdown-hover-background-color);
+		}
+
 		/* A section header should */
 		li > header {
 			margin: var(--pico-form-element-spacing-vertical) calc(var(--pico-spacing) * 0.8) 0;
