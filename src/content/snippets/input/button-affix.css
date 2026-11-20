@@ -1,21 +1,27 @@
 /*
  * Button affix.
- * Opt in with data-input-group on a role="group" wrapper around an input:
- * the buttons take the field's surface instead of the filled primary style,
- * a suffix span joins with the same surface and border, and Blades shares
- * the border and radius across the group.
+ * Opt in with data-input-group on a role="group" wrapper around an input.
+ * The group draws one border and surface around every part, so the buttons
+ * and a suffix span join the field without hairlines; Blades shares the
+ * radius across the group.
  */
 @layer snippets.input {
 	[data-input-group] {
+		/* Blades makes a group inline-flex; block-level keeps stacked fields on
+		   their own line instead of sharing one at wide widths. */
+		display: flex;
 		width: 100%;
 		max-width: 24rem;
+		border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+		border-radius: var(--pico-border-radius);
+		background-color: var(--pico-form-element-background-color);
 
-		/* The buttons read as part of the field: the same surface, border and
-		   text colour as the input, instead of the filled primary button. */
+		/* The buttons read as part of the field: the field's text colour, and
+		   no surface or border of their own — the group's shows through. */
 		> button {
-			--pico-background-color: var(--pico-form-element-background-color);
-			--pico-border-color: var(--pico-form-element-border-color);
 			--pico-color: var(--pico-form-element-color);
+			border: var(--pico-border-width) solid transparent;
+			background: none;
 		}
 
 		> button > svg {
@@ -29,20 +35,16 @@
 			padding-inline: var(--pico-form-element-spacing-vertical);
 		}
 
-		/* A suffix span joins the field like the buttons do: the same surface
-		   and border, muted text, fixed width, and its outer corners rounded.
-		   The negative margin overlaps the input's border, hiding the seam. */
+		/* A suffix span joins like the buttons: no surface of its own, muted
+		   text, fixed width. The negative margin overlaps the input's border,
+		   hiding the seam between them. */
 		> span {
 			display: flex;
 			align-items: center;
 			flex: none;
 			padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
-			border: var(--pico-border-width) solid var(--pico-form-element-border-color);
-			border-radius: 0;
-			border-start-end-radius: var(--pico-border-radius);
-			border-end-end-radius: var(--pico-border-radius);
+			border: var(--pico-border-width) solid transparent;
 			margin-inline-start: calc(var(--pico-border-width) * -1);
-			background: var(--pico-form-element-background-color);
 			color: var(--pico-muted-color);
 			white-space: nowrap;
 			font-variant-numeric: tabular-nums;
@@ -60,17 +62,16 @@
 			appearance: none;
 			margin: 0;
 		}
-
-		/* A hidden button leaves the input as the field's end: round it back
-		   so the field keeps its radius without the button. */
-		> input:has(+ button[hidden]) {
-			border-start-end-radius: var(--pico-border-radius);
-			border-end-end-radius: var(--pico-border-radius);
-		}
 	}
 
-	/* The input is a control of its own, like the buttons: focus rings just the
-	   input, and Blades' group-wide ring and button glows go away. */
+	/* The input drops its own border too, or it would paint a hairline
+	   against the buttons. Transparent keeps Pico's metrics. */
+	[data-input-group] > input {
+		border-color: transparent;
+	}
+
+	/* The input is a control of its own: focus rings just the input, and
+	   Blades' group-wide ring and button glows go away. */
 	[data-input-group]:has(input:focus) {
 		box-shadow: none;
 

@@ -28,5 +28,5 @@ variants:
 - Inside the group, a `span` before the input is a prefix and one after it is a suffix. The group draws one border around the field, so the parts are seamless.
 - A `select` works in the same slots: it hugs its longest option, keeps its native dropdown and chevron, and the input takes the remaining width. Picking another option changes the value, not the field width.
 - Add `data-input-group="flush"` to drop the padding between an affix and the input, so typing starts right at its edge.
-- Buttons work in the same slots too, taking the field's surface instead of the filled primary style. Use one before the input as a prefix, one after it as a suffix, or one on each side, like a number stepper.
+- Buttons work in the same slots too. The group draws one border and surface around every part, so the buttons join the field without a divider; use one before the input as a prefix, one after it as a suffix, or one on each side, like a number stepper.
 - Copy the CSS of the variant you want. The default variant has no CSS.
