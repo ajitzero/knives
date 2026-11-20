@@ -20,7 +20,7 @@ variants:
 - Place an `<svg>` before the input for the start icon, after it for the end icon, or one on each side. The icon side follows the markup order, so it mirrors in RTL.
 - Icons are decorative: mark them `aria-hidden="true"`. The input keeps its own visible or accessible label.
 - Icons sit in the input's padding and take no layout space; the input gains inline padding on the side that has an icon.
-- For a stepper, put a `role="group"` element around a number input flanked by buttons. Blades joins the border and radius of the group's children.
+- For a group of controls, put a `role="group"` element around the input and its buttons, then add `data-input-group`. The buttons take the field's surface instead of the filled primary style, and Blades joins the border and radius across the group.
 - Add `data-step="-1"` and `data-step="1"` to the buttons; `stepper.js` steps the group's number input, using the input's own `step` and staying inside `min` and `max` when they are set.
 - Only the stepper variant needs JavaScript. The default and icon variants are HTML and CSS alone.
 - Copy the CSS of the variant you want. The default variant has no CSS.

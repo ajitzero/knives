@@ -1,10 +1,11 @@
 /*
  * Number stepper.
- * role="group" joins the input and the two icon buttons into one control;
+ * Opt in with data-input-group on a role="group" wrapper around an input:
+ * the buttons take the field's surface instead of the filled primary style.
  * Blades shares the border and radius across the group.
  */
 @layer snippets.input {
-	[data-input-stepper] {
+	[data-input-group] {
 		width: 100%;
 		max-width: 24rem;
 
