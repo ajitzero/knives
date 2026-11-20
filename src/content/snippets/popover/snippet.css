@@ -63,8 +63,9 @@
 }
 
 @layer snippets.popover {
-	/* The button role that opens a popover. */
-	:is(button, [role='button'])[popovertarget] {
+	/* The button role that opens a popover. Menu rows use their own trailing
+	   chevron instead, so skip triggers nested inside a menu. */
+	:is(button, [role='button'])[popovertarget]:not([popover] *) {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.25rem;
@@ -130,8 +131,11 @@
 			white-space: nowrap;
 		}
 
-		/* A row without an icon still reserves its column when a sibling has one. */
-		:is(li:has(~ li svg), li:has(svg) ~ li) :is(a, button):not(:has(> svg)) > span {
+		/* A row without a leading icon still reserves its column when a sibling
+		   has one. Trailing icons (a submenu chevron) don't count. */
+		:is(li:has(~ li svg:first-child), li:has(svg:first-child) ~ li)
+			:is(a, button):not(:has(> svg:first-child))
+			> span {
 			margin-inline-start: calc(var(--knives-icon-size) + var(--knives-menu-gap));
 		}
 
@@ -159,6 +163,17 @@
 			flex: none;
 			margin-inline-start: auto;
 			padding: 0;
+		}
+
+		/* A submenu trigger marks itself with a trailing chevron in the slot a
+		   shortcut hint would use; it points at the side the nested menu opens. */
+		li :is(a, button, [role='button']) > svg:last-child:not(:first-child) {
+			flex: none;
+			margin-inline-start: auto;
+
+			&:dir(rtl) {
+				scale: -1 1;
+			}
 		}
 
 		/* A section header should */
@@ -199,6 +214,12 @@
 
 	:is(ul, menu)[popover][data-position='end span-end'] {
 		position-area: block-end span-inline-end;
+	}
+
+	/* A nested menu opens beside its trigger row, so it lines up with the
+	   submenu chevron rather than the whole menu. */
+	:is(ul, menu)[popover][data-position='inline-end span-block-end'] {
+		position-area: inline-end span-block-end;
 	}
 
 	/* With typed `attr()`, let the attribute state any position area. */

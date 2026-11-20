@@ -20,7 +20,7 @@ tag:
 - [x] Reserve space for icons when not used.
 - [x] `.destructive` class for dangerous actions.
 - [x] Grouped actions.
-- [ ] Nested actions.
+- [x] Nested actions.
 - [ ] Radio group.
 - [ ] Checkbox group.
 - [x] RTL.
@@ -39,6 +39,8 @@ tag:
 - `kbd` tag can be used to denote a keyboard shortcut.
 - `svg`-based icons are supported for icons on the left/start.
 - Use `span` in button for the text to reserve space for icon.
+- Nested menus: add `popovertarget` to the row's `button` and place the child `ul[popover]` outside the parent menu. The trigger anchors the child beside it, and the browser keeps both open as a stack.
+- End a submenu trigger's content with a `chevron-right` `svg` in the same slot a `kbd` would use. It points at the side the nested menu opens and mirrors in RTL.
 - Add `data-position` to the popover to set where it opens, using a [`position-area`](https://developer.mozilla.org/en-US/docs/Web/CSS/position-area) value: `data-position="end span-start"`.
 - RTL: Blade/Pico supports RTL automatically. No special CSS required.
 
@@ -50,7 +52,8 @@ tag:
 - Add `data-position` to the popover to override it:
   - `data-position="end span-start"` opens below the trigger, toward inline-start.
   - `data-position="start span-end"` opens above the trigger, toward inline-end.
-- The four logical placements (`start` / `end` × `span-start` / `span-end`) work wherever anchor positioning does.
+  - `data-position="inline-end span-block-end"` opens a nested menu beside its trigger row, on the inline-end side, level with it. The other menu placements work for nested menus too.
+- The four block placements (`start` / `end` × `span-start` / `span-end`) cover opening above or below a trigger; all placements use logical keywords, so they mirror in RTL.
 - Other values use typed `attr()` and need Chromium 133+ or Firefox 155+. Don't mix physical and logical keywords: `bottom span-start` is invalid.
 
 #### Modifier classes

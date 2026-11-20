@@ -203,8 +203,22 @@
 		</button>
 	</li>
 	<li>
-		<button>
+		<button popovertarget="share-actions">
 			<span>Share via...</span>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-chevron-right"
+			>
+				<path d="m9 18 6-6-6-6" />
+			</svg>
 		</button>
 	</li>
 	<li>
@@ -278,6 +292,113 @@
 				<line x1="15" x2="15" y1="9" y2="21" />
 			</svg>
 			<span>CSV</span>
+		</button>
+	</li>
+</ul>
+
+<ul id="share-actions" popover data-position="inline-end span-block-end">
+	<li>
+		<button type="button">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-link"
+			>
+				<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+				<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+			</svg>
+			<span>Copy link</span>
+		</button>
+	</li>
+	<li>
+		<hr />
+	</li>
+	<li>
+		<button type="button">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-facebook"
+			>
+				<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+			</svg>
+			<span>Facebook</span>
+		</button>
+	</li>
+	<li>
+		<button type="button">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-twitter"
+			>
+				<path
+					d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+				/>
+			</svg>
+			<span>X</span>
+		</button>
+	</li>
+	<li>
+		<button type="button">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-linkedin"
+			>
+				<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+				<rect width="4" height="12" x="2" y="9" />
+				<circle cx="4" cy="4" r="2" />
+			</svg>
+			<span>LinkedIn</span>
+		</button>
+	</li>
+	<li>
+		<button type="button">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-mail"
+			>
+				<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+				<rect x="2" y="4" width="20" height="16" rx="2" />
+			</svg>
+			<span>Email</span>
 		</button>
 	</li>
 </ul>
