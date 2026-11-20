@@ -1,5 +1,5 @@
 /*
- * Number stepper: each button steps the number input beside it.
+ * Button affix: each data-step button steps the number input beside it.
  * data-step holds the direction; the input's own step is the amount.
  */
 for (const button of document.querySelectorAll('[data-step]')) {
