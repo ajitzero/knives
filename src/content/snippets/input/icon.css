@@ -56,37 +56,4 @@
 			);
 		}
 	}
-
-	/*
-	 * Number stepper.
-	 * role="group" joins the input and the two icon buttons into one control;
-	 * Blades shares the border and radius across the group.
-	 */
-	[data-input-stepper] {
-		width: 100%;
-		max-width: 24rem;
-
-		> button > svg {
-			width: var(--knives-icon-size);
-			height: var(--knives-icon-size);
-		}
-
-		/* Icon-only buttons: a square hit area. */
-		> button:has(> svg:only-child) {
-			padding-inline: var(--pico-form-element-spacing-vertical);
-		}
-
-		/* The buttons replace the native spinners, so hide them. */
-		> input[type='number'] {
-			appearance: textfield;
-			text-align: center;
-			font-variant-numeric: tabular-nums;
-		}
-
-		> input[type='number']::-webkit-inner-spin-button,
-		> input[type='number']::-webkit-outer-spin-button {
-			appearance: none;
-			margin: 0;
-		}
-	}
 }

@@ -1,0 +1,1 @@
+The stepper is a plain `role="group"`: Blades shares the border and radius across its children, so the buttons and the number input read as one control. Copy `stepper.js` with it: each `data-step` button listens for its own clicks and steps the number input beside it, using the input's own `step` and staying inside `min` and `max` when those are set.

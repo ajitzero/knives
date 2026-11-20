@@ -1,3 +1,1 @@
 The icons sit in the input's padding rather than beside it, so adding or removing one never shifts the text. Whichever side gets an icon also gets inline padding, and both are logical properties, so the input mirrors in RTL. The `<svg>` markup order picks the side: place it before the input for the start, after it for the end.
-
-The stepper is a plain `role="group"`: Blades shares the border and radius across its children, so the buttons and the number input read as one control. Copy `icon.js` with it: each `data-step` button listens for its own clicks and steps the number input beside it, using the input's own `step` and staying inside `min` and `max` when those are set.
