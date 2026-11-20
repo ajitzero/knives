@@ -54,11 +54,11 @@
 	}
 
 	[data-input-group='flush'] > span:first-child + input {
-		padding-inline-start: 0;
+		padding-inline-start: 0.25rem;
 	}
 
 	[data-input-group='flush'] > input:has(+ span) {
-		padding-inline-end: 0;
+		padding-inline-end: 0.25rem;
 	}
 
 	[data-input-group='flush'] > span:last-child:not(:first-child) {

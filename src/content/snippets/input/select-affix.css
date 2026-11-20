@@ -104,11 +104,11 @@
 	   padding between them. The select keeps Pico's inline-end reserve, chevron
 	   and all, so only the input's side padding goes. */
 	[data-input-group='flush'] > select:first-child + input {
-		padding-inline-start: 0;
+		padding-inline-start: 0.25rem;
 	}
 
 	[data-input-group='flush'] > input:has(+ select) {
-		padding-inline-end: 0;
+		padding-inline-end: 0.25rem;
 	}
 
 	[data-input-group='flush'] > select:last-child:not(:first-child) {
