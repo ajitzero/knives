@@ -19,4 +19,6 @@ variants:
 - Add `data-button-variant="ghost"` to the button to opt into the ghost style. It also applies to anchors with `role="button"`.
 - Add `data-button-variant="ghost"` to a parent element to style every button inside it at once - handy for a toolbar, without adding the attribute to each button and missing one.
 - Add `data-button-variant="destructive"` for destructive actions. It only changes the background; make the action explicit with text or an `aria-label`. Combine it with `class="outline"` for a transparent red-bordered button.
+- A button whose only element child is an SVG icon gets a square, centered hit area; give it an accessible name with `aria-label` - no variant attribute needed.
+- An SVG beside a label is sized and spaced automatically; the icon sits at the start when it comes first in the markup and at the end when it comes last.
 - Copy the CSS of the variant you want. The default variant has no CSS.

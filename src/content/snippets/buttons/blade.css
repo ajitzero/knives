@@ -7,7 +7,7 @@
  * Icon buttons: size the leading icon and space it from the label.
  */
 @layer snippets.icon-button {
-	:is(button, [role='button']) {
+	:is(button, [role='button'], [type='submit'], [type='reset'], [type='button']) {
 		> svg {
 			width: var(--knives-icon-size);
 			height: var(--knives-icon-size);
@@ -18,6 +18,12 @@
 			align-items: center;
 			gap: var(--knives-menu-gap);
 			vertical-align: bottom;
+		}
+
+		/* Icon-only: the SVG is the button's only element child. */
+		&:has(> svg:only-child) {
+			justify-content: center;
+			padding: var(--pico-form-element-spacing-vertical);
 		}
 	}
 }
