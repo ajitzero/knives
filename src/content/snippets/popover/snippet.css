@@ -214,6 +214,19 @@
 			background-color: var(--pico-dropdown-hover-background-color);
 		}
 
+		/* Loading rows: Blades repaints Pico's spinner white for button-like
+		   elements, which vanishes on the menu's background. Repaint it with
+		   the menu's text colour through a mask, like the trigger chevron.
+		   The label colour can't be reused: busy buttons hide it with a
+		   transparent `color`. */
+		li :is(a, button, [role='button'])[aria-busy='true']::before {
+			filter: none;
+			background-image: none;
+			-webkit-mask: var(--pico-icon-loading) center / 1em auto no-repeat;
+			mask: var(--pico-icon-loading) center / 1em auto no-repeat;
+			background-color: var(--pico-dropdown-color);
+		}
+
 		/* A section header should */
 		li > header {
 			margin: var(--pico-form-element-spacing-vertical) calc(var(--pico-spacing) * 0.8) 0;
