@@ -23,6 +23,18 @@
 			color-mix(in srgb, var(--pico-form-element-invalid-active-border-color) 50%, black)
 		);
 
+		/* Destructive outline: red border and text on a transparent button. */
+		&.outline {
+			background-color: transparent;
+			border-color: var(--pico-form-element-invalid-border-color);
+			color: var(--pico-form-element-invalid-border-color);
+
+			&:is(:hover, :active, :focus) {
+				border-color: var(--pico-form-element-invalid-active-border-color);
+				color: var(--pico-form-element-invalid-active-border-color);
+			}
+		}
+
 		&:focus {
 			box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color);
 		}
