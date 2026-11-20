@@ -18,7 +18,7 @@ const jsSources = import.meta.glob('../content/snippets/**/snippet.js', {
 	import: 'default',
 }) as Record<string, string>;
 
-const mdSources = import.meta.glob('../content/snippets/**/snippet.md', {
+const mdSources = import.meta.glob('../content/snippets/**/*.md', {
 	eager: true,
 	query: '?raw',
 	import: 'default',
@@ -37,6 +37,15 @@ function cssStems(id: string): string[] {
 		.map((path) => path.slice(prefix.length))
 		.filter((file) => /^[^/]+\.css$/.test(file))
 		.map((file) => file.slice(0, -'.css'.length));
+}
+
+function variantMarkdown(id: string, variantId: string) {
+	// README.md is the snippet's own documentation, never a variant source.
+	if (variantId.toLowerCase() === 'readme') {
+		return undefined;
+	}
+
+	return mdSources[sourcePath(id, `${variantId}.md`)];
 }
 
 export function getSnippetSources(id: string, declaredVariants?: SnippetVariants) {
@@ -60,7 +69,7 @@ export function getSnippetSources(id: string, declaredVariants?: SnippetVariants
 			);
 		}
 
-		return { ...variant, css, html };
+		return { ...variant, css, html, md: variantMarkdown(id, variant.id) };
 	});
 
 	const [first] = variants;

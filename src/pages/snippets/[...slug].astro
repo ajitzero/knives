@@ -55,6 +55,7 @@ const variantMode = !sources.legacy;
 				{sources.variants.map((variant) => (
 					<section aria-labelledby={variant.id}>
 						<h3 id={variant.id}>{variant.label}</h3>
+						{variant.md && <DocsDemoPreview md={variant.md} />}
 						<DocsDemoPreview
 							title={`${snippet.data.title} - ${variant.label}`}
 							size={snippet.data.size}
