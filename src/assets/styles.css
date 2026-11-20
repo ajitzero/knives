@@ -2,8 +2,8 @@
    Blades ships inside its own `@layer blades`; the role files below are unlayered,
    so site customizations always win over the framework. */
 @import '@fontsource-variable/inter';
-@import '@anyblades/blades/layered/blades.layered';
-@import '@anyblades/blades/layered/layout/landmarks';
+@import '@anyblades/blades/css/layered/blades.layered.css';
+@import '@anyblades/blades/layout/landmarks';
 @import './roles/knives.css';
 @import './roles/layout.css';
 @import './roles/footer.css';
