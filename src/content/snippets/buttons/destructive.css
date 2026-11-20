@@ -23,6 +23,10 @@
 			color-mix(in srgb, var(--pico-form-element-invalid-active-border-color) 50%, black)
 		);
 
+		&:hover:not(.outline) {
+			background-color: color-mix(in srgb, var(--knives-button-destructive-background) 90%, white);
+		}
+
 		/* Destructive outline: red border and text on a transparent button. */
 		&.outline {
 			background-color: transparent;
