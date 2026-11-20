@@ -61,12 +61,13 @@ const srcdoc = `<!doctype html>
 
 const themes = { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' } as const;
 
-type Source = { label: string; code: string; lang: 'markdown' | 'html' | 'css' };
+type Source = { label: string; code: string; lang: 'markdown' | 'html' | 'css' | 'javascript' };
 
 const allSources: Source[] = [
 	{ label: 'Markdown', code: md, lang: 'markdown' },
 	{ label: 'HTML', code: html, lang: 'html' },
 	{ label: 'CSS', code: css, lang: 'css' },
+	{ label: 'JavaScript', code: js, lang: 'javascript' },
 ];
 const sources = allSources.filter((source) => source.code !== '');
 const showSources = !skipSources && sources.length > 0;
