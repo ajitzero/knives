@@ -1,0 +1,76 @@
+/*
+ * Select affix.
+ * A select inside a data-input-group reads as a prefix or a suffix: the native
+ * dropdown picks the fixed part (scheme, domain) and the input holds the text.
+ * The group draws one border around the whole field, so the parts join without
+ * hairlines.
+ */
+@layer snippets.input {
+	[data-input-group] {
+		/* Blades makes a group inline-flex; block-level keeps stacked fields on
+		   their own line instead of sharing one at wide widths. */
+		display: flex;
+		width: 100%;
+		max-width: 24rem;
+		border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+		border-radius: var(--pico-border-radius);
+		background-color: var(--pico-form-element-background-color);
+	}
+
+	/* The parts carry no surface of their own. Transparent borders keep Pico's
+	   metrics, and the overlap below hides the seam between them. The select
+	   keeps Pico's background image: the chevron is its dropdown affordance. */
+	[data-input-group] > input,
+	[data-input-group] > select {
+		border: var(--pico-border-width) solid transparent;
+		border-radius: 0;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	[data-input-group] > :not(:first-child) {
+		margin-inline-start: calc(var(--pico-border-width) * -1);
+	}
+
+	/* The input takes the free space, so the field keeps its width whatever the
+	   select shows. min-width lets it shrink past its character width when the
+	   field is narrow. */
+	[data-input-group] > input {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	/* The select hugs its longest option instead of growing. Pico sizes it at
+	   100% and draws the chevron in the inline-end padding, so both stay. */
+	[data-input-group] > select {
+		flex: none;
+		width: auto;
+	}
+
+	/* Pico flips the chevron to the inline start for any select under an RTL
+	   ancestor, even one the field marks dir="ltr". Pico hardcodes where the
+	   chevron sits (0.75rem in, 1rem wide) and exposes only the image, so match
+	   the select's own direction here and restate that offset. */
+	[data-input-group] > select:dir(ltr) {
+		background-position: right 0.75rem center;
+	}
+
+	[data-input-group] > select:dir(rtl) {
+		background-position: left 0.75rem center;
+	}
+
+	/* data-input-group="flush": typing starts where the affix ends, with no
+	   padding between them. The select keeps Pico's inline-end reserve, chevron
+	   and all, so only the input's side padding goes. */
+	[data-input-group='flush'] > select:first-child + input {
+		padding-inline-start: 0;
+	}
+
+	[data-input-group='flush'] > input:has(+ select) {
+		padding-inline-end: 0;
+	}
+
+	[data-input-group='flush'] > select:last-child:not(:first-child) {
+		padding-inline-start: 0;
+	}
+}

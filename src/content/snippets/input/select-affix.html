@@ -1,0 +1,21 @@
+<div>
+	<small class="rtl-only">Domains read left to right.</small>
+	<div role="group" data-input-group dir="ltr">
+		<input type="text" placeholder="yourdomain" aria-label="Domain name" />
+		<select aria-label="Top-level domain">
+			<option>.com</option>
+			<option>.net</option>
+			<option selected>.dev</option>
+			<option>.io</option>
+		</select>
+	</div>
+
+	<small class="rtl-only">URLs read left to right.</small>
+	<div role="group" data-input-group="flush" dir="ltr">
+		<select aria-label="Protocol">
+			<option selected>https://</option>
+			<option>http://</option>
+		</select>
+		<input type="url" placeholder="example.com" aria-label="Website" />
+	</div>
+</div>

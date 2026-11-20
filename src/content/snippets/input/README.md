@@ -1,6 +1,6 @@
 ---
 title: Input
-description: Input variants opted into with data-input-icon - stock Blades inputs with no classes, an icon slot at either end, prefix/suffix text in a group, and a grouped number stepper.
+description: Input variants opted into with data-input-icon - stock Blades inputs with no classes, an icon slot at either end, prefix/suffix text in a group, a grouped number stepper, and a native select joined to the input.
 stage: alpha
 size: 24
 tag: [input]
@@ -13,6 +13,8 @@ variants:
     label: Stepper
   - id: prefix-suffix
     label: Prefix / Suffix
+  - id: select-affix
+    label: Select Affix
 ---
 
 ## Structure
@@ -25,6 +27,7 @@ variants:
 - For a group of controls, put a `role="group"` element around the input and its buttons, then add `data-input-group`. The buttons take the field's surface instead of the filled primary style, and Blades joins the border and radius across the group.
 - Add `data-step="-1"` and `data-step="1"` to the buttons; `stepper.js` steps the group's number input, using the input's own `step` and staying inside `min` and `max` when they are set.
 - Inside the group, a `span` before the input is a prefix and one after it is a suffix. The group draws one border around the field, so the parts are seamless.
+- A `select` works in the same slots: it hugs its longest option, keeps its native dropdown and chevron, and the input takes the remaining width. Picking another option changes the value, not the field width.
 - Add `data-input-group="flush"` to drop the padding between an affix and the input, so typing starts right at its edge.
-- Only the stepper variant needs JavaScript. The default, icon and prefix/suffix variants are HTML and CSS alone.
+- Only the stepper variant needs JavaScript. The default, icon, prefix/suffix and select affix variants are HTML and CSS alone.
 - Copy the CSS of the variant you want. The default variant has no CSS.
