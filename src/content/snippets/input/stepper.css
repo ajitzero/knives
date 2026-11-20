@@ -40,4 +40,28 @@
 			margin: 0;
 		}
 	}
+
+	/* The input is a control of its own, like the buttons: focus rings just the
+	   input, and Blades' group-wide ring and button glows go away. */
+	[data-input-group]:has(input:focus) {
+		box-shadow: none;
+
+		> button {
+			box-shadow: none;
+		}
+	}
+
+	[data-input-group] > input:focus {
+		box-shadow: 0 0 0 var(--pico-border-width) var(--pico-form-element-focus-color);
+	}
+
+	/* A focused button is a control of its own: focus rings just the button,
+	   and Blades' group-wide ring goes away. */
+	[data-input-group]:has(button:focus) {
+		box-shadow: none;
+	}
+
+	[data-input-group] > button:focus {
+		box-shadow: 0 0 0 var(--pico-border-width) var(--pico-form-element-focus-color);
+	}
 }

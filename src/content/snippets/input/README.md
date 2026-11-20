@@ -12,7 +12,7 @@ variants:
   - id: stepper
     label: Stepper
   - id: prefix-suffix
-    label: Prefix / Suffix
+    label: Span Affix
   - id: select-affix
     label: Select Affix
 ---
