@@ -148,10 +148,13 @@ for (const variant of sources.variants) {
 					>
 						<path d="m15 18-6-6 6-6" />
 					</svg>
-					<span>Previous: {previous.data.title}</span>
+					<span>
+						<small>Previous</small>
+						<span>{previous.data.title}</span>
+					</span>
 				</a>
 			) : (
-				<button disabled class="secondary">
+				<button disabled class="secondary" aria-label="No previous page, you are on the first page">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -166,12 +169,14 @@ for (const variant of sources.variants) {
 					>
 						<path d="m15 18-6-6 6-6" />
 					</svg>
-					<span>Previous</span>
 				</button>
 			)}
 			{next ? (
 				<a href={`/snippets/${next.id}/`} role="button">
-					<span> Next: {next.data.title}</span>
+					<span>
+						<small>Next</small>
+						<span>{next.data.title}</span>
+					</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -188,8 +193,7 @@ for (const variant of sources.variants) {
 					</svg>
 				</a>
 			) : (
-				<button disabled class="secondary">
-					<span>Next</span>
+				<button disabled class="secondary" aria-label="No next page, you are on the last page">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -220,6 +224,13 @@ for (const variant of sources.variants) {
 			--icon-scale: 1.4;
 			width: calc(var(--knives-icon-size) * var(--icon-scale));
 			height: calc(var(--knives-icon-size) * var(--icon-scale));
+		}
+
+		> span {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			line-height: 1.25;
 		}
 	}
 </style>
