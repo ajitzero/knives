@@ -1,0 +1,30 @@
+/*
+ * Destructive button.
+ * Opt in with data-button-variant="destructive" on the button (or an anchor
+ * with role="button"), or on a parent element to convert every button inside it.
+ */
+@layer snippets.buttons {
+	[data-button-variant='destructive']:is(
+		button,
+		[role='button'],
+		[type='submit'],
+		[type='reset'],
+		[type='button']
+	),
+	[data-button-variant='destructive']
+		:is(button, [role='button'], [type='submit'], [type='reset'], [type='button']) {
+		--knives-button-destructive-background: light-dark(
+			var(--pico-form-element-invalid-active-border-color),
+			color-mix(in srgb, var(--pico-form-element-invalid-active-border-color) 85%, black)
+		);
+		background-color: var(--knives-button-destructive-background);
+		border-color: light-dark(
+			color-mix(in srgb, var(--pico-form-element-invalid-active-border-color) 75%, black),
+			color-mix(in srgb, var(--pico-form-element-invalid-active-border-color) 50%, black)
+		);
+
+		&:focus {
+			box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-invalid-focus-color);
+		}
+	}
+}
