@@ -11,7 +11,10 @@ Extended features & snippets for [Blades CSS](https://blades.dev/).
 ## Features
 
 - Popover API for dropdown.
-- Compatible with Pico CSS, hopefully.
+- Tabs built on the native exclusive accordion — one shared panel, no JavaScript.
+- Button variants — ghost and destructive, plus icon-only buttons and whole-toolbar styling.
+- Input variants — icon slots, and affix groups (text, select, buttons) joined into one seamless field.
+- Task list styled straight from Astro/GFM markdown output — plain `<ul>` with disabled checkboxes, zero classes.
 
 ## Commands
 
