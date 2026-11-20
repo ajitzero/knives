@@ -57,7 +57,12 @@ for (const variant of sources.variants) {
 
 		{variantMode ? (
 			<>
-				{sources.md && <DocsDemoPreview md={sources.md} />}
+				{sources.md && (
+					<details>
+						<summary>Sources</summary>
+						<DocsDemoPreview md={sources.md} />
+					</details>
+				)}
 
 				{sources.variants.map((variant) => {
 					const VariantContent = variantDocs.get(variant.id);
@@ -75,9 +80,12 @@ for (const variant of sources.variants) {
 								js={sources.js}
 							/>
 
-							<DocsDemoPreview html={variant.html} />
+							<details>
+								<summary>Sources</summary>
+								<DocsDemoPreview html={variant.html} />
 
-							<DocsDemoPreview css={variant.css} />
+								<DocsDemoPreview css={variant.css} />
+							</details>
 						</section>
 					);
 				})}
@@ -115,11 +123,14 @@ for (const variant of sources.variants) {
 					js={sources.js}
 				/>
 
-				{sources.md && <DocsDemoPreview md={sources.md} />}
+				<details>
+					<summary>Sources</summary>
+					{sources.md && <DocsDemoPreview md={sources.md} />}
 
-				<DocsDemoPreview html={sources.html} />
+					<DocsDemoPreview html={sources.html} />
 
-				<DocsDemoPreview css={sources.css} />
+					<DocsDemoPreview css={sources.css} />
+				</details>
 
 				<Content />
 
