@@ -28,3 +28,22 @@
 		}
 	}
 }
+
+/*
+ * Icon buttons: size the leading icon and space it from the label.
+ */
+@layer snippets.icon-button {
+	:is(button, [role='button']) {
+		> svg {
+			width: var(--knives-icon-size);
+			height: var(--knives-icon-size);
+		}
+
+		&:has(> svg) {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--knives-menu-gap);
+			vertical-align: bottom;
+		}
+	}
+}
