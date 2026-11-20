@@ -17,6 +17,24 @@
 		background-color: var(--pico-form-element-background-color);
 	}
 
+	/* Input focus wraps the whole field like a plain input: Pico's focus colour
+	   on the group border and ring, instead of Blades' border-coloured ring. */
+	[data-input-group]:has(input:focus) {
+		border-color: var(--pico-form-element-focus-color);
+		box-shadow: 0 0 0 var(--pico-border-width) var(--pico-form-element-focus-color);
+	}
+
+	/* The select is a control of its own: focus draws the ring around just the
+	   select, and Blades' group-wide grey ring goes away. */
+	[data-input-group]:has(select:focus) {
+		box-shadow: none;
+	}
+
+	[data-input-group] > select:focus {
+		border-color: var(--pico-form-element-focus-color);
+		box-shadow: 0 0 0 var(--pico-border-width) var(--pico-form-element-focus-color);
+	}
+
 	/* The parts carry no surface of their own. Transparent borders keep Pico's
 	   metrics, and the overlap below hides the seam between them. */
 	[data-input-group] > input {
