@@ -86,6 +86,8 @@ body:has(> aside.docs-sidebar) {
 	}
 	> main :is(ul, ol) {
 		padding-inline-start: var(--pico-spacing);
+		/* Only the start side spills out for markers; keep the regular end inset. */
+		padding-inline-end: var(--docs-bleed);
 		margin-block: calc(var(--pico-typography-spacing-vertical) * 0.5);
 	}
 
