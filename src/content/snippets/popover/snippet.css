@@ -203,6 +203,9 @@
 			> :is([type='radio'], [type='checkbox']) {
 				flex: none;
 				margin: 0;
+				/* The control is a touch wider than the icon column; center it
+				   over that column so its text lines up with icon rows. */
+				margin-inline: calc((var(--knives-icon-size) - 1.25em) / 2);
 			}
 		}
 
