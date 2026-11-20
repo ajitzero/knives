@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 			params: { slug: snippet.id },
 			props: {
 				snippet,
-				sources: getSnippetSources(snippet.id),
+				sources: getSnippetSources(snippet.id, snippet.data.variants),
 				previous: snippets[index - 1],
 				next: snippets[index + 1],
 			},
@@ -32,6 +32,7 @@ type Props = {
 
 const { snippet, sources, previous, next } = Astro.props;
 const { Content } = await render(snippet);
+const variantMode = !sources.legacy;
 ---
 
 <BaseLayout title={`${snippet.data.title} | ${SITE_TITLE}`} description={snippet.data.description}>
@@ -42,44 +43,98 @@ const { Content } = await render(snippet);
 		</hgroup>
 		<p>{snippet.data.description}</p>
 
-		<h2 id="preview">Preview</h2>
-		<DocsDemoPreview
-			title={snippet.data.title}
-			size={snippet.data.size}
-			placeItems={snippet.data.placeItems}
-			html={sources.html}
-			css={sources.css}
-			js={sources.js}
-		/>
-
-		{sources.md && (
+		{variantMode ? (
 			<>
-				<h3 id="md">Markdown</h3>
-				<DocsDemoPreview md={sources.md} />
+				{sources.md && (
+					<>
+						<h3 id="md">Markdown</h3>
+						<DocsDemoPreview md={sources.md} />
+					</>
+				)}
+
+				{sources.variants.map((variant) => (
+					<section aria-labelledby={variant.id}>
+						<h3 id={variant.id}>{variant.label}</h3>
+						<DocsDemoPreview
+							title={`${snippet.data.title} - ${variant.label}`}
+							size={snippet.data.size}
+							placeItems={snippet.data.placeItems}
+							html={variant.html}
+							css={variant.css}
+							js={sources.js}
+						/>
+
+						<h4 id={`${variant.id}-html`}>HTML</h4>
+						<DocsDemoPreview html={variant.html} />
+
+						<h4 id={`${variant.id}-css`}>CSS</h4>
+						<DocsDemoPreview css={variant.css} />
+					</section>
+				))}
+
+				<Content />
+
+				<h2 id="rtl">RTL</h2>
+				<p>
+					Add <code>dir="rtl"</code> to any parent element to apply the changes.
+				</p>
+				{sources.variants.map((variant) => (
+					<Fragment>
+						<h3 id={`${variant.id}-rtl`}>{variant.label}</h3>
+						<DocsDemoPreview
+							rtl
+							title={`${snippet.data.title} - ${variant.label}`}
+							size={snippet.data.size}
+							placeItems={snippet.data.placeItems}
+							html={variant.html}
+							css={variant.css}
+							js={sources.js}
+						/>
+					</Fragment>
+				))}
+			</>
+		) : (
+			<>
+				<h2 id="preview">Preview</h2>
+				<DocsDemoPreview
+					title={snippet.data.title}
+					size={snippet.data.size}
+					placeItems={snippet.data.placeItems}
+					html={sources.html}
+					css={sources.css}
+					js={sources.js}
+				/>
+
+				{sources.md && (
+					<>
+						<h3 id="md">Markdown</h3>
+						<DocsDemoPreview md={sources.md} />
+					</>
+				)}
+
+				<h3 id="html">HTML</h3>
+				<DocsDemoPreview html={sources.html} />
+
+				<h3 id="css">CSS</h3>
+				<DocsDemoPreview css={sources.css} />
+
+				<Content />
+
+				<h2 id="rtl">RTL</h2>
+				<p>
+					Add <code>dir="rtl"</code> to any parent element to apply the changes.
+				</p>
+				<DocsDemoPreview
+					rtl
+					title={snippet.data.title}
+					size={snippet.data.size}
+					placeItems={snippet.data.placeItems}
+					html={sources.html}
+					css={sources.css}
+					js={sources.js}
+				/>
 			</>
 		)}
-
-		<h3 id="html">HTML</h3>
-		<DocsDemoPreview html={sources.html} />
-
-		<h3 id="css">CSS</h3>
-		<DocsDemoPreview css={sources.css} />
-
-		<Content />
-
-		<h2 id="rtl">RTL</h2>
-		<p>
-			Add <code>dir="rtl"</code> to any parent element to apply the changes.
-		</p>
-		<DocsDemoPreview
-			rtl
-			title={snippet.data.title}
-			size={snippet.data.size}
-			placeItems={snippet.data.placeItems}
-			html={sources.html}
-			css={sources.css}
-			js={sources.js}
-		/>
 
 		<nav aria-label="Snippet pagination">
 			{previous ? (

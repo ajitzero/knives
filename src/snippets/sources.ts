@@ -1,10 +1,12 @@
-const htmlSources = import.meta.glob('../content/snippets/**/snippet.html', {
+import { resolveSnippetVariants, type SnippetVariants } from './variants';
+
+const htmlSources = import.meta.glob('../content/snippets/**/*.html', {
 	eager: true,
 	query: '?raw',
 	import: 'default',
 }) as Record<string, string>;
 
-const cssSources = import.meta.glob('../content/snippets/**/snippet.css', {
+const cssSources = import.meta.glob('../content/snippets/**/*.css', {
 	eager: true,
 	query: '?raw',
 	import: 'default',
@@ -22,19 +24,57 @@ const mdSources = import.meta.glob('../content/snippets/**/snippet.md', {
 	import: 'default',
 }) as Record<string, string>;
 
-export function getSnippetSources(id: string) {
-	const htmlPath = `../content/snippets/${id}/snippet.html`;
-	const cssPath = `../content/snippets/${id}/snippet.css`;
-	const jsPath = `../content/snippets/${id}/snippet.js`;
-	const mdPath = `../content/snippets/${id}/snippet.md`;
-	const html = htmlSources[htmlPath];
-	const css = cssSources[cssPath];
-	const js = jsSources[jsPath];
-	const md = mdSources[mdPath];
+function sourcePath(id: string, file: string) {
+	return `../content/snippets/${id}/${file}`;
+}
 
-	if (html === undefined || css === undefined) {
-		throw new Error(`Snippet "${id}" must include snippet.html and snippet.css source files.`);
+/** Direct child CSS files of a snippet, as stems. Variant CSS never lives in a subdirectory. */
+function cssStems(id: string): string[] {
+	const prefix = `../content/snippets/${id}/`;
+
+	return Object.keys(cssSources)
+		.filter((path) => path.startsWith(prefix))
+		.map((path) => path.slice(prefix.length))
+		.filter((file) => /^[^/]+\.css$/.test(file))
+		.map((file) => file.slice(0, -'.css'.length));
+}
+
+export function getSnippetSources(id: string, declaredVariants?: SnippetVariants) {
+	const snippetHtml = htmlSources[sourcePath(id, 'snippet.html')];
+
+	const resolution = resolveSnippetVariants(id, declaredVariants, cssStems(id));
+
+	const variants = resolution.variants.map((variant) => {
+		const css = cssSources[sourcePath(id, `${variant.id}.css`)];
+		const html = htmlSources[sourcePath(id, `${variant.id}.html`)] ?? snippetHtml;
+
+		if (html === undefined) {
+			throw new Error(
+				`Snippet "${id}" variant "${variant.id}" has no HTML file; expected src/content/snippets/${id}/${variant.id}.html or src/content/snippets/${id}/snippet.html.`,
+			);
+		}
+
+		if (css === undefined) {
+			throw new Error(
+				`Snippet "${id}" variant "${variant.id}" has no CSS file; expected src/content/snippets/${id}/${variant.id}.css.`,
+			);
+		}
+
+		return { ...variant, css, html };
+	});
+
+	const [first] = variants;
+
+	if (first === undefined) {
+		throw new Error(`Snippet "${id}" must include at least one demo CSS file.`);
 	}
 
-	return { html, css, js, md };
+	return {
+		html: first.html,
+		css: first.css,
+		js: jsSources[sourcePath(id, 'snippet.js')],
+		md: mdSources[sourcePath(id, 'snippet.md')],
+		variants,
+		legacy: resolution.legacy,
+	};
 }
