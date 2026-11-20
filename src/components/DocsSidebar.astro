@@ -1,6 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_REPO_URL } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+
+const snippets = (await getCollection('snippets')).sort((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
 ---
 
 <aside class="docs-sidebar">
@@ -39,4 +44,15 @@ import HeaderLink from './HeaderLink.astro';
 			-->
 		</ul>
 	</nav>
+	{snippets.length > 0 && (
+		<nav aria-label="Snippets">
+			<ul>
+				{snippets.map((snippet) => (
+					<li>
+						<HeaderLink href={`/snippets/${snippet.id}/`}>{snippet.data.title}</HeaderLink>
+					</li>
+				))}
+			</ul>
+		</nav>
+	)}
 </aside>
