@@ -1,8 +1,9 @@
 /*
  * Button affix.
  * Opt in with data-input-group on a role="group" wrapper around an input:
- * the buttons take the field's surface instead of the filled primary style.
- * Blades shares the border and radius across the group.
+ * the buttons take the field's surface instead of the filled primary style,
+ * a suffix span joins with the same surface and border, and Blades shares
+ * the border and radius across the group.
  */
 @layer snippets.input {
 	[data-input-group] {
@@ -22,9 +23,29 @@
 			height: var(--knives-icon-size);
 		}
 
-		/* Icon-only buttons: a square hit area. */
-		> button:has(> svg:only-child) {
+		/* Icon-only buttons (the reveal button carries its two icons with one
+		   hidden): a square hit area. */
+		> button:has(> svg) {
 			padding-inline: var(--pico-form-element-spacing-vertical);
+		}
+
+		/* A suffix span joins the field like the buttons do: the same surface
+		   and border, muted text, fixed width, and its outer corners rounded.
+		   The negative margin overlaps the input's border, hiding the seam. */
+		> span {
+			display: flex;
+			align-items: center;
+			flex: none;
+			padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+			border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+			border-radius: 0;
+			border-start-end-radius: var(--pico-border-radius);
+			border-end-end-radius: var(--pico-border-radius);
+			margin-inline-start: calc(var(--pico-border-width) * -1);
+			background: var(--pico-form-element-background-color);
+			color: var(--pico-muted-color);
+			white-space: nowrap;
+			font-variant-numeric: tabular-nums;
 		}
 
 		/* The buttons replace the native spinners, so hide them. */
@@ -38,6 +59,13 @@
 		> input[type='number']::-webkit-outer-spin-button {
 			appearance: none;
 			margin: 0;
+		}
+
+		/* A hidden button leaves the input as the field's end: round it back
+		   so the field keeps its radius without the button. */
+		> input:has(+ button[hidden]) {
+			border-start-end-radius: var(--pico-border-radius);
+			border-end-end-radius: var(--pico-border-radius);
 		}
 	}
 

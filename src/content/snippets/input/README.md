@@ -29,6 +29,4 @@ variants:
 - A `select` works in the same slots: it hugs its longest option, keeps its native dropdown and chevron, and the input takes the remaining width. Picking another option changes the value, not the field width.
 - Add `data-input-group="flush"` to drop the padding between an affix and the input, so typing starts right at its edge.
 - Buttons work in the same slots too, taking the field's surface instead of the filled primary style. Use one before the input as a prefix, one after it as a suffix, or one on each side, like a number stepper.
-- Add `data-step="-1"` and `data-step="1"` to the buttons; `button-affix.js` steps the group's number input, using the input's own `step` and staying inside `min` and `max` when they are set.
-- Only the button affix variant ships JavaScript, for the `data-step` buttons. The default, icon, span affix and select affix variants are HTML and CSS alone.
 - Copy the CSS of the variant you want. The default variant has no CSS.
