@@ -14,3 +14,6 @@
 	white-space: nowrap;
 	border: 0;
 }
+[dir='ltr'] .rtl-only {
+	display: none;
+}

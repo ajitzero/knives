@@ -1,17 +1,18 @@
 <div>
-	<div role="group" data-input-group="flush">
-		<span><bdi>https://</bdi></span>
-		<input type="url" placeholder="example.com" aria-label="Website" />
-	</div>
-
-	<div role="group" data-input-group="flush">
-		<input type="text" placeholder="yourname" aria-label="Email handle" />
-		<span><bdi>@gmail.com</bdi></span>
-	</div>
-
 	<div role="group" data-input-group>
 		<span>$</span>
 		<input type="text" inputmode="decimal" placeholder="0.00" aria-label="Amount" />
 		<span>USD</span>
+	</div>
+	<small class="rtl-only">Domain doesn't make sense in RTL.</small>
+	<div role="group" data-input-group="flush" dir="ltr">
+		<span><bdi>https://</bdi></span>
+		<input type="url" placeholder="example.com" aria-label="Website" />
+	</div>
+
+	<small class="rtl-only">Email doesn't make sense in RTL.</small>
+	<div role="group" data-input-group="flush" dir="ltr">
+		<input type="text" placeholder="yourname" aria-label="Email handle" />
+		<span><bdi>@gmail.com</bdi></span>
 	</div>
 </div>

@@ -46,7 +46,7 @@ const {
 	skipSources = false,
 } = Astro.props;
 const srcdoc = `<!doctype html>
-<html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : ''}>
+<html lang="en" style="height: 100%;" ${rtl ? 'dir="rtl"' : 'dir="ltr"'}>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
