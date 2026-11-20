@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { type CollectionEntry, getCollection, getEntry, render } from 'astro:content';
 import DocsDemoPreview from '../../components/DocsDemoPreview.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSnippetSources } from '../../snippets/sources';
@@ -33,6 +33,18 @@ type Props = {
 const { snippet, sources, previous, next } = Astro.props;
 const { Content } = await render(snippet);
 const variantMode = !sources.legacy;
+
+const variantDocs = new Map<string, Awaited<ReturnType<typeof render>>['Content']>();
+
+for (const variant of sources.variants) {
+	if (!variant.md) continue;
+
+	const entry = await getEntry('snippetDocs', `${snippet.id}/${variant.id}`.toLowerCase());
+
+	if (entry) {
+		variantDocs.set(variant.id, (await render(entry)).Content);
+	}
+}
 ---
 
 <BaseLayout title={`${snippet.data.title} | ${SITE_TITLE}`} description={snippet.data.description}>
@@ -52,26 +64,30 @@ const variantMode = !sources.legacy;
 					</>
 				)}
 
-				{sources.variants.map((variant) => (
-					<section aria-labelledby={variant.id}>
-						<h3 id={variant.id}>{variant.label}</h3>
-						{variant.md && <DocsDemoPreview md={variant.md} />}
-						<DocsDemoPreview
-							title={`${snippet.data.title} - ${variant.label}`}
-							size={snippet.data.size}
-							placeItems={snippet.data.placeItems}
-							html={variant.html}
-							css={variant.css}
-							js={sources.js}
-						/>
+				{sources.variants.map((variant) => {
+					const VariantContent = variantDocs.get(variant.id);
 
-						<h4 id={`${variant.id}-html`}>HTML</h4>
-						<DocsDemoPreview html={variant.html} />
+					return (
+						<section aria-labelledby={variant.id}>
+							<h3 id={variant.id}>{variant.label}</h3>
+							{VariantContent && <VariantContent />}
+							<DocsDemoPreview
+								title={`${snippet.data.title} - ${variant.label}`}
+								size={snippet.data.size}
+								placeItems={snippet.data.placeItems}
+								html={variant.html}
+								css={variant.css}
+								js={sources.js}
+							/>
 
-						<h4 id={`${variant.id}-css`}>CSS</h4>
-						<DocsDemoPreview css={variant.css} />
-					</section>
-				))}
+							<h4 id={`${variant.id}-html`}>HTML</h4>
+							<DocsDemoPreview html={variant.html} />
+
+							<h4 id={`${variant.id}-css`}>CSS</h4>
+							<DocsDemoPreview css={variant.css} />
+						</section>
+					);
+				})}
 
 				<Content />
 

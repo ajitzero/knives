@@ -36,4 +36,11 @@ const snippets = defineCollection({
 	}),
 });
 
-export const collections = { blog, snippets };
+const snippetDocs = defineCollection({
+	loader: glob({
+		base: './src/content/snippets',
+		pattern: '**/*.md',
+	}),
+});
+
+export const collections = { blog, snippets, snippetDocs };
