@@ -25,7 +25,7 @@ An Astro site of Blades-based snippets, itself built and styled with Blades. The
 
 ## Demo-only JavaScript and Markdown source
 
-- `snippet.js` is optional, runs only inside the sandboxed `DocsDemoPreview` iframe, and is for preview-only interactions; a snippet described as requiring no JavaScript must not depend on it. The snippet page displays and copies HTML and CSS only — treat `snippet.js` as demo support, not part of the snippet's provided source.
+- `<variant>.js` (or `snippet.js` when the snippet has no variants, or for script shared by every variant) is optional, runs only inside the sandboxed `DocsDemoPreview` iframe, and is for preview-only interactions; a snippet described as requiring no JavaScript must not depend on it. The snippet page displays and copies HTML and CSS only — treat it as demo support, not part of the snippet's provided source.
 - `snippet.md` is optional and never rendered; when present, its source is displayed (and copied) before the HTML section, to show a Markdown equivalent (e.g. the Markdown task list behind a task-list snippet).
 
 ## Content collections

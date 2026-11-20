@@ -12,7 +12,7 @@ const cssSources = import.meta.glob('../content/snippets/**/*.css', {
 	import: 'default',
 }) as Record<string, string>;
 
-const jsSources = import.meta.glob('../content/snippets/**/snippet.js', {
+const jsSources = import.meta.glob('../content/snippets/**/*.js', {
 	eager: true,
 	query: '?raw',
 	import: 'default',
@@ -50,12 +50,14 @@ function variantMarkdown(id: string, variantId: string) {
 
 export function getSnippetSources(id: string, declaredVariants?: SnippetVariants) {
 	const snippetHtml = htmlSources[sourcePath(id, 'snippet.html')];
+	const snippetJs = jsSources[sourcePath(id, 'snippet.js')];
 
 	const resolution = resolveSnippetVariants(id, declaredVariants, cssStems(id));
 
 	const variants = resolution.variants.map((variant) => {
 		const css = cssSources[sourcePath(id, `${variant.id}.css`)];
 		const html = htmlSources[sourcePath(id, `${variant.id}.html`)] ?? snippetHtml;
+		const js = jsSources[sourcePath(id, `${variant.id}.js`)] ?? snippetJs;
 
 		if (html === undefined) {
 			throw new Error(
@@ -69,7 +71,7 @@ export function getSnippetSources(id: string, declaredVariants?: SnippetVariants
 			);
 		}
 
-		return { ...variant, css, html, md: variantMarkdown(id, variant.id) };
+		return { ...variant, css, html, js, md: variantMarkdown(id, variant.id) };
 	});
 
 	const [first] = variants;
@@ -81,7 +83,7 @@ export function getSnippetSources(id: string, declaredVariants?: SnippetVariants
 	return {
 		html: first.html,
 		css: first.css,
-		js: jsSources[sourcePath(id, 'snippet.js')],
+		js: snippetJs,
 		md: mdSources[sourcePath(id, 'snippet.md')],
 		variants,
 		legacy: resolution.legacy,
