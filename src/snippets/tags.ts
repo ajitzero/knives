@@ -1,6 +1,7 @@
 import { z } from 'astro/zod';
 
 export const snippetTagLabels = {
+	button: 'Button',
 	popover: 'Popover',
 	group: 'Group',
 	list: 'List',
