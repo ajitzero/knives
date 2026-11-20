@@ -10,11 +10,22 @@
 		position: relative;
 		width: 100%;
 		max-width: 24rem;
+		/* Pico puts the field spacing on the input. A replaced element's margin
+		   doesn't collapse out of this wrapper, so it would make the wrapper one
+		   full margin taller than the field and throw off vertical centering.
+		   Carry the spacing here instead. */
+		margin-bottom: var(--pico-spacing);
+
+		> input {
+			margin-bottom: 0;
+		}
 
 		> svg {
 			position: absolute;
-			top: 50%;
-			translate: 0 -50%;
+			/* Center on the field. Percentage translates resolve against the
+			   SVG view box (transform-box: view-box), not the icon box, so
+			   position with calc instead of top: 50% + translate. */
+			top: calc(50% - var(--knives-icon-size) / 2);
 			z-index: 1;
 			width: var(--knives-icon-size);
 			height: var(--knives-icon-size);
