@@ -52,6 +52,16 @@
 		box-shadow: none;
 	}
 
+	/* A light hover like the ghost button's, mixed against the field colour so
+	   the select stays opaque — the popup paints from these colours. */
+	[data-input-group] > select:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--pico-contrast) 5%,
+			var(--pico-form-element-background-color)
+		);
+	}
+
 	/* Give the option rows the field's colours: the browser paints them itself,
 	   and Chrome on Linux otherwise opens a light menu. */
 	[data-input-group] > select option {

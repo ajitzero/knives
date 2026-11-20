@@ -24,6 +24,12 @@
 			background: none;
 		}
 
+		/* A light hover, like the ghost button's: the field's surface with a
+		   5% tint. */
+		> button:hover {
+			background: color-mix(in srgb, var(--pico-contrast) 5%, transparent);
+		}
+
 		> button > svg {
 			width: var(--knives-icon-size);
 			height: var(--knives-icon-size);
