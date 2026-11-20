@@ -22,9 +22,8 @@ tag:
 - [x] Grouped actions.
 - [x] Nested actions.
 - [x] Radio group.
-- [ ] Checkbox group.
+- [x] Checkbox group.
 - [x] RTL.
-- [ ] RTL for Grouped actions. Existing bug in Pico/Blade [#212](https://github.com/anyblades/blades/issues/212)
 
 ## Structure
 
@@ -42,6 +41,7 @@ tag:
 - Nested menus: add `popovertarget` to the row's `button` and place the child `ul[popover]` outside the parent menu. The trigger anchors the child beside it, and the browser keeps both open as a stack.
 - End a submenu trigger's content with a `chevron-right` `svg` in the same slot a `kbd` would use. It points at the side the nested menu opens and mirrors in RTL.
 - Radio group: an `li` holds a `label` wrapping `input[type="radio"]` and a `span` for the text, instead of a `button`. Pico styles the control, the snippet lays the label out like a button row, and native radio semantics (arrow keys) move the selection.
+- Checkbox group: same row shape with `input[type="checkbox"]`; any number of rows can be checked.
 - Add `data-position` to the popover to set where it opens, using a [`position-area`](https://developer.mozilla.org/en-US/docs/Web/CSS/position-area) value: `data-position="end span-start"`.
 - RTL: Blade/Pico supports RTL automatically. No special CSS required.
 

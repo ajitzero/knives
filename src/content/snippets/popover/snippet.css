@@ -177,7 +177,8 @@
 		}
 
 		/* Radio rows: the label fills the row like a button row does. Blades
-		   already highlights `li:has(label)` on hover and sizes the control. */
+		   already highlights `li:has(label)` on hover and sizes the control.
+		   Checkbox rows share the same layout. */
 		li > label {
 			display: flex;
 			align-items: center;
@@ -199,7 +200,7 @@
 				white-space: nowrap;
 			}
 
-			> [type='radio'] {
+			> :is([type='radio'], [type='checkbox']) {
 				flex: none;
 				margin: 0;
 			}
