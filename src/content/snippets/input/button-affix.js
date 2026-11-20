@@ -41,7 +41,10 @@ function revealButton(group) {
 			icon.toggleAttribute('hidden');
 		}
 
-		button.setAttribute('aria-label', input.type === 'password' ? 'Show password' : 'Hide password');
+		button.setAttribute(
+			'aria-label',
+			input.type === 'password' ? 'Show password' : 'Hide password',
+		);
 	});
 }
 
