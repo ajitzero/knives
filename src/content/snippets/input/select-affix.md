@@ -2,7 +2,7 @@ A `select` inside `data-input-group` works like a span affix, but it opens a men
 
 Put the select before the input for a prefix and after it for a suffix, and leave the input for the editable part. The input takes the remaining width while the select stays as wide as its longest option, so picking another option doesn't resize the field.
 
-The chevron is Pico's own select image, which the group keeps while the rest of the surface comes from the group. With `data-input-group="flush"`, the padding between the select and the input goes away, leaving the room the chevron needs. Keep the field's direction explicit with `dir="ltr"` when the values read left to right, like a scheme or a domain ending.
+The chevron is Pico's own select image, which the group keeps while the rest of the surface comes from the group. The open menu is native too, so the CSS paints its option rows with the field's own background and text colours: without that, a dark page can open a light menu whose options are unreadable. With `data-input-group="flush"`, the padding between the select and the input goes away, leaving the room the chevron needs. Keep the field's direction explicit with `dir="ltr"` when the values read left to right, like a scheme or a domain ending.
 
 #### Limitation
 

@@ -18,14 +18,27 @@
 	}
 
 	/* The parts carry no surface of their own. Transparent borders keep Pico's
-	   metrics, and the overlap below hides the seam between them. The select
-	   keeps Pico's background image: the chevron is its dropdown affordance. */
-	[data-input-group] > input,
-	[data-input-group] > select {
+	   metrics, and the overlap below hides the seam between them. */
+	[data-input-group] > input {
 		border: var(--pico-border-width) solid transparent;
 		border-radius: 0;
-		background-color: transparent;
+		background: none;
 		box-shadow: none;
+	}
+
+	/* Keep the select opaque: the browser paints its popup from the field's
+	   colours, and the group has the same colour, so no seam shows. */
+	[data-input-group] > select {
+		border: var(--pico-border-width) solid transparent;
+		background-color: var(--pico-form-element-background-color);
+		box-shadow: none;
+	}
+
+	/* Give the option rows the field's colours: the browser paints them itself,
+	   and Chrome on Linux otherwise opens a light menu. */
+	[data-input-group] > select option {
+		background-color: var(--pico-form-element-background-color);
+		color: var(--pico-form-element-color);
 	}
 
 	[data-input-group] > :not(:first-child) {

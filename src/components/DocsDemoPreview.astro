@@ -51,6 +51,29 @@ const srcdoc = `<!doctype html>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="color-scheme" content="light dark">
+		<script>
+			// This frame is its own document, so the page's data-theme never reaches
+			// it. Its name carries the page theme set by DocsDemoPreview before the
+			// frame loads; later changes arrive as messages. Blades resolves its
+			// palette (and the native select popup) from the resulting color-scheme.
+			(() => {
+				const apply = (theme) => {
+					if (theme === 'light' || theme === 'dark') {
+						document.documentElement.dataset.theme = theme;
+					} else if (theme === 'system') {
+						delete document.documentElement.dataset.theme;
+					}
+				};
+
+				apply(window.name);
+
+				addEventListener('message', (event) => {
+					if (event.source !== window.parent) return;
+
+					apply(event.data && event.data.knivesTheme);
+				});
+			})();
+		</script>
 		<style>${bladesStyles}\n${interStyles}\n${typographyStyles}\n${a11yStyles}\n${knivesStyles}\n${css}</style>
 	</head>
 	<body style="height: 100%; min-height: 200px; display: grid; place-items: ${placeItems}; padding: 2rem;">
@@ -79,6 +102,7 @@ const showSources = !skipSources && sources.length > 0;
 			title={`${title} preview (${rtl ? 'RTL' : 'LTR'})`}
 			sandbox="allow-scripts"
 			loading="lazy"
+			data-docs-demo-frame
 			srcdoc={srcdoc}
 			style={`height: ${size}rem;`}
 		></iframe>}
@@ -101,6 +125,35 @@ const showSources = !skipSources && sources.length > 0;
 		{!html && !css && !showSources && <p>No preview available.</p>}
 	</div>
 </section>
+
+<script>
+	// Demo iframes are separate documents: the page's data-theme never reaches
+	// them. Name each frame with the current theme before its lazy load starts
+	// (the frame applies it while parsing), then message loaded frames whenever
+	// the theme changes. Without this, their controls and native select popups
+	// follow the OS preference instead of the site toggle.
+	(() => {
+		const currentTheme = () => document.documentElement.dataset.theme || 'system';
+		const frames = () => document.querySelectorAll<HTMLIFrameElement>('[data-docs-demo-frame]');
+
+		const sync = (frame: HTMLIFrameElement) => {
+			frame.contentWindow?.postMessage({ knivesTheme: currentTheme() }, '*');
+		};
+
+		for (const frame of frames()) {
+			frame.name = currentTheme();
+			frame.addEventListener('load', () => sync(frame));
+			sync(frame);
+		}
+
+		new MutationObserver(() => {
+			for (const frame of frames()) {
+				frame.name = currentTheme();
+				sync(frame);
+			}
+		}).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+	})();
+</script>
 
 <style>
 	.docs-demo-preview {
