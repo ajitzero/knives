@@ -1,0 +1,81 @@
+/*
+ * Icon input.
+ * Opt in with data-input-icon on a wrapper around the input.
+ * An <svg> before the input sits at the inline-start, one after it at the
+ * inline-end, and one of each gives both. Icons overlay the input's padding,
+ * so they take no layout space and mirror in RTL.
+ */
+@layer snippets.input {
+	[data-input-icon] {
+		position: relative;
+		width: 100%;
+		max-width: 24rem;
+
+		> svg {
+			position: absolute;
+			top: 50%;
+			translate: 0 -50%;
+			z-index: 1;
+			width: var(--knives-icon-size);
+			height: var(--knives-icon-size);
+			color: var(--pico-muted-color);
+			pointer-events: none;
+		}
+
+		> svg:first-child {
+			inset-inline-start: var(--pico-form-element-spacing-horizontal);
+		}
+
+		> svg:last-child:not(:first-child) {
+			inset-inline-end: var(--pico-form-element-spacing-horizontal);
+		}
+
+		/* Make room for the icon on the side that has one. */
+		> input:not(:first-child) {
+			padding-inline-start: calc(
+				var(--pico-form-element-spacing-horizontal) + var(--knives-icon-size) +
+					var(--knives-menu-gap)
+			);
+		}
+
+		> input:not(:last-child) {
+			padding-inline-end: calc(
+				var(--pico-form-element-spacing-horizontal) + var(--knives-icon-size) +
+					var(--knives-menu-gap)
+			);
+		}
+	}
+
+	/*
+	 * Number stepper.
+	 * role="group" joins the input and the two icon buttons into one control;
+	 * Blades shares the border and radius across the group.
+	 */
+	[data-input-stepper] {
+		width: 100%;
+		max-width: 24rem;
+
+		> button > svg {
+			width: var(--knives-icon-size);
+			height: var(--knives-icon-size);
+		}
+
+		/* Icon-only buttons: a square hit area. */
+		> button:has(> svg:only-child) {
+			padding-inline: var(--pico-form-element-spacing-vertical);
+		}
+
+		/* The buttons replace the native spinners, so hide them. */
+		> input[type='number'] {
+			appearance: textfield;
+			text-align: center;
+			font-variant-numeric: tabular-nums;
+		}
+
+		> input[type='number']::-webkit-inner-spin-button,
+		> input[type='number']::-webkit-outer-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+	}
+}
