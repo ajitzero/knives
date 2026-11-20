@@ -25,8 +25,11 @@
 		color: var(--pico-muted-color);
 		white-space: nowrap;
 
-		/* Square off the corners that touch the input. */
+		/* Square off the corners that touch the input. Blades only pulls
+		   buttons, inputs and selects over the previous border, so the span
+		   needs its own negative margin to avoid a double border. */
 		&:not(:first-child) {
+			margin-inline-start: calc(var(--pico-border-width) * -1);
 			border-start-start-radius: 0;
 			border-end-start-radius: 0;
 		}
